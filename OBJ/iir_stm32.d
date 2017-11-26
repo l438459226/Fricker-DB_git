@@ -1,0 +1,15 @@
+..\OBJ\iir_stm32.o: ..\STM32F10x_DSP_Lib\src\iir_stm32.c
+..\OBJ\iir_stm32.o: ..\STM32F10x_DSP_Lib\inc\stm32_dsp.h
+..\OBJ\iir_stm32.o: ..\USER\stm32f10x.h
+..\OBJ\iir_stm32.o: ..\CORE\core_cm3.h
+..\OBJ\iir_stm32.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\iir_stm32.o: ..\CMSIS\Include\core_cmInstr.h
+..\OBJ\iir_stm32.o: ..\CMSIS\Include\core_cmFunc.h
+..\OBJ\iir_stm32.o: ..\USER\system_stm32f10x.h
+..\OBJ\iir_stm32.o: ..\USER\stm32f10x_conf.h
+..\OBJ\iir_stm32.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\OBJ\iir_stm32.o: ..\USER\stm32f10x.h
+..\OBJ\iir_stm32.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\OBJ\iir_stm32.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\OBJ\iir_stm32.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\OBJ\iir_stm32.o: ..\STM32F10x_FWLib\inc\misc.h
