@@ -627,11 +627,6 @@
           <GroupName>test</GroupName>
           <Files>
             <File>
-              <FileName>i2c1_bitbang.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\i2c1_bitbang.c</FilePath>
-            </File>
-            <File>
               <FileName>LT3582.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\LT3582.c</FilePath>

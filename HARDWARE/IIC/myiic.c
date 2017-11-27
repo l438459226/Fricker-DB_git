@@ -47,35 +47,55 @@ void SDA_IN(void)
 }
 
 /********检测总线是否被占用*********************/
-u8 iic_buscheck()
+int IIC_Buscheck()
 {
-  u8 outtime;
+  u8 outtime,i;
 	// Check bus
   while((I2C_SCL_CHECK()==0)||(I2C_SDA_CHECK()==0))	 //READ_SDA
   {
        // Bus error
+	  SDA_OUT();     //sda线输出
       printf("i2c levevl is low!!\r\n");
-      IIC_Send_Byte(0xff);				//总线有问题后尝试恢复总线	  reset总线
-	  IIC_Stop();
-	  if((outtime++)>3)	
-	  	return 255;
+	  IIC_SDA=1;
+      for(i=0;i<9;i++)				//SDA拉高，SCL连续发送9个脉冲复位I2c设备，一定要重新复位，否则上电容易出错
+	  {
+		IIC_SCL=1;
+		delay_us(IIC_HOLDTIME);
+		IIC_SCL=0;
+		delay_us(IIC_HOLDTIME);
+		IIC_SCL=1;
+	  }
+	  if(outtime++>3)	return -1;
   }
 	return 0;
 }
 
 //产生IIC起始信号
-void IIC_Start(void)
+int IIC_Start(void)
 {	
+	if(IIC_Buscheck()<0)	return -1;
 	SDA_OUT();     //sda线输出
 	IIC_SDA=1;	  	  
 	IIC_SCL=1;
-	iic_buscheck();
 
 	delay_us(IIC_HOLDTIME);
  	IIC_SDA=0;	//START:when CLK is high,DATA change form high to low 
 	delay_us(IIC_HOLDTIME);
 	IIC_SCL=0;//钳住I2C总线，准备发送或接收数据 
-}	  
+	delay_us(IIC_HOLDTIME);
+	return 0;
+}
+
+
+int i2c1_start(u8 sla_adr)
+{   
+	if(IIC_Start()<0) 
+		return  -1;
+
+    // Send address
+    return i2c1_write_u8(sla_adr<<1);
+}
+
 //产生IIC停止信号
 void IIC_Stop(void)
 {
@@ -92,7 +112,7 @@ void IIC_Stop(void)
 //返回值：1，接收应答失败
 //        0，接收应答成功
 
-u8 IIC_Wait_Ack(void)
+int IIC_Wait_Ack(void)
 {
 	u8 ucErrTime=0;
 	SDA_IN();      //SDA设置为输入  
@@ -104,9 +124,10 @@ u8 IIC_Wait_Ack(void)
 	{
 		ucErrTime++;
 		if(ucErrTime>250)
-		{
+		{	 
+			printf("IIC NO back ACK\r\n ");
 			IIC_Stop();
-			return 1;
+			return -1;
 		}
 	}
 	IIC_SCL=0;//时钟输出0 	   
@@ -138,7 +159,7 @@ void IIC_NAck(void)
 //返回从机有无应答
 //1，有应答
 //0，无应答			  
-void IIC_Send_Byte(u8 txd)
+int IIC_Send_Byte(u8 txd)
 {                        
     u8 t;   
 	SDA_OUT(); 	    
@@ -146,14 +167,49 @@ void IIC_Send_Byte(u8 txd)
     for(t=0;t<8;t++)
     {              
         IIC_SDA=(txd&0x80)>>7;
-        txd<<=1; 	  
-				delay_us(IIC_HOLDTIME);   //对TEA5767这三个延时都是必须的
-				IIC_SCL=1;
-				delay_us(IIC_HOLDTIME); 
-				IIC_SCL=0;	
-				delay_us(IIC_HOLDTIME);
-    }	 
-} 	    
+        txd <<= 1; 	  
+		delay_us(IIC_HOLDTIME);   //对TEA5767这三个延时都是必须的
+		IIC_SCL=1;
+		delay_us(IIC_HOLDTIME); 
+		IIC_SCL=0;	
+		delay_us(IIC_HOLDTIME);
+    }
+	return 0;	 
+} 
+
+void IIC_Scl(u8 bit)   	//0 or 1
+{
+    IIC_SCL = bit;//拉低时钟开始数据传输
+	if(I2C_SCL_CHECK() != bit)
+		printf("IIC SCL error\r\n");
+}
+
+void IIC_Sda(u8 bit)   	//0 or 1
+{
+    IIC_SDA = bit;//拉低时钟开始数据传输
+	if(I2C_SDA_CHECK() != bit)
+		printf("IIC SDA error\r\n");
+}
+
+int i2c1_write_u8(u8 txd)
+{                        
+    u8 t;   
+	SDA_OUT(); 	    
+	IIC_Scl(0);
+    for(t=0;t<8;t++)
+    {              
+        IIC_Sda((txd&0x80)>>7);
+        txd <<= 1; 	  
+		delay_us(IIC_HOLDTIME);   //对TEA5767这三个延时都是必须的
+		IIC_Scl(1);
+		delay_us(IIC_HOLDTIME); 
+		IIC_Scl(0);	
+		delay_us(IIC_HOLDTIME);
+    }
+	IIC_Wait_Ack();
+	return 0;	 
+} 
+	    
 //读1个字节，ack=1时，发送ACK，ack=0，发送nACK   
 u8 IIC_Read_Byte(unsigned char ack)
 {
@@ -175,7 +231,16 @@ u8 IIC_Read_Byte(unsigned char ack)
     return receive;
 }
 
-
+int i2c1_stop(void)
+{
+	SDA_OUT();	//sda线输出
+	IIC_SCL=0;
+	IIC_SDA=0;	//STOP:when CLK is high DATA change form low to high
+ 	delay_us(IIC_HOLDTIME);
+	IIC_SCL=1;
+	IIC_SDA=1;	//发送I2C总线结束信号
+	delay_us(IIC_HOLDTIME);
+}
 
 
 

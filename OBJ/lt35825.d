@@ -18,5 +18,4 @@
 ..\OBJ\lt35825.o: ..\HARDWARE\IIC\myiic.h
 ..\OBJ\lt35825.o: ..\SYSTEM\usart\usart.h
 ..\OBJ\lt35825.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
-..\OBJ\lt35825.o: ..\HARDWARE\i2c1_bitbang.h
 ..\OBJ\lt35825.o: ..\HARDWARE\LT3582.h

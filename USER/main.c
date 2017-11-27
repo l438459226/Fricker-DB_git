@@ -8,7 +8,7 @@
 #include "Fricker.h"
 #include "LT35825.h"
 #include "LT3582.h"
-#include "i2c1_bitbang.h"
+//#include "i2c1_bitbang.h"
 
 int main(void)
 { 

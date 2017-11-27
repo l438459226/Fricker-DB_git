@@ -1,7 +1,7 @@
 #include "LT35825.h"
 #include "myiic.h"
 #include "usart.h"
-#include "i2c1_bitbang.h"
+//#include "i2c1_bitbang.h"
 #include "LT3582.h"
 
 //Voutp = 3.2v+(Vp*50mV)+(Vplus*25mV)

@@ -41,4 +41,3 @@
 ..\OBJ\main.o: ..\HARDWARE\FRICKER\Fricker.h
 ..\OBJ\main.o: ..\HARDWARE\LT35825\LT35825.h
 ..\OBJ\main.o: ..\HARDWARE\LT3582.h
-..\OBJ\main.o: ..\HARDWARE\i2c1_bitbang.h

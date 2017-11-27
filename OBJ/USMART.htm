@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\USMART.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\USMART.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 791]: Last Updated: Sun Nov 26 21:38:07 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 791]: Last Updated: Mon Nov 27 21:49:59 2017
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -267,7 +267,7 @@ Global Symbols
 
 <P><STRONG><a name="[6a]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -291,7 +291,7 @@ Global Symbols
 
 <P><STRONG><a name="[6b]"></a>main</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = main &rArr; Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = main &rArr; Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mem_init
@@ -1660,7 +1660,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_buscheck
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck
 </UL>
 
 <P><STRONG><a name="[f7]"></a>IIC_Send_Byte</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, myiic.o(.text))
@@ -1671,12 +1671,12 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_buscheck
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck
 </UL>
 
-<P><STRONG><a name="[f8]"></a>iic_buscheck</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[f8]"></a>IIC_Buscheck</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
-<LI>Call Chain = iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
@@ -1685,12 +1685,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
 
-<P><STRONG><a name="[f9]"></a>IIC_Start</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[f9]"></a>IIC_Start</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
-<LI>Call Chain = IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_buscheck
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_OUT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
@@ -1739,7 +1739,7 @@ Global Symbols
 
 <P><STRONG><a name="[ff]"></a>TL35825_Write</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = TL35825_Write &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = TL35825_Write &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
@@ -1757,7 +1757,7 @@ Global Symbols
 
 <P><STRONG><a name="[100]"></a>TL35825_Read</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
@@ -1775,7 +1775,7 @@ Global Symbols
 
 <P><STRONG><a name="[78]"></a>Set_Voutp</STRONG> (Thumb, 124 bytes, Stack size 40 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
-<LI>Call Chain = Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = Set_Voutp &rArr; TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -1790,7 +1790,7 @@ Global Symbols
 
 <P><STRONG><a name="[79]"></a>Set_Voutn</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
-<LI>Call Chain = Set_Voutn &rArr; TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = Set_Voutn &rArr; TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -1805,7 +1805,7 @@ Global Symbols
 
 <P><STRONG><a name="[7a]"></a>Voutp_Upfirst</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = Voutp_Upfirst &rArr; TL35825_Read &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = Voutp_Upfirst &rArr; TL35825_Read &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
@@ -1821,7 +1821,7 @@ Global Symbols
 
 <P><STRONG><a name="[106]"></a>TL35825_reset</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = TL35825_reset &rArr; TL35825_Write &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = TL35825_reset &rArr; TL35825_Write &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
 </UL>
@@ -1830,7 +1830,7 @@ Global Symbols
 
 <P><STRONG><a name="[77]"></a>TL35825_init</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, lt35825.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = TL35825_init &rArr; TL35825_reset &rArr; TL35825_Write &rArr; IIC_Start &rArr; iic_buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<LI>Call Chain = TL35825_init &rArr; TL35825_reset &rArr; TL35825_Write &rArr; IIC_Start &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_reset
@@ -1906,7 +1906,7 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Voutp
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Voutn
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_buscheck
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_jeita_db
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RMS_percent
 </UL>

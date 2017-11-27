@@ -13,7 +13,7 @@
 ..\OBJ\lt3582.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\OBJ\lt3582.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\lt3582.o: ..\STM32F10x_FWLib\inc\misc.h
-..\OBJ\lt3582.o: ..\HARDWARE\i2c1_bitbang.h
+..\OBJ\lt3582.o: ..\HARDWARE\IIC\myiic.h
 ..\OBJ\lt3582.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\lt3582.o: ..\SYSTEM\delay\delay.h
 ..\OBJ\lt3582.o: ..\SYSTEM\usart\usart.h

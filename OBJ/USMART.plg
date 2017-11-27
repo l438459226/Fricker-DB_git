@@ -8,29 +8,111 @@ Project File Date:  11/24/2017
 
 <h2>Output:</h2>
 Build target 'Target 1'
+linking...
+Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
+FromELF: creating hex file...
+"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(72): warning:  #223-D: function "iic_buscheck" declared implicitly
+linking...
+..\OBJ\USMART.axf: Error: L6218E: Undefined symbol iic_buscheck (referred from myiic.o).
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+linking...
+Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
+FromELF: creating hex file...
+"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling myiic.c...
+linking...
+Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
+FromELF: creating hex file...
+"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(59): error:  #20: identifier "i" is undefined
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(94): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+linking...
+..\OBJ\USMART.axf: Error: L6200E: Symbol i2c1_start multiply defined (by i2c1_bitbang.o and myiic.o).
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(74): error:  #147: declaration is incompatible with "void IIC_Start(void)" (declared at line 39 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(95): error:  #120: return value type does not match the function type
+..\HARDWARE\IIC\myiic.c(160): error:  #147: declaration is incompatible with "void IIC_Send_Byte(u8)" (declared at line 41 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(175): warning:  #940-D: missing return statement at end of non-void function "IIC_Send_Byte"
+..\HARDWARE\IIC\myiic.c(206): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
+Target not created
+Build target 'Target 1'
 compiling main.c...
 compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): error:  #120: return value type does not match the function type
+..\HARDWARE\IIC\myiic.c(160): error:  #147: declaration is incompatible with "void IIC_Send_Byte(u8)" (declared at line 41 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(175): warning:  #940-D: missing return statement at end of non-void function "IIC_Send_Byte"
+..\HARDWARE\IIC\myiic.c(206): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): error:  #120: return value type does not match the function type
+..\HARDWARE\IIC\myiic.c(160): error:  #147: declaration is incompatible with "void IIC_Send_Byte(u8)" (declared at line 41 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(207): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): error:  #120: return value type does not match the function type
+..\HARDWARE\IIC\myiic.c(160): error:  #147: declaration is incompatible with "void IIC_Send_Byte(u8)" (declared at line 41 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(207): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): error:  #171: invalid type conversion
+..\HARDWARE\IIC\myiic.c(160): error:  #147: declaration is incompatible with "void IIC_Send_Byte(u8)" (declared at line 41 of "..\HARDWARE\IIC\myiic.h")
+..\HARDWARE\IIC\myiic.c(207): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(207): warning:  #940-D: missing return statement at end of non-void function "IIC_Write_Byte"
 compiling LT35825.c...
 ..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
 linking...
-Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
-FromELF: creating hex file...
-"..\OBJ\USMART.axf" - 0 Error(s), 1 Warning(s).
+..\OBJ\USMART.axf: Error: L6200E: Symbol i2c1_start multiply defined (by i2c1_bitbang.o and myiic.o).
+Target not created
 Build target 'Target 1'
+compiling myiic.c...
 linking...
-Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
-FromELF: creating hex file...
-"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+..\OBJ\USMART.axf: Error: L6200E: Symbol i2c1_start multiply defined (by i2c1_bitbang.o and myiic.o).
+Target not created
 Build target 'Target 1'
-linking...
-Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
-FromELF: creating hex file...
-"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+main.c(11): error:  #5: cannot open source input file "i2c1_bitbang.h": No such file or directory
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): warning:  #223-D: function "IIC_Write_Byte" declared implicitly
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(4): error:  #5: cannot open source input file "i2c1_bitbang.h": No such file or directory
+compiling i2c1_bitbang.c...
+i2c1_bitbang.c: Error:  #5: cannot open source input file "..\HARDWARE\i2c1_bitbang.c": No such file or directory
+Target not created
 Build target 'Target 1'
-linking...
-Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
-FromELF: creating hex file...
-"..\OBJ\USMART.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(4): error:  #5: cannot open source input file "i2c1_bitbang.h": No such file or directory
+compiling i2c1_bitbang.c...
+i2c1_bitbang.c: Error:  #5: cannot open source input file "..\HARDWARE\i2c1_bitbang.c": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+compiling i2c1_bitbang.c...
+i2c1_bitbang.c: Error:  #5: cannot open source input file "..\HARDWARE\i2c1_bitbang.c": No such file or directory
+Target not created
 Build target 'Target 1'
 compiling main.c...
 compiling stm32f10x_it.c...
@@ -66,11 +148,111 @@ compiling iir_stm32.c...
 compiling PID_C_stm32.c...
 compiling Fricker.c...
 compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(95): warning:  #223-D: function "IIC_Write_Byte" declared implicitly
 compiling LT35825.c...
 ..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
 compiling i2c1_bitbang.c...
+i2c1_bitbang.c: Error:  #5: cannot open source input file "..\HARDWARE\i2c1_bitbang.c": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling myiic.c...
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+compiling i2c1_bitbang.c...
+i2c1_bitbang.c: Error:  #5: cannot open source input file "..\HARDWARE\i2c1_bitbang.c": No such file or directory
+Target not created
+Build target 'Target 1'
 compiling LT3582.c...
-linking...
-Program Size: Code=36248 RO-data=27580 RW-data=380 ZI-data=60644  
-FromELF: creating hex file...
-"..\OBJ\USMART.axf" - 0 Error(s), 1 Warning(s).
+..\HARDWARE\LT3582.c(40): error:  #5: cannot open source input file "i2c1_bitbang.h": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling LT3582.c...
+..\HARDWARE\LT3582.c(67): warning:  #223-D: function "i2c1_start" declared implicitly
+..\HARDWARE\LT3582.c(73): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(76): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(82): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(91): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(94): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(100): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(102): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(124): warning:  #223-D: function "i2c1_start" declared implicitly
+..\HARDWARE\LT3582.c(129): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(131): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(136): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(139): warning:  #223-D: function "i2c1_start_repeat" declared implicitly
+..\HARDWARE\LT3582.c(144): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(147): warning:  #223-D: function "i2c1_read_u8" declared implicitly
+..\HARDWARE\LT3582.c(152): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(155): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(160): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(163): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(253): warning:  #223-D: function "i2c1_init" declared implicitly
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling myiic.c...
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+compiling LT3582.c...
+..\HARDWARE\LT3582.c(73): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(76): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(82): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(91): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(94): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(100): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(102): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(129): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(131): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(136): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(139): warning:  #223-D: function "i2c1_start_repeat" declared implicitly
+..\HARDWARE\LT3582.c(144): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(147): warning:  #223-D: function "i2c1_read_u8" declared implicitly
+..\HARDWARE\LT3582.c(152): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(155): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(160): error:  #20: identifier "I2C_ERR" is undefined
+..\HARDWARE\LT3582.c(163): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(253): warning:  #223-D: function "i2c1_init" declared implicitly
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling myiic.c...
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+compiling LT3582.c...
+..\HARDWARE\LT3582.c(76): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(94): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(102): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(131): warning:  #223-D: function "i2c1_write_u8" declared implicitly
+..\HARDWARE\LT3582.c(139): warning:  #223-D: function "i2c1_start_repeat" declared implicitly
+..\HARDWARE\LT3582.c(147): warning:  #223-D: function "i2c1_read_u8" declared implicitly
+..\HARDWARE\LT3582.c(155): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(163): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(253): warning:  #223-D: function "i2c1_init" declared implicitly
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling myiic.c...
+..\HARDWARE\IIC\myiic.c(96): warning:  #223-D: function "IIC_Write_Byte" declared implicitly
+compiling LT35825.c...
+..\HARDWARE\LT35825\LT35825.c(96): warning:  #177-D: variable "voltag" was declared but never referenced
+compiling LT3582.c...
+..\HARDWARE\LT3582.c(94): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(102): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(139): warning:  #223-D: function "i2c1_start_repeat" declared implicitly
+..\HARDWARE\LT3582.c(147): warning:  #223-D: function "i2c1_read_u8" declared implicitly
+..\HARDWARE\LT3582.c(155): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(163): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(253): warning:  #223-D: function "i2c1_init" declared implicitly
+Target not created
+Build target 'Target 1'
+compiling myiic.c...
+compiling LT3582.c...
+..\HARDWARE\LT3582.c(94): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(102): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(139): warning:  #223-D: function "i2c1_start_repeat" declared implicitly
+..\HARDWARE\LT3582.c(147): warning:  #223-D: function "i2c1_read_u8" declared implicitly
+..\HARDWARE\LT3582.c(155): warning:  #223-D: function "i2c1_stop" declared implicitly
+..\HARDWARE\LT3582.c(163): error:  #20: identifier "I2C_OK" is undefined
+..\HARDWARE\LT3582.c(253): warning:  #223-D: function "i2c1_init" declared implicitly
+Target not created

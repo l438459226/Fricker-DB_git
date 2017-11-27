@@ -47,10 +47,10 @@
 ### ADS-LD Output File: '..\OBJ\USMART.axf'
 ### ADS-LD Command File: '..\OBJ\USMART.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x000007B0
+### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x00000344
 ### Writing '.lnp' file
 ### ADS-LD Command file '..\OBJ\USMART.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
-### ADS-LD: executed with 0 errors
+### ADS-LD: executed with 1 errors
 ### Updating obj list
 ### LDADS_file() completed.

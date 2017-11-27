@@ -37,7 +37,8 @@ Vn:0--255
 *                                              包含头文件
 *********************************************************************************************************/
 #include "LT3582.h"
-#include "i2c1_bitbang.h"
+//#include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "sys.h"
 #include "delay.h"
 #include "usart.h"
