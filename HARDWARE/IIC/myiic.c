@@ -189,16 +189,22 @@ int IIC_Send_Byte(u8 txd)
 
 void IIC_Scl(u8 bit)   	//0 or 1
 {
-    IIC_SCL = bit;//拉低时钟开始数据传输
-	//if(I2C_SCL_CHECK() != bit)
-		//printf("IIC SCL error\r\n");
+	
+  IIC_SCL = bit;//拉低时钟开始数据传输
+	IIC_SCL = bit;
+
+	if(READ_SCL != bit)
+		printf("IIC SCL error\r\n");
 }
 
 void IIC_Sda(u8 bit)   	//0 or 1
 {
-    IIC_SDA = bit;//拉低时钟开始数据传输
-	//if(I2C_SDA_CHECK() != bit)
-		//printf("IIC SDA error\r\n");
+	
+  IIC_SDA = bit;//拉低时钟开始数据传输
+	IIC_SDA = bit;
+
+	if(READ_SDA != bit)
+		printf("IIC SDA error\r\n");
 }
 
 
@@ -212,7 +218,7 @@ void i2c1_init(void)
 int i2c1_write_u8(u8 txd)
 {                        
   u8 t;   
-	/*
+	
 	SDA_OUT(); 	    
 	IIC_Scl(0);
   for(t=0;t<8;t++)
@@ -225,8 +231,7 @@ int i2c1_write_u8(u8 txd)
 		IIC_Scl(0);	
 		delay_us(IIC_HOLDTIME);
   }
-	*/
-	IIC_Send_Byte(txd);
+	
 	IIC_Wait_Ack();
 	return 0;	 
 } 
@@ -279,7 +284,7 @@ int i2c1_stop(void)
 	SDA_OUT();	//sda线输出
 	IIC_Scl(0);
 	IIC_Sda(0);
-//STOP:when CLK is high DATA change form low to high
+	//STOP:when CLK is high DATA change form low to high
  	delay_us(IIC_HOLDTIME);
 	IIC_Scl(1);
 	delay_us(IIC_HOLDTIME);
@@ -305,7 +310,7 @@ int i2c1_start_repeat(u8 sla_adr)
 u8 iic_read_byte(void)
 {
 	
-	unsigned char i,receive = 0;
+	unsigned char i,receive = 0,t = 5;
 	
 	SDA_IN();//SDA设置为输入
   for(i=0;i<8;i++ )
@@ -314,8 +319,11 @@ u8 iic_read_byte(void)
         delay_us(IIC_HOLDTIME);
 				IIC_Scl(1);
         receive <<= 1;
-        if(READ_SDA)
-					receive |= 0x01;   
+				while(t--)
+				{
+					if(READ_SDA)
+						receive |= 0x01;
+				}					
 				delay_us(IIC_HOLDTIME); 
     }					 
 

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\USMART.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\USMART.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Tue Nov 28 11:51:38 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Tue Nov 28 13:09:52 2017
 <BR><P>
 <H3>Maximum Stack Usage =        372 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -267,7 +267,7 @@ Global Symbols
 <P><STRONG><a name="[1b1]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[6b]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; act8846_init &rArr; act8846_dcdc_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -291,7 +291,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[6c]"></a>main</STRONG> (Thumb, 198 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
 <LI>Call Chain = main &rArr; act8846_init &rArr; act8846_dcdc_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart2_init
@@ -466,11 +466,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_read_byte
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
@@ -769,8 +770,6 @@ Global Symbols
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_GPIO_Config
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OTP_GPIO_Config
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PMU_GPIO_Config
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PMU_RST_IO
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PMU_PWREN_IO
 </UL>
 
 <P><STRONG><a name="[133]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text))
@@ -779,8 +778,6 @@ Global Symbols
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_GPIO_Config
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VSP_VSN_GPIO_Config
 <LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PMU_GPIO_Config
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PMU_RST_IO
-<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_PMU_PWREN_IO
 </UL>
 
 <P><STRONG><a name="[1ba]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f10x_gpio.o(.text), UNUSED)
@@ -1691,9 +1688,10 @@ Global Symbols
 
 <P><STRONG><a name="[fb]"></a>SDA_OUT</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, myiic.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck
@@ -1739,7 +1737,6 @@ Global Symbols
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_Read
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 </UL>
 
 <P><STRONG><a name="[76]"></a>IIC_Init</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, myiic.o(.text))
@@ -1752,14 +1749,14 @@ Global Symbols
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_init
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_init
 </UL>
 
 <P><STRONG><a name="[101]"></a>SDA_IN</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, myiic.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_read_byte
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 </UL>
 
@@ -1774,7 +1771,7 @@ Global Symbols
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_Read
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
 </UL>
 
 <P><STRONG><a name="[100]"></a>IIC_Wait_Ack</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, myiic.o(.text))
@@ -1790,26 +1787,53 @@ Global Symbols
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_Read
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Write
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 </UL>
 
-<P><STRONG><a name="[102]"></a>i2c1_write_u8</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, myiic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
+<P><STRONG><a name="[102]"></a>IIC_Scl</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
+<LI>Call Chain = IIC_Scl &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_read_byte
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+</UL>
+
+<P><STRONG><a name="[103]"></a>IIC_Sda</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
+<LI>Call Chain = IIC_Sda &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+</UL>
+
+<P><STRONG><a name="[104]"></a>i2c1_write_u8</STRONG> (Thumb, 74 bytes, Stack size 16 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
 <LI>Call Chain = i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_OUT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_write
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
 </UL>
 
-<P><STRONG><a name="[103]"></a>i2c1_start</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, myiic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
+<P><STRONG><a name="[105]"></a>i2c1_start</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+<BR>[Calls]<UL><LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
@@ -1817,7 +1841,7 @@ Global Symbols
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
 </UL>
 
-<P><STRONG><a name="[104]"></a>IIC_Ack</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[106]"></a>IIC_Ack</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Ack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
@@ -1825,93 +1849,83 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_read_byte
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 </UL>
 
-<P><STRONG><a name="[105]"></a>IIC_NAck</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
+<P><STRONG><a name="[107]"></a>IIC_NAck</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_NAck
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_OUT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte_no_ack
 </UL>
 
-<P><STRONG><a name="[10a]"></a>IIC_Scl</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, myiic.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;iic_read_byte
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-</UL>
-
-<P><STRONG><a name="[10b]"></a>IIC_Sda</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, myiic.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-</UL>
-
-<P><STRONG><a name="[106]"></a>i2c1_init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, myiic.o(.text), UNUSED)
+<P><STRONG><a name="[108]"></a>i2c1_init</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, myiic.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
 </UL>
 
-<P><STRONG><a name="[107]"></a>IIC_Read_Byte</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, myiic.o(.text))
+<P><STRONG><a name="[109]"></a>IIC_Read_Byte</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, myiic.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = IIC_Read_Byte &rArr; IIC_Ack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_IN
 </UL>
 <BR>[Called By]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_Read
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TL35825_Read
 </UL>
 
-<P><STRONG><a name="[108]"></a>IIC_Read_Byte_no_ack</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, myiic.o(.text), UNUSED)
+<P><STRONG><a name="[10a]"></a>IIC_Read_Byte_no_ack</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, myiic.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_IN
 </UL>
 
-<P><STRONG><a name="[109]"></a>i2c1_stop</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, myiic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = i2c1_stop
+<P><STRONG><a name="[10b]"></a>i2c1_stop</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
+<LI>Call Chain = i2c1_stop &rArr; IIC_Sda &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_OUT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_write
 </UL>
 
-<P><STRONG><a name="[10c]"></a>i2c1_start_repeat</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, myiic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
+<P><STRONG><a name="[10c]"></a>i2c1_start_repeat</STRONG> (Thumb, 154 bytes, Stack size 8 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_OUT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
 </UL>
 
-<P><STRONG><a name="[10d]"></a>iic_read_byte</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, myiic.o(.text), UNUSED)
+<P><STRONG><a name="[10d]"></a>iic_read_byte</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, myiic.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_IN
 </UL>
 
-<P><STRONG><a name="[10e]"></a>i2c1_read_u8</STRONG> (Thumb, 182 bytes, Stack size 24 bytes, myiic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = i2c1_read_u8 &rArr; IIC_NAck
+<P><STRONG><a name="[10e]"></a>i2c1_read_u8</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, myiic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
+<LI>Call Chain = i2c1_read_u8 &rArr; IIC_Scl &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDA_IN
 </UL>
 <BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
@@ -1940,7 +1954,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
 <LI>Call Chain = TL35825_Read &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
@@ -2036,25 +2050,25 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[118]"></a>act8846_i2c_write</STRONG> (Thumb, 80 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
 <LI>Call Chain = act8846_i2c_write &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
 </UL>
 
 <P><STRONG><a name="[119]"></a>act8846_i2c_read</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 224 + Unknown Stack Size
 <LI>Call Chain = act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_read_u8
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start_repeat
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
-<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
-<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_stop
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_start
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c1_write_u8
 </UL>
 <BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_dcdc_get_mode
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_dcdc_get_voltage
@@ -2066,7 +2080,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11a]"></a>act8846_set_bits</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
 <LI>Call Chain = act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_i2c_read
@@ -2084,7 +2098,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11b]"></a>act8846_ldo_set_voltage</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
 <LI>Call Chain = act8846_ldo_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
@@ -2093,7 +2107,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11c]"></a>act8846_dcdc_set_voltage</STRONG> (Thumb, 128 bytes, Stack size 40 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
 <LI>Call Chain = act8846_dcdc_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -2103,7 +2117,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11d]"></a>act8846_ldo_disable</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = act8846_ldo_disable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
@@ -2114,7 +2128,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[11e]"></a>act8846_dcdc_disable</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = act8846_dcdc_disable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
@@ -2124,8 +2138,8 @@ Global Symbols
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_off
 </UL>
 
-<P><STRONG><a name="[7d]"></a>act8846_init</STRONG> (Thumb, 688 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
+<P><STRONG><a name="[7d]"></a>act8846_init</STRONG> (Thumb, 1438 bytes, Stack size 16 bytes, act8846.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 304 + Unknown Stack Size
 <LI>Call Chain = act8846_init &rArr; act8846_dcdc_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
@@ -2142,7 +2156,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[122]"></a>act8846_ldo_enable</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = act8846_ldo_enable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
@@ -2151,8 +2165,8 @@ Global Symbols
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_on
 </UL>
 
-<P><STRONG><a name="[123]"></a>act8846_dcdc_enable</STRONG> (Thumb, 806 bytes, Stack size 16 bytes, act8846.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256 + Unknown Stack Size
+<P><STRONG><a name="[123]"></a>act8846_dcdc_enable</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, act8846.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = act8846_dcdc_enable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
@@ -2176,7 +2190,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[126]"></a>act8846_Read</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, act8846.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<BR><BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
@@ -2234,7 +2248,7 @@ Global Symbols
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_set_bits
 </UL>
 
-<P><STRONG><a name="[131]"></a>act8846_device_shutdown</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, act8846.o(.text), UNUSED)
+<P><STRONG><a name="[131]"></a>act8846_device_shutdown</STRONG> (Thumb, 254 bytes, Stack size 8 bytes, act8846.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_off
@@ -2345,26 +2359,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[11f]"></a>Set_PMU_RST_IO</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, gpio_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Set_PMU_RST_IO
-</UL>
-<BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_init
+<P><STRONG><a name="[11f]"></a>Set_PMU_RST_IO</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio_config.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_init
 </UL>
 
-<P><STRONG><a name="[120]"></a>Set_PMU_PWREN_IO</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, gpio_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Set_PMU_PWREN_IO
-</UL>
-<BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-</UL>
-<BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_init
+<P><STRONG><a name="[120]"></a>Set_PMU_PWREN_IO</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, gpio_config.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_init
 </UL>
 
 <P><STRONG><a name="[7f]"></a>ACT8846_DCDC_Switch</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, gpio_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
 <LI>Call Chain = ACT8846_DCDC_Switch &rArr; act8846_dcdc_enable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_dcdc_enable
@@ -2374,7 +2378,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[80]"></a>ACT8846_LDO_Switch</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, gpio_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
 <LI>Call Chain = ACT8846_LDO_Switch &rArr; act8846_ldo_enable &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_ldo_enable
@@ -2462,6 +2466,8 @@ Global Symbols
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_off
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_on
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;act8846_dcdc_set_voltage
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Sda
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Scl
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Buscheck

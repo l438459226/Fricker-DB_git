@@ -25,11 +25,6 @@
 #define READ_SCL   PBin(6)  //ÊäÈëSDA
 #define READ_SDA   PBin(7)
 
-#define I2C_SCL_CHECK()     (GPIOB->IDR&GPIO_Pin_6)
-
-//#define I2C_SDA_SET_HIZ()   GPIOB->BSRR=GPIO_Pin_7
-//#define I2C_SDA_SET_LO()    GPIOB->BRR=GPIO_Pin_7
-#define I2C_SDA_CHECK()     (GPIOB->IDR&GPIO_Pin_7)
 
 #define 	I2C_ERR 	-1
 #define 	I2C_OK		0

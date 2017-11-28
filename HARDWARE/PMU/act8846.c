@@ -127,7 +127,8 @@ int act8846_init(void)
 		}
 		
 		
-		temp = 1850;//Get_Volt_Val(PWR13_EXT_PWR_A_INDEX);
+		temp = Get_Volt_Val(PWR13_EXT_PWR_A_INDEX);
+		//printf("PWR13_EXT_PWR_A_INDEX:%d    temp:%d\r\n",PWR13_EXT_PWR_A_INDEX,temp);
 		if(temp != 0)
 		{
 			ret = act8846_ldo_set_voltage(6,temp,temp);//EXT_POWER_1
@@ -172,7 +173,7 @@ int act8846_init(void)
 			}	
 		
 		///////////////////////////////////////////////////////////////////////
-		temp = 1850;//Get_Volt_Val(PWR4_TP_VIO_INDEX);
+		temp = Get_Volt_Val(PWR4_TP_VIO_INDEX);
 		if(temp != 0)
 		{
 			ret = act8846_ldo_set_voltage(0,temp,temp);//TP_VBUS
@@ -232,7 +233,7 @@ int act8846_init(void)
 				return ret;
 		}
 
-		temp = Get_Volt_Val(PWR14_EXT_PWR_B_INDEX);			//ext2????o¨ªiovcc¨°??¨´
+		temp = Get_Volt_Val(PWR14_EXT_PWR_B_INDEX);			//ext2
 		if(temp == 0)
 		{
 			ret = act8846_ldo_set_voltage(5,600,600);//EXT_POWER2
@@ -246,10 +247,7 @@ int act8846_init(void)
 			TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(5,2500,2500); error.");
 			return ret;
 		}
-		
-		
 		Delay_ms(5); 
-	//}		
 	return 0;
 }
 
@@ -319,8 +317,6 @@ int act8846_on(void){
 int act8846_off(void){
 	int ret;
 	uint8_t i;
-// 	Set_PMU_RST_IO(0);
-// 	Set_PMU_PWREN_IO(0);
 	
 	for(i=0;i<4;i++)
 	{
