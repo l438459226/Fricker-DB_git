@@ -51,8 +51,6 @@ u16 Get_PWM_Duty(void);
 u16 Get_PWM_Freq(void);
 u8 Get_Seq_Err_Flag(void);
 u8 Get_Duty_Err_Flag(void);
-u8 Get_Seq1_Err_Flag(void);
-u8 Get_Duty1_Err_Flag(void);
 void Clear_PWM_Err_Flag(void);
 void Clear_PWM_Test_Cnt(void);
 int TP_PWM_TE_Detect(void);

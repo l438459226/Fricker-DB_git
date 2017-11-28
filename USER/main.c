@@ -10,7 +10,10 @@
 #include "LT3582.h"
 #include "act8846.h"
 #include "parm.h"
+
 #include "GPIO_Config.h"
+#include "TPS22993.h"
+#include "LM36923.h"
 
 
 
@@ -65,6 +68,34 @@ int main(void)
 	ACT8846_LDO_Switch(LDO_SW7,ACT8846_SWITCH_ON);
 	ACT8846_LDO_Switch(LDO_SW8,ACT8846_SWITCH_ON);
 
+	
+	TPS22993_Init();							//快速放电
+	TPS22993_Set_All_Mode(1);			//设置负载开关为io控制
+	TPS22993_TPVDD_ON_OFF(1);
+	TPS22993_TPVIO_ON_OFF(1);
+	TPS22993_VDDH_ON_OFF(1);
+	TPS22993_EXT1_ON_OFF(1);
+	TPS22993_IOVCC_ON_OFF(1);
+	TPS22993_VSP_VSN_ON_OFF(1);
+	
+	delay_ms(200);
+	
+	OTP_P_ON_OFF(1);					//MOS管开关
+	
+	
+	BL_POWER_ON(); 						//mos管 控制  给bl供5V电源
+	Delay_ms(100);
+
+	OLEDLCD_MAIN_POWER_OFF(); 	//LCD OLED 电压切换   控制mos管  通过继电器切换电源
+
+	BL_POWER_ON(); 	//mos管 控制  给bl供5V电源
+	Delay_ms(100);
+	BL_ADJ_OFF();	//接入BL模块
+
+	BL_DETECT_ON();	//背光控制mos管开关背光模块BL+ 
+	
+	printf("bei guang dianliushezhi \r\n");
+	LM36923_Init(20);
 	
   while(1) 
 	{

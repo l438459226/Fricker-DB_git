@@ -19,7 +19,7 @@
 *                                              包含头文件
 *********************************************************************************************************/
 #include "stm32f10x.h"
-
+#include "sys.h"
 
 
 
@@ -29,114 +29,60 @@
 #define	 OK				0
 #define	 ERR			-1
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////
-#define  VSP_ON()					GPIO_SetBits(GPIOC,GPIO_Pin_8)
-#define  VSP_OFF()	 				GPIO_ResetBits(GPIOC,GPIO_Pin_8)
-#define  VSN_ON()					GPIO_SetBits(GPIOC,GPIO_Pin_9)
-#define  VSN_OFF()					GPIO_ResetBits(GPIOC,GPIO_Pin_9)
-#define  VSP_PWR_ON()				GPIO_SetBits(GPIOG,GPIO_Pin_1)
-#define  VSP_PWR_OFF()	 			GPIO_ResetBits(GPIOG,GPIO_Pin_1)
+#define  VSP_ON()							PCout(8) = 1	
+#define  VSP_OFF()	 					PCout(8) = 0	
+#define  VSN_ON()							PCout(9) = 1	
+#define  VSN_OFF()						PCout(9) = 0	
+#define  VSP_PWR_ON()					PGout(1) = 1	
+#define  VSP_PWR_OFF()	 			PGout(1) = 0	
+
+//////////////////////////////////////////////////////////////////////////////////
+#define  BL_ADJ_OFF()   						PEout(6) = 1	
+#define  BL_ADJ_ON()    						PEout(6) = 0	
+#define	 BL_POWER_ON()   		 				PEout(4) = 1		// 开启背光芯片电源	
+#define	 BL_POWER_OFF()   					PEout(4) = 0			// 关闭背光芯片电源	
+#define	 OLEDLCD_MAIN_POWER_ON()   	PGout(3) = 1		//OLED ON
+#define	 OLEDLCD_MAIN_POWER_OFF()   PGout(3) = 0			//LCD ON
+#define  BL_DETECT_ON()							PGout(2) = 1		//背光检测使能
+#define  BL_DETECT_OFF()						PGout(2) = 0			
 
 
 //////////////////////////////////////////////////////////////////////////////////
-#define  BL_ADJ_OFF()   			GPIO_SetBits(GPIOE,GPIO_Pin_6)
-#define  BL_ADJ_ON()    			GPIO_ResetBits(GPIOE,GPIO_Pin_6)
-#define	 BL_POWER_ON()   		 	GPIO_SetBits(GPIOE, GPIO_Pin_4);		// 开启背光芯片电源	
-#define	 BL_POWER_OFF()   			GPIO_ResetBits(GPIOE, GPIO_Pin_4);		// 关闭背光芯片电源	
-#define	 OLEDLCD_MAIN_POWER_ON()   	GPIO_SetBits(GPIOG, GPIO_Pin_3);		//OLED ON
-#define	 OLEDLCD_MAIN_POWER_OFF()   GPIO_ResetBits(GPIOG, GPIO_Pin_3);		//LCD ON
-
-#define  BL_DETECT_ON()				GPIO_SetBits(GPIOG, GPIO_Pin_2);		//背光检测使能
-#define  BL_DETECT_OFF()			GPIO_ResetBits(GPIOG, GPIO_Pin_2);		
-
-
-
-
+#define	 TPS22993_TPVIO_ON_OFF(x)			PDout(0) = x	
+#define	 TPS22993_IOVCC_ON_OFF(x)			PDout(1) = x	
+#define	 TPS22993_VSP_VSN_ON_OFF(x)		PDout(2) = x
+#define	 TPS22993_VDDH_ON_OFF(x)			PDout(3) = x										
+#define	 TPS22993_EXT2_ON_OFF(x)			PDout(4) = x	
+#define	 TPS22993_EXT1_ON_OFF(x)			PDout(5) = x	
+#define	 TPS22993_TPVDD_ON_OFF(x)			PDout(6) = x	
+#define	 TPS22993_EXT3_ON_OFF(x)			PDout(8) = x	
 //////////////////////////////////////////////////////////////////////////////////
-#define	 TPS22993_TPVIO_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_0);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_0) 
-									
-#define	 TPS22993_IOVCC_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_1);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_1) 
+#define	 RELAY_UA_IOVCC_ON_OFF(x)			PGout(4) = x	
+#define	 RELAY_UA_VDDH_ON_OFF(x)			PGout(5) = x	
+#define	 RELAY_UA_VSP_ON_OFF(x)				PGout(6) = x	
+#define	 RELAY_UA_VSN_ON_OFF(x)				PGout(7) = x	
 
-#define	 TPS22993_VSP_VSN_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_2);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_2) 
-
-#define	 TPS22993_VDDH_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_3);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_3) 										
-
-#define	 TPS22993_EXT2_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_4);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_4)	
-
-#define	 TPS22993_EXT1_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_5);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_5)
-
-#define	 TPS22993_TPVDD_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_6);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_6) 
-
-#define	 TPS22993_EXT3_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOD,GPIO_Pin_8);\
-									else		GPIO_ResetBits(GPIOD,GPIO_Pin_8)	
-
-
-//////////////////////////////////////////////////////////////////////////////////
-#define	 RELAY_UA_IOVCC_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOG,GPIO_Pin_4);\
-									else		GPIO_ResetBits(GPIOG,GPIO_Pin_4) 
-
-#define	 RELAY_UA_VDDH_ON_OFF(x)	if(x != 0)	GPIO_SetBits(GPIOG,GPIO_Pin_5);\
-									else		GPIO_ResetBits(GPIOG,GPIO_Pin_5) 
-
-#define	 RELAY_UA_VSP_ON_OFF(x)		if(x != 0)	GPIO_SetBits(GPIOG,GPIO_Pin_6);\
-									else		GPIO_ResetBits(GPIOG,GPIO_Pin_6) 
-
-#define	 RELAY_UA_VSN_ON_OFF(x)		if(x != 0)	GPIO_SetBits(GPIOG,GPIO_Pin_7);\
-									else		GPIO_ResetBits(GPIOG,GPIO_Pin_7)
-
-									
 #define  RELAY_UA_ALL_ON_OFF(x)		if(x != 0)	{RELAY_UA_IOVCC_ON_OFF(1);RELAY_UA_VDDH_ON_OFF(1);RELAY_UA_VSP_ON_OFF(1);RELAY_UA_VSN_ON_OFF(1);}\
 									else		{RELAY_UA_IOVCC_ON_OFF(0);RELAY_UA_VDDH_ON_OFF(0);RELAY_UA_VSP_ON_OFF(0);RELAY_UA_VSN_ON_OFF(0);}
 
 //////////////////////////////////////////////////////////////////////////////////
-#define	 DETECT_OLED_AVDD_ON_OFF(x)	if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_15);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_15) 
-
-#define	 DETECT_VSP_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_3);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_3) 
-										
-
-#define	 DETECT_LEDP_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_8);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_8) 
-
-#define	 DETECT_LED1N_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_9);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_9) 									
-
-#define	 DETECT_LED2N_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_10);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_10)	
-
-#define	 DETECT_LED3N_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_11);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_11) 
-
+#define	 DETECT_OLED_AVDD_ON_OFF(x)			PEout(15) = x	
+#define	 DETECT_VSP_ON_OFF(x)						PEout(3) = x
+#define	 DETECT_LEDP_ON_OFF(x)					PEout(8) = x	
+#define	 DETECT_LED1N_ON_OFF(x)					PEout(9) = x									
+#define	 DETECT_LED2N_ON_OFF(x)					PEout(10) = x	
+#define	 DETECT_LED3N_ON_OFF(x)					PEout(11) = x	
 
 //////////////////////////////////////////////////////////////////////////////////
-#define	 OTP_EN_ON_OFF(x)			if(x != 0)	GPIO_SetBits(GPIOE,GPIO_Pin_14);\
-									else		GPIO_ResetBits(GPIOE,GPIO_Pin_14) 
-
-#define	 OTP_P_ON_OFF(x)			if(x != 0)	GPIO_SetBits(GPIOE,GPIO_Pin_13);\
-									else		GPIO_ResetBits(GPIOE,GPIO_Pin_13) 
-
-#define	 DETECT_OTP_P_ON_OFF(x)		if(x != 0)	GPIO_ResetBits(GPIOE,GPIO_Pin_12);\
-									else		GPIO_SetBits(GPIOE,GPIO_Pin_12) 
+#define	 OTP_EN_ON_OFF(x)							PEout(14) = x	
+#define	 OTP_P_ON_OFF(x)							PEout(13) = x	
+#define	 DETECT_OTP_P_ON_OFF(x)				PEout(12) = x	
 
 
-
-#define	 VA_ERR_ON_OFF(x)			if(x != 0)	GPIO_ResetBits(GPIOC,GPIO_Pin_5);\
-									else		GPIO_SetBits(GPIOC,GPIO_Pin_5) 
-
+#define	 VA_ERR_ON_OFF(x)							PCout(5) = x	
 //////////////////////////////////////////////////////////////////////////////////
-#define	 USR_LED_ON_OFF(x)			if(x != 0)	GPIO_ResetBits(GPIOB,GPIO_Pin_3);\
-									else		GPIO_SetBits(GPIOB,GPIO_Pin_3) 
-
+#define	 USR_LED_ON_OFF(x)						PBout(3) = x	
 
 
 /*********************************************************************************************************

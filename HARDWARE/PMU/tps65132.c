@@ -1,11 +1,24 @@
 /*
-
-*
+//                              COMPANY CONFIDENTIAL
+//                               INTERNAL USE ONLY
+//
+// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
+//
+// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
+// The holder of this document shall treat all information contained herein as confidential, 
+// shall use the information only for its intended purpose, and shall protect the information 
+// in whole or part from duplication, disclosure to any other party, or dissemination in 
+// any media without the written permission of Comshare Technology Co.,Ltd.
+//
+// Comshare Technology Co.,Ltd
+// www.comshare-sz.com
 */
+
+
 #include "tps65132.h"
 #include "i2c1_bitbang.h"
 #include "stm32f10x.h"
-#include "usart1.h"
+#include "uart.h"
 #include "SysTick.h"
 #include "tester_debug.h"
 

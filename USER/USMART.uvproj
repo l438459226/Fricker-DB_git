@@ -651,6 +651,16 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\LED\GPIO_Config.c</FilePath>
             </File>
+            <File>
+              <FileName>TPS22993.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\TPS22993.c</FilePath>
+            </File>
+            <File>
+              <FileName>LM36923.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\LM36923.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

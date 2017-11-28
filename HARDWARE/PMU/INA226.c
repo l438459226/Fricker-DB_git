@@ -1,12 +1,24 @@
 /*
-
+//                              COMPANY CONFIDENTIAL
+//                               INTERNAL USE ONLY
+//
+// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
+//
+// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
+// The holder of this document shall treat all information contained herein as confidential, 
+// shall use the information only for its intended purpose, and shall protect the information 
+// in whole or part from duplication, disclosure to any other party, or dissemination in 
+// any media without the written permission of Comshare Technology Co.,Ltd.
+//
+// Comshare Technology Co.,Ltd
+// www.comshare-sz.com
 */
 
 
 #include "INA226.h"
 #include "i2c1_bitbang.h"
 #include "stm32f10x.h"
-#include "usart1.h"
+#include "uart.h"
 #include "SysTick.h"
 
 
@@ -155,7 +167,7 @@ int INA226_readRegister16(uint8_t reg, int16_t* val)
 
 int INA226_configure(ina226_averages_t avg, ina226_busConvTime_t busConvTime, ina226_shuntConvTime_t shuntConvTime, ina226_mode_t mode)
 {
-	int retval;
+		int retval;
     uint16_t config = 0;
 
     config |= (avg << 9 | busConvTime << 6 | shuntConvTime << 3 | mode);
@@ -179,7 +191,7 @@ int INA226_calibrate(float rShuntValue, float iMaxExpected)
 
 		iMaxPossible = vShuntMax / rShunt;
 
-    minimumLSB = ((double)iMaxExpected)/ 32768;
+    minimumLSB = ((double)iMaxExpected)/ 32768;//
 
 	/*
 

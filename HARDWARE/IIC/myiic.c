@@ -15,7 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////////// 	  
 
 /*************************/
-#define IIC_SPEED		100
+#define IIC_SPEED		400
 #define IIC_HOLDTIME	((1000/IIC_SPEED)+1)
 
 //初始化IIC
@@ -224,15 +224,16 @@ int i2c1_write_u8(u8 txd)
   for(t=0;t<8;t++)
   {              
     IIC_Sda((txd&0x80)>>7);
-        txd <<= 1; 	  
+    txd <<= 1; 	  
 		delay_us(IIC_HOLDTIME);   //对TEA5767这三个延时都是必须的
 		IIC_Scl(1);
 		delay_us(IIC_HOLDTIME); 
 		IIC_Scl(0);	
 		delay_us(IIC_HOLDTIME);
   }
+	if(IIC_Wait_Ack()<0)
+		return -1;
 	
-	IIC_Wait_Ack();
 	return 0;	 
 } 
 	    
@@ -295,14 +296,8 @@ int i2c1_stop(void)
 
 
 int i2c1_start_repeat(u8 sla_adr)
-{
-		SDA_OUT();	//sda线输出
-		IIC_Sda(1);
-		delay_us(IIC_HOLDTIME);
-
-    // Wait for SCL to be high (check for clock stretching)
-		IIC_Scl(1);
-
+{		
+	
     return i2c1_start(sla_adr);
 }
 
@@ -310,7 +305,7 @@ int i2c1_start_repeat(u8 sla_adr)
 u8 iic_read_byte(void)
 {
 	
-	unsigned char i,receive = 0,t = 5;
+	unsigned char i,receive = 0;
 	
 	SDA_IN();//SDA设置为输入
   for(i=0;i<8;i++ )
@@ -319,11 +314,8 @@ u8 iic_read_byte(void)
         delay_us(IIC_HOLDTIME);
 				IIC_Scl(1);
         receive <<= 1;
-				while(t--)
-				{
-					if(READ_SDA)
-						receive |= 0x01;
-				}					
+				if(READ_SDA)
+						receive++;				
 				delay_us(IIC_HOLDTIME); 
     }					 
 
@@ -334,7 +326,7 @@ u8 iic_read_byte(void)
 int i2c1_read_u8(u8 *data, u8 nak)
 {
     u8	i;
-    u8	receive,t=5;
+    u8	t = 5;
 
 		SDA_IN();//SDA设置为输入
 		for(i=0;i<8;i++ )
@@ -342,11 +334,11 @@ int i2c1_read_u8(u8 *data, u8 nak)
 					IIC_Scl(0);
 					delay_us(IIC_HOLDTIME);
 					IIC_Scl(1);
-					receive <<= 1;
+					*data <<= 1;
 					while(t--)
 					{
 						if(READ_SDA)
-							receive |= 0x01; 
+							*data |= 0x01; 
 					}						
 					delay_us(IIC_HOLDTIME); 
 		}		

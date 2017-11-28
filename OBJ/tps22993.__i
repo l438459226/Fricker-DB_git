@@ -2,4 +2,4 @@
 -I D:\ARM\Keil\ARM\RV31\INC 
 -I D:\ARM\Keil\ARM\CMSIS\Include 
 -I D:\ARM\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DARM_MATH_CM3 -o "..\OBJ\stm32f10x_exti.o" --omf_browse "..\OBJ\stm32f10x_exti.crf" --depend "..\OBJ\stm32f10x_exti.d" "..\STM32F10x_FWLib\src\stm32f10x_exti.c"
+-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DARM_MATH_CM3 -o "..\OBJ\tps22993.o" --omf_browse "..\OBJ\tps22993.crf" --depend "..\OBJ\tps22993.d" "..\HARDWARE\PMU\TPS22993.c"

@@ -1,12 +1,17 @@
 /*********************************************************************************************************
-* 文件名称: pwm_input.c
-* 文件作者: zq
-* 当前版本: V1.01
-* 所属模块: 
-* 完成日期: 2016年09月06日
-* 文件摘要: 
-* 注意事项:	
-* 更改说明: 
+//                              COMPANY CONFIDENTIAL
+//                               INTERNAL USE ONLY
+//
+// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
+//
+// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
+// The holder of this document shall treat all information contained herein as confidential, 
+// shall use the information only for its intended purpose, and shall protect the information 
+// in whole or part from duplication, disclosure to any other party, or dissemination in 
+// any media without the written permission of Comshare Technology Co.,Ltd.
+//
+// Comshare Technology Co.,Ltd
+// www.comshare-sz.com
 **********************************************************************************************************/
 
 /*********************************************************************************************************
@@ -16,8 +21,9 @@
 #include "tester_debug.h"
 #include "LoadConfig.h"
 #include "SysTick.h"
-#include "AD715.h"
-#include "key.h"
+
+
+
 
 
 vu32 IC1Value = 0,IC2Value = 0;
@@ -26,14 +32,17 @@ vu32 Frequency = 0;
 u16 DutyCycle_Valid = 0;
 u32 Frequency_Valid = 0;
 u16 TIM2_UPDATE_Cnt = 0;
-u8 Flag_Duty_Err = 0,Flag_Duty1_Err = 0;
-u8 Flag_Seq_Err = 0,Flag_Seq1_Err = 0;
+u8 Flag_Duty_Err = 0;
+u8 Flag_Seq_Err = 0;
 u8 PWM_Test_Cnt = 0;
 
 
-extern uint8_t G_Select_Port;
+
+
+
 
 //测量范围DUTY 2% -- 98%,FREQ 500HZ -- 50KHZ 比较准
+
 
 static void TIM2_GPIO_Configuration(void)
 {
@@ -58,12 +67,12 @@ void NVIC_Configuration2(void)
 	NVIC_InitTypeDef NVIC_InitStructure;
 	
 	 /* Configure one bit for preemption priority */
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
 
 	/* Enable the TIM2 global Interrupt */
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 }
@@ -196,11 +205,15 @@ void TIM2_IRQHandler(void)
 			Frequency = 0;
 		}	
 		
+		
 		TIM2_UPDATE_Cnt = 0;
+		
 	
+		
 		TIM_SetCounter(TIM2,0);
 	}			
 }
+
 
 
 u16 Get_PWM_Freq(void)
@@ -216,7 +229,7 @@ u16 Get_PWM_Duty(void)
 	return(DutyCycle_Valid);	
 }
 
-#define PRINT_PWM_INFO	0x00
+
 u8  PWM_Detect_Test(void)
 {	
 	u8 err = 0;
@@ -224,140 +237,69 @@ u8  PWM_Detect_Test(void)
 	u16 option_temp1 = 0,option_temp2 = 0;
 	
 	Get_Option_Para(PWM_EN_INDEX,&option_temp1);
-	if(option_temp1 == 1)						//使能pwm检测
+	//if(option_temp1 == 1)						//使能pwm检测
+	if(1)
 	{
 		PWM_Test_Cnt++;
-		if(G_Select_Port == 3)		//A+B PORT
-		{	
-			switch(PWM_Test_Cnt)					
-			{
-				case 1:
-					ad715_i2c_write2(DETE_PORTA_ID_TE_PWM);
-					PWM_ON();
-				break;
-				
-				case 4:
-					Get_Option_Para(PWM_SEQ_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_SEQ_LOW_INDEX,&option_temp2);
-					temp_seq = Get_PWM_Freq();
-					if(( temp_seq >= option_temp1) || (temp_seq <= option_temp2))
-					{
-						//pwm 频率检测错误
-						Flag_Seq_Err = 1;
-					}
-					
-					Get_Option_Para(PWM_DUTY_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_DUTY_LOW_INDEX,&option_temp2);
-					temp_duty = Get_PWM_Duty();
-					if((temp_duty >= option_temp1) || (temp_duty <= option_temp2))
-					{
-						//pwm 占空比检测错误
-						Flag_Duty_Err = 1;
-					}	
-
-					#if PRINT_PWM_INFO
-					printf("1FREQ = %dHZ\r\n",temp_seq);
-					printf("1DUTY = %d%%\r\n",temp_duty);
-					printf("1CCR = %d %d\r\n",IC1Value,IC2Value);		
-					#endif			
-				break;
-
-				case 5:
-					//Clear_PWM_Test_Cnt();
-					Frequency_Valid = 0;
-					DutyCycle_Valid = 0;
-					flag_test_one_time = 0;
-					test_one_time_cnt = 0;
-					times = 0;
-					ad715_i2c_write2(DETE_PORTB_ID_TE_PWM);
-				break;
-
-				case 8:
-					Get_Option_Para(PWM_SEQ_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_SEQ_LOW_INDEX,&option_temp2);
-					temp_seq = Get_PWM_Freq();
-					if(( temp_seq >= option_temp1) || (temp_seq <= option_temp2))
-					{
-						//pwm 频率检测错误
-						Flag_Seq1_Err = 1;
-					}
-					
-					Get_Option_Para(PWM_DUTY_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_DUTY_LOW_INDEX,&option_temp2);
-					temp_duty = Get_PWM_Duty();
-					if((temp_duty >= option_temp1) || (temp_duty <= option_temp2))
-					{
-						//pwm 占空比检测错误
-						Flag_Duty1_Err = 1;
-					}
-					
-					#if PRINT_PWM_INFO
-					printf("2FREQ = %dHZ\r\n",temp_seq);
-					printf("2DUTY = %d%%\r\n",temp_duty);
-					printf("2CCR = %d %d\r\n",IC1Value,IC2Value);		
-					#endif				
-				break;
-					
-				case 9:
-					PWM_OFF();
-					flag_test_one_time = 0;
-					test_one_time_cnt = 0;
-					times = 0;
-				break;
-				
-				case 10:
-					PWM_Test_Cnt = 9;
-				break;
-			}	
-		}
-		else			//PORTA
+		if(PWM_Test_Cnt == 1)			//运行一次
 		{
-			switch(PWM_Test_Cnt)					
-			{
-				case 1:
-					ad715_i2c_write2(DETE_PORTA_ID_TE_PWM);
-					PWM_ON();
-				break;
-				
-				case 4:
-					Get_Option_Para(PWM_SEQ_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_SEQ_LOW_INDEX,&option_temp2);
-					temp_seq = Get_PWM_Freq();
-					if(( temp_seq >= option_temp1) || (temp_seq <= option_temp2))
-					{
-						//pwm 频率检测错误
-						Flag_Seq_Err = 1;
-					}
-					
-					Get_Option_Para(PWM_DUTY_HIGH_INDEX,&option_temp1);
-					Get_Option_Para(PWM_DUTY_LOW_INDEX,&option_temp2);
-					temp_duty = Get_PWM_Duty();
-					if((temp_duty >= option_temp1) || (temp_duty <= option_temp2))
-					{
-						//pwm 占空比检测错误
-						Flag_Duty_Err = 1;
-					}	
-
-					#if PRINT_PWM_INFO
-					printf("1FREQ = %dHZ\r\n",temp_seq);
-					printf("1DUTY = %d%%\r\n",temp_duty);
-					printf("1CCR = %d %d\r\n",IC1Value,IC2Value);		
-					#endif			
-				break;
-
-				case 5:
-					PWM_OFF();
-					flag_test_one_time = 0;
-					test_one_time_cnt = 0;
-					times = 0;
-				break;
-
-				case 6:
-					PWM_Test_Cnt = 5;
-				break;
-			}
+			PWM_ON();
 		}
-					
+		else if(PWM_Test_Cnt == 4)
+		{
+			//Get_Option_Para(PWM_SEQ_HIGH_INDEX,&option_temp1);
+			//Get_Option_Para(PWM_SEQ_LOW_INDEX,&option_temp2);
+			temp_seq = Get_PWM_Freq();
+			if(( temp_seq >= option_temp1) || (temp_seq <= option_temp2))
+			{
+				//pwm 频率检测错误
+				Flag_Seq_Err = 1;
+				
+			}
+			else
+			{
+			
+			}
+			
+			
+			//Get_Option_Para(PWM_DUTY_HIGH_INDEX,&option_temp1);
+			//Get_Option_Para(PWM_DUTY_LOW_INDEX,&option_temp2);
+			temp_duty = Get_PWM_Duty();	
+			if((temp_duty >= option_temp1) || (temp_duty <= option_temp2))
+			{
+				//pwm 占空比检测错误
+				Flag_Duty_Err = 1;
+				
+			}
+			else
+			{
+			
+			}	
+
+			#if 1
+			printf("FREQ = %dHZ\r\n",temp_seq);
+			printf("DUTY = %d%%\r\n",temp_duty);
+			printf("CCR = %d %d\r\n",IC1Value,IC2Value);		
+			#endif
+
+			#if 0		
+			TESTER_MAIN_DEBUG("seq0 = %d %d %d %d %d %d %d %d \r\n",temp_arr_seq[0],temp_arr_seq[1],temp_arr_seq[2],temp_arr_seq[3],temp_arr_seq[4],temp_arr_seq[5],temp_arr_seq[6],temp_arr_seq[7]);		
+			TESTER_MAIN_DEBUG("seq8 = %d %d %d %d %d %d %d %d \r\n",temp_arr_seq[8],temp_arr_seq[9],temp_arr_seq[10],temp_arr_seq[11],temp_arr_seq[12],temp_arr_seq[13],temp_arr_seq[14],temp_arr_seq[15]);		
+			TESTER_MAIN_DEBUG("duty0 = %d %d %d %d %d %d %d %d \r\n",temp_arr_duty[0],temp_arr_duty[1],temp_arr_duty[2],temp_arr_duty[3],temp_arr_duty[4],temp_arr_duty[5],temp_arr_duty[6],temp_arr_duty[7]);		
+			TESTER_MAIN_DEBUG("duty8 = %d %d %d %d %d %d %d %d \r\n",temp_arr_duty[8],temp_arr_duty[9],temp_arr_duty[10],temp_arr_duty[11],temp_arr_duty[12],temp_arr_duty[13],temp_arr_duty[14],temp_arr_duty[15]);		
+			#endif
+
+		}
+		else if(PWM_Test_Cnt == 5)
+		{
+			PWM_OFF();
+			flag_test_one_time = 0;
+			times = 0;
+		}
+		else if(PWM_Test_Cnt >= 6)
+		{
+			PWM_Test_Cnt = 5;
+		}
 	}
 }
 
@@ -375,68 +317,22 @@ u8 Get_Duty_Err_Flag(void)
 	return(Flag_Duty_Err);
 }
 
-
-u8 Get_Seq1_Err_Flag(void)
-{
-	return(Flag_Seq1_Err);
-}
-
-
-
-u8 Get_Duty1_Err_Flag(void)
-{
-	return(Flag_Duty1_Err);
-}
-
-
 void Clear_PWM_Err_Flag(void)
 {
 	Flag_Seq_Err = 0;
 	Flag_Duty_Err = 0;
-	Flag_Seq1_Err = 0;
-	Flag_Duty1_Err = 0;
 }
 
 
 void Clear_PWM_Test_Cnt(void)
 {
-	flag_test_one_time = 0;
 	PWM_Test_Cnt = 0;
 	Frequency_Valid = 0;
 	DutyCycle_Valid = 0;
 }
 
 
-//tp测试项调用   PWM TE检测
-//返回值澹: -1---err  1---pass
-int TP_PWM_TE_Detect(void)
-{
-	u8 cnt = 8;
-	
-	while(cnt--)
-	{
-		PWM_Detect_Test();
-		Te_Para_Test();
-		Delay_ms(20);
-	}
 
-	if(Get_TE_Seq_Err_Flag() || Get_TE_Duty_Err_Flag())
-	{		
-		Set_Sys_Err_Flag(1);
-		return(-1);		//返回错误
-		//TE ERROR
-	}
-
-	if(Get_Seq_Err_Flag() || Get_Duty_Err_Flag())
-	{	
-		Set_Sys_Err_Flag(2);
-		return(-1);
-		//PWM ERROR
-	}
-	
-	return(1);		//返回 pass
-	
-}
 
 
 

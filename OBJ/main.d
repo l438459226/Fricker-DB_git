@@ -44,3 +44,5 @@
 ..\OBJ\main.o: ..\HARDWARE\PMU\act8846.h
 ..\OBJ\main.o: ..\HARDWARE\lcmparm\parm.h
 ..\OBJ\main.o: ..\HARDWARE\LED\GPIO_Config.h
+..\OBJ\main.o: ..\HARDWARE\PMU\TPS22993.h
+..\OBJ\main.o: ..\HARDWARE\PMU\LM36923.h

@@ -87,7 +87,7 @@ int act8846_init(void)
 		Set_PMU_RST_IO(0);	
 		Delay_ms(100); 
 		Set_PMU_RST_IO(1);	
-		Delay_ms(500);
+		Delay_ms(200);
 		Set_PMU_PWREN_IO(1);
 		Delay_ms(100);
 			
@@ -258,38 +258,6 @@ int act8846_init(void)
 int act8846_on(void){
 	int ret;
 	uint8_t i;
-	
-// 	for(i=0;i<4;i++){
-// 		ret = act8846_dcdc_disable(i);
-// 		if(ret < 0){
-// 			TESTER_MAIN_DEBUG("act8846_dcdc_disable error.");
-// 			return ret;
-// 		}
-// 	}
-// 	
-// 	for(i=0;i<9;i++){
-// 		ret = act8846_ldo_disable(i);
-// 		if(ret < 0){
-// 			TESTER_MAIN_DEBUG("act8846_ldo_disable error.");
-// 			return ret;
-// 		}
-// 	}
-	
-// 	ret = act8846_dcdc_set_voltage(1,3300, 3300);
-// 	if(ret < 0){
-// 			TESTER_MAIN_DEBUG("act8846_ldo_disable error.");
-// 			return ret;
-// 		}
-// 	ret = act8846_dcdc_set_voltage(2,1200, 1200);
-// 	if(ret < 0){
-// 			TESTER_MAIN_DEBUG("act8846_ldo_disable error.");
-// 			return ret;
-// 		}
-// 	ret = act8846_dcdc_set_voltage(3,2500, 2500);
-// 	if(ret < 0){
-// 			TESTER_MAIN_DEBUG("act8846_ldo_disable error.");
-// 			return ret;
-// 		}
 
 	for(i=0;i<4;i++)
 	{

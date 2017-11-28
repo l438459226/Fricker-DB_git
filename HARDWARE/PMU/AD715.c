@@ -1,3 +1,17 @@
+//                              COMPANY CONFIDENTIAL
+//                               INTERNAL USE ONLY
+//
+// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
+//
+// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
+// The holder of this document shall treat all information contained herein as confidential, 
+// shall use the information only for its intended purpose, and shall protect the information 
+// in whole or part from duplication, disclosure to any other party, or dissemination in 
+// any media without the written permission of Comshare Technology Co.,Ltd.
+//
+// Comshare Technology Co.,Ltd
+// www.comshare-sz.com
+
 #include "AD715.h"
 #include "i2c1_bitbang.h"
 #include "stm32f10x.h"
@@ -5,10 +19,7 @@
 
 
 
-#define aD715_I2C_7BIT_ADDRESS1 0x48
-#define aD715_I2C_7BIT_ADDRESS2 0x4a
-
-
+#define aD715_I2C_7BIT_ADDRESS 0x48
 
 
 
@@ -16,7 +27,7 @@ int ad715_i2c_write(uint8_t val)
 {
 	int retval;
 	
-	retval = i2c1_start(aD715_I2C_7BIT_ADDRESS1<<1);
+	retval = i2c1_start(aD715_I2C_7BIT_ADDRESS<<1);
 	if(retval<0){
 		#ifdef ENABLE_ERROR_PRINT
 				printf("fun: i2c1_start Failed\r\n");
@@ -41,123 +52,6 @@ int ad715_i2c_write(uint8_t val)
 	}
 	return I2C_OK;
 }
-
-
-int ad715_i2c_read(uint8_t* pBuffer)
-{
-	int retval;
-	retval = i2c1_start(aD715_I2C_7BIT_ADDRESS1<<1);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-				TESTER_MAIN_DEBUG("fun: i2c1_start Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-	
-	retval = i2c1_start_repeat((aD715_I2C_7BIT_ADDRESS1<<1)|0x01);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c1_start_repeat Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	retval = i2c1_read_u8(pBuffer, 1);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c_read_data Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	retval = i2c1_stop();
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c1_stop Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	return I2C_OK;
-}
-
-
-
-
-int ad715_i2c_write2(uint8_t val)
-{
-	int retval;
-	
-	retval = i2c1_start(aD715_I2C_7BIT_ADDRESS2<<1);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-				printf("fun: i2c1_start Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-	
-	retval = i2c1_write_u8((uint8_t)(val));
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-				printf("fun: i2c1_write_u8(val) Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-	
-	retval = i2c1_stop();
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			printf("fun: i2c1_stop Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-	return I2C_OK;
-}
-
-
-int ad715_i2c_read2(uint8_t* pBuffer)
-{
-	int retval;
-	retval = i2c1_start(aD715_I2C_7BIT_ADDRESS2<<1);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-				TESTER_MAIN_DEBUG("fun: i2c1_start Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-	
-	retval = i2c1_start_repeat((aD715_I2C_7BIT_ADDRESS2<<1)|0x01);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c1_start_repeat Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	retval = i2c1_read_u8(pBuffer, 1);
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c_read_data Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	retval = i2c1_stop();
-	if(retval<0){
-		#ifdef ENABLE_ERROR_PRINT
-			TESTER_MAIN_DEBUG("fun: i2c1_stop Failed\r\n");
-		#endif
-		return I2C_ERR; 
-	}
-
-	return I2C_OK;
-}
-
-
-
-
-
-
 
 
 void Tps65651_test(void)
@@ -168,22 +62,10 @@ void Tps65651_test(void)
 
 
 
-
-
-
-
 void ad715_Init(void)
 {
-	u8 temp = 0;
-	ad715_i2c_write(VOUT_NONE);				//ÇÐ»»µçÑ¹
-	//ad715_i2c_read(&temp);
-	//printf("ad715 temp1 = %d\r\n",temp);
-	ad715_i2c_write2(DETE_PORTAB_NONE);		//ÇÐ»»portab ID TE PWM
-	//ad715_i2c_read2(&temp);
-	//printf("ad715 temp2 = %d\r\n",temp);
-	VSP_DETECTED_OFF;
-	LED_PWR_DETECTED_OFF;
-	//Tps65651_test();
+	ad715_i2c_write(VOUT_NONE);
+
 }
 
 

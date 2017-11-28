@@ -13,7 +13,7 @@
 ..\OBJ\gpio_config.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\OBJ\gpio_config.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\gpio_config.o: ..\STM32F10x_FWLib\inc\misc.h
+..\OBJ\gpio_config.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\gpio_config.o: ..\HARDWARE\PMU\INA226.h
 ..\OBJ\gpio_config.o: ..\HARDWARE\PMU\act8846.h
 ..\OBJ\gpio_config.o: ..\HARDWARE\IIC\myiic.h
-..\OBJ\gpio_config.o: ..\SYSTEM\sys\sys.h
