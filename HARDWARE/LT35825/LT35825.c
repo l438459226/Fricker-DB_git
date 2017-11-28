@@ -40,26 +40,27 @@ u8 TL35825_Write(u8 reg,u8 date)
 	IIC_Send_Byte(reg);   	
 	IIC_Wait_Ack();  
 	IIC_Send_Byte(date);  	
-	ret=IIC_Wait_Ack();
+	ret = IIC_Wait_Ack();
 	if(ret)	return 255;  
 	IIC_Stop();					
 	return ret; 
 }
 
-		  
+ 
 u8 TL35825_Read(u8 reg)
 {
 	u8 date = 0x5a;
  	IIC_Start();	
  	IIC_Send_Byte(TL35825_ADDR<<1);  
 	IIC_Wait_Ack();
+	
  	IIC_Send_Byte(reg);   	
 	IIC_Wait_Ack();  
  	IIC_Start();  	 	   
 	IIC_Send_Byte((TL35825_ADDR<<1)|0x01);   //读 - 地址最低位为1    写- 地址最低位为0
 	IIC_Wait_Ack();	
 
-	date = IIC_Read_Byte(1); 
+	date = IIC_Read_Byte(); 
 
 	IIC_Stop();
 	return date;
@@ -69,52 +70,54 @@ void Set_Voutp(float voltage)//3.2  - 12.75  6.75
 {
 	u8 vp;
 	u16 value;
-//	u8 temp;
+	u8 vplus;
+	float VOUTP;
 	
-	value = (voltage-3.2)*1000;
+	value = (u16)((voltage-3.2)*1000);
 	vp = value/VP_BASIC;
 	
-	printf("vp:0x%x  ",vp);
+	printf("vp:0x%x  \r\n",vp);
 	//TL35825_Write(TL35825_CMDR,0x07);	//Voutp = 3.2v+(Vp*50mV)+(Vplus*25mV)
 	TL35825_Write(TL35825_REG0,vp);
-	//printf("temp:0x%x\r\n",TL35825_Read(TL35825_REG0));
+	//delay_ms(100);
 	
-	//printf("TL35825_REG21:0x%x\r\n",TL35825_Read(TL35825_REG2));
+	printf("REG0:0x%x\r\n",TL35825_Read(TL35825_REG0));
+	printf("REG2:0x%x\r\n",TL35825_Read(TL35825_REG2));
 	
 	if(value%VP_BASIC){
-		TL35825_Write(TL35825_REG2,(TL35825_Read(TL35825_REG2)|SET_VPLUS));	//
+		TL35825_Write(TL35825_REG2,(TL35825_Read(TL35825_REG2)|SET_VPLUS));
+		vplus = 1;//
 	}else{
 		TL35825_Write(TL35825_REG2,TL35825_Read(TL35825_REG2)&RESET_VPLUS);
+		vplus = 0;
 	}
-
-	//printf("TL35825_REG22:0x%x\r\n",TL35825_Read(TL35825_REG2));
+	VOUTP = 3200 + (vp * 50) + (vplus * 25);
+	printf("VSP输出电压：%f\r\n",(VOUTP/1000));
 }
 
 void Set_Voutn(float voltage)
 {
 	u8 vn;
-	u16 value,voltag;
+	u16 value;
 	u8 temp;
+	float VOUTN;
 	
-	/*
-	printf("voltage:%f  \r\n",voltage);
-	voltag = 0-voltage;
+	//value = (voltage*1000)+1200;//0-(voltage+1.2)*1000;
+	value = (u16)(0-(voltage+1.2)*1000);
 	
-	printf("voltage:%f  \r\n",voltage);
-	*/
-	
-	value = (voltage*1000)+1200;//0-(voltage+1.2)*1000;
-	
-	printf("value:0x%x  \r\n",value);
+	//printf("value:0x%x  \r\n",value);
 	vn = (value/50);
 	if(value%50)	vn +=1;
-	
 	printf("vn:0x%x  \r\n",vn);
-	TL35825_Write(TL35825_REG1,0x00);
-	delay_ms(100);
+	
+	TL35825_Write(TL35825_REG1,vn);
+	//delay_ms(100);
+	//temp = TL35825_Read(TL35825_REG1);
 	temp = TL35825_Read(TL35825_REG1);
-	temp = TL35825_Read(TL35825_REG1);
-	printf("temp:0x%x\r\n",temp);
+	printf("REG1:0x%x\r\n",temp);
+	
+	VOUTN = (-1200) - (vn * 50);
+	printf("VSN输出电压：%f\r\n",(VOUTN/1000));
 }
 
 
@@ -124,7 +127,7 @@ void Voutp_Upfirst(void)
 	TL35825_Write(TL35825_REG2,((TL35825_Read(TL35825_REG2)&(~0x03))|VOUTP_UP));
 	TL35825_Write(TL35825_CMDR,0x07);
 	
-	printf("cmdr:%x",TL35825_Read(TL35825_REG1));
+	printf("cmdr:0x%x\r\n",TL35825_Read(TL35825_REG1));
 }
 
 void Voutn_Upfirst(void)
@@ -136,13 +139,14 @@ void Voutn_Upfirst(void)
 
 void TL35825_reset()
 {
-	TL35825_Write(TL35825_CMDR,0x20);//复位芯片
+	TL35825_Write(TL35825_CMDR,0x70);//复位芯片
 }
 
 void TL35825_init(void)
 {
 	TL35825_reset();	//	
 	delay_ms(1);
+	TL35825_Write(TL35825_CMDR,0x57);
 }
 
 void Voutn_UpBoth(void)

@@ -223,9 +223,9 @@ ARM Macro Assembler    Page 4
   125 0000009E E8BD 8FF0       LDMIA            sp!, {r4-r11, pc}
   126 000000A2                 END
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\OBJ\f
-ir_stm32.d -o..\OBJ\fir_stm32.o -IE:\Keil_v5\ARM\CMSIS\Include -IE:\Keil_v5\ARM
-\INC\ST\STM32F10x --list=.\fir_stm32.lst ..\STM32F10x_DSP_Lib\src\asm\arm\fir_s
-tm32.s
+ir_stm32.d -o..\OBJ\fir_stm32.o -ID:\ARM\Keil\ARM\RV31\INC -ID:\ARM\Keil\ARM\CM
+SIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --list=.\fir_stm32.lst ..\STM32F
+10x_DSP_Lib\src\asm\arm\fir_stm32.s
 
 
 

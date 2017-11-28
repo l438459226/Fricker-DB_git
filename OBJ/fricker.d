@@ -2,7 +2,7 @@
 ..\OBJ\fricker.o: ..\HARDWARE\FRICKER\Fricker.h
 ..\OBJ\fricker.o: ..\USER\stm32f10x.h
 ..\OBJ\fricker.o: ..\CORE\core_cm3.h
-..\OBJ\fricker.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\fricker.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\fricker.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\fricker.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\fricker.o: ..\USER\system_stm32f10x.h
@@ -16,10 +16,10 @@
 ..\OBJ\fricker.o: ..\MALLOC\malloc.h
 ..\OBJ\fricker.o: ..\CMSIS\Include\arm_math.h
 ..\OBJ\fricker.o: ..\CMSIS\Include\core_cm3.h
-..\OBJ\fricker.o: E:\Keil_v5\ARM\RV31\INC\string.h
-..\OBJ\fricker.o: E:\Keil_v5\ARM\RV31\INC\math.h
+..\OBJ\fricker.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\string.h
+..\OBJ\fricker.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\math.h
 ..\OBJ\fricker.o: ..\HARDWARE\ADC\adc.h
 ..\OBJ\fricker.o: ..\SYSTEM\usart\usart.h
-..\OBJ\fricker.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\fricker.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
 ..\OBJ\fricker.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\fricker.o: ..\HARDWARE\TIMER\timer.h

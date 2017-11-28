@@ -22,7 +22,8 @@
 //IO操作函数	 
 #define IIC_SCL    PBout(6) //SCL
 #define IIC_SDA    PBout(7) //SDA	 
-#define READ_SDA   PBin(7)  //输入SDA 
+#define READ_SCL   PBin(6)  //输入SDA
+#define READ_SDA   PBin(7)
 
 #define I2C_SCL_CHECK()     (GPIOB->IDR&GPIO_Pin_6)
 
@@ -30,7 +31,8 @@
 //#define I2C_SDA_SET_LO()    GPIOB->BRR=GPIO_Pin_7
 #define I2C_SDA_CHECK()     (GPIOB->IDR&GPIO_Pin_7)
 
-#define I2C_ERR -1
+#define 	I2C_ERR 	-1
+#define 	I2C_OK		0
 
 void SDA_OUT(void);
 void SDA_IN(void);
@@ -40,15 +42,18 @@ void IIC_Init(void);                //初始化IIC的IO口
 int IIC_Start(void);				//发送IIC开始信号
 void IIC_Stop(void);	  			//发送IIC停止信号
 int IIC_Send_Byte(u8 txd);			//IIC发送一个字节
-u8 IIC_Read_Byte(unsigned char ack);//IIC读取一个字节
-u8 IIC_Wait_Ack(void); 				//IIC等待ACK信号
+u8 IIC_Read_Byte(void);//IIC读取一个字节
+int IIC_Wait_Ack(void); 				//IIC等待ACK信号
 void IIC_Ack(void);					//IIC发送ACK信号
 void IIC_NAck(void);				//IIC不发送ACK信号
 
 
-
+void i2c1_init(void);
 int i2c1_start(u8 sla_adr);
 int i2c1_write_u8(u8 txd);
+int i2c1_stop(void);
+int i2c1_start_repeat(u8 sla_adr);
+int i2c1_read_u8(u8 *data, u8 nak);
 
 void IIC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
 u8 IIC_Read_One_Byte(u8 daddr,u8 addr);	  

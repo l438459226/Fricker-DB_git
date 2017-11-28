@@ -127,15 +127,15 @@ ARM Macro Assembler    Page 2
               00000000 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\OBJ\P
-ID_stm32.d -o..\OBJ\PID_stm32.o -IE:\Keil_v5\ARM\CMSIS\Include -IE:\Keil_v5\ARM
+ID_stm32.d -o..\OBJ\PID_stm32.o -ID:\ARM\Keil\ARM\RV31\INC -ID:\ARM\Keil\ARM\CM
 
 
 
 ARM Macro Assembler    Page 3 
 
 
-\INC\ST\STM32F10x --list=.\PID_stm32.lst ..\STM32F10x_DSP_Lib\src\asm\arm\PID_s
-tm32.s
+SIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --list=.\PID_stm32.lst ..\STM32F
+10x_DSP_Lib\src\asm\arm\PID_stm32.s
 
 
 

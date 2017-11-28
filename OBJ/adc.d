@@ -2,7 +2,7 @@
 ..\OBJ\adc.o: ..\HARDWARE\ADC\adc.h
 ..\OBJ\adc.o: ..\USER\stm32f10x.h
 ..\OBJ\adc.o: ..\CORE\core_cm3.h
-..\OBJ\adc.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\adc.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\adc.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\adc.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\adc.o: ..\USER\system_stm32f10x.h
@@ -13,7 +13,7 @@
 ..\OBJ\adc.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\OBJ\adc.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\adc.o: ..\STM32F10x_FWLib\inc\misc.h
-..\OBJ\adc.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\adc.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
 ..\OBJ\adc.o: ..\STM32F10x_DSP_Lib\inc\stm32_dsp.h
 ..\OBJ\adc.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
 ..\OBJ\adc.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

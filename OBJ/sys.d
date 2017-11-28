@@ -2,7 +2,7 @@
 ..\OBJ\sys.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\sys.o: ..\USER\stm32f10x.h
 ..\OBJ\sys.o: ..\CORE\core_cm3.h
-..\OBJ\sys.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\sys.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\sys.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\sys.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\sys.o: ..\USER\system_stm32f10x.h

@@ -148,6 +148,13 @@ void delay_ms(u16 nms)
 	SysTick->CTRL&=~SysTick_CTRL_ENABLE_Msk;       //关闭计数器
 	SysTick->VAL =0X00;       //清空计数器	  	    
 } 
+
+void Delay_ms(u16 nms)
+{
+	delay_ms(nms);
+}
+
+
 #endif
 
 

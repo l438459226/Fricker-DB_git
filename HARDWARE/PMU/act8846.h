@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  */
-#include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "stm32f10x.h"
  
 #ifndef __LINUX_REGULATOR_act8846_H

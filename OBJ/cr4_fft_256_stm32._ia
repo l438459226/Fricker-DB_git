@@ -1,1 +1,5 @@
---cpu Cortex-M3 -g --apcs=interwork -I "E:\Keil_v5\ARM\CMSIS\Include" -I "E:\Keil_v5\ARM\INC\ST\STM32F10x" --list ".\cr4_fft_256_stm32.lst" --xref -o "..\OBJ\cr4_fft_256_stm32.o" --depend "..\OBJ\cr4_fft_256_stm32.d" "..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s"
+--cpu Cortex-M3 -g --apcs=interwork 
+-I D:\ARM\Keil\ARM\RV31\INC 
+-I D:\ARM\Keil\ARM\CMSIS\Include 
+-I D:\ARM\Keil\ARM\Inc\ST\STM32F10x 
+--list ".\cr4_fft_256_stm32.lst" --xref -o "..\OBJ\cr4_fft_256_stm32.o" --depend "..\OBJ\cr4_fft_256_stm32.d" "..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s"

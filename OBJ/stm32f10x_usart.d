@@ -2,7 +2,7 @@
 ..\OBJ\stm32f10x_usart.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\stm32f10x_usart.o: ..\USER\stm32f10x.h
 ..\OBJ\stm32f10x_usart.o: ..\CORE\core_cm3.h
-..\OBJ\stm32f10x_usart.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\stm32f10x_usart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\stm32f10x_usart.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\stm32f10x_usart.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\stm32f10x_usart.o: ..\USER\system_stm32f10x.h

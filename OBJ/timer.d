@@ -2,7 +2,7 @@
 ..\OBJ\timer.o: ..\HARDWARE\TIMER\Timer.h
 ..\OBJ\timer.o: ..\USER\stm32f10x.h
 ..\OBJ\timer.o: ..\CORE\core_cm3.h
-..\OBJ\timer.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\timer.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\timer.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\timer.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\timer.o: ..\USER\system_stm32f10x.h
@@ -18,5 +18,5 @@
 ..\OBJ\timer.o: ..\MALLOC\malloc.h
 ..\OBJ\timer.o: ..\CMSIS\Include\arm_math.h
 ..\OBJ\timer.o: ..\CMSIS\Include\core_cm3.h
-..\OBJ\timer.o: E:\Keil_v5\ARM\RV31\INC\string.h
-..\OBJ\timer.o: E:\Keil_v5\ARM\RV31\INC\math.h
+..\OBJ\timer.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\string.h
+..\OBJ\timer.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\math.h

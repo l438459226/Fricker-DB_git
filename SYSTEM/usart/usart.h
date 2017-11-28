@@ -25,6 +25,50 @@
 //3,增加了USART_REC_LEN,用于定义串口最大允许接收的字节数(不大于2的14次方)
 //4,修改了EN_USART1_RX的使能方式
 ////////////////////////////////////////////////////////////////////////////////// 	
+
+
+
+#define TESTER_DBG_ON            1
+#define TESTER_NET_DBG_ON        1
+#define TESTER_MAIN_DBG_ON       1
+#define TESTER_TP_DBG_ON         1
+#define TESTER_UI_DBG_ON         1
+
+
+
+
+
+
+#define TESTER_NET_DEBUG(format,...) do { \
+																				 if ((TESTER_NET_DBG_ON) && TESTER_DBG_ON){ \
+																					 printf (format, ##__VA_ARGS__); \
+																					} \
+																			 } while(0);
+#define TESTER_MAIN_DEBUG(format,...) do { \
+																				 if ((TESTER_MAIN_DBG_ON) && TESTER_DBG_ON){ \
+																					 printf (format, ##__VA_ARGS__); \
+																					} \
+																			 } while(0);
+#define TESTER_TP_DEBUG(format,...) do { \
+																				 if ((TESTER_TP_DBG_ON) && TESTER_DBG_ON){ \
+																					 printf (format, ##__VA_ARGS__); \
+																					} \
+																			 } while(0);
+#define TESTER_UI_DEBUG(format,...) do { \
+																				 if ((TESTER_UI_DBG_ON) && TESTER_DBG_ON){ \
+																					 printf (format, ##__VA_ARGS__); \
+																					} \
+																			 } while(0);	
+
+
+
+
+
+
+
+
+
+
 #define USART_REC_LEN  			256  	//定义最大接收字节数 200
 //#define EN_USART1_RX 			0		//使能（1）/禁止（0）串口1接收
 	

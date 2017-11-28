@@ -11,21 +11,24 @@
  *
  */
 
-#include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "act8846.h"
 #include "stm32f10x.h"
-#include "SysTick.h"
+#include "delay.h"
+#include "sys.h"
+
 #include "exti.h"
-#include "usart1.h"
-#include "LoadConfig.h"
-#include "tester_debug.h"
+#include "usart.h"
 
-
+#include "parm.h"
+#include "GPIO_Config.h"
 
 //static u8 act8846_reg_read(struct act8846 *act8846, u8 reg);
 //static int act8846_set_bits(struct act8846 *act8846, u8 reg, u16 mask, u16 val);
 
 #define act8846_I2C_7BIT_ADDRESS 0x5A  //change to ACT8846 Address
+
+
 #define act8846_BUCK1_SET_VOL_BASE 0x10
 #define act8846_BUCK2_SET_VOL_BASE 0x20
 #define act8846_BUCK3_SET_VOL_BASE 0x30
@@ -70,7 +73,7 @@
 int act8846_init(void)
 {	
 	int ret;
-	uint8_t i,j;
+	uint8_t i;
 	u16 temp = 0;
 	static u8 flag = 0;
 
@@ -105,10 +108,6 @@ int act8846_init(void)
 					return ret;
 				}
 			}
-
-
-		
-		
 			
 			ret = act8846_dcdc_set_voltage(1,3300, 3300);
 			if(ret < 0){
@@ -126,58 +125,9 @@ int act8846_init(void)
 					return ret;
 				}
 		}
-
-
-#if 0	
-		ret = act8846_ldo_set_voltage(6,1800,1800);//EXT_POWER_1
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(0,1800,1800); error.");
-				return ret;
-			}
-		ret = act8846_ldo_set_voltage(1,1800,1800);//TESTER VBUS
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(1,1800,1800); error.");
-				return ret;
-			}	
-		ret = act8846_ldo_set_voltage(7,3000,3000);//TP_AVDD
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(2,3000,3000); error.");
-				return ret;
-			}	
-		ret = act8846_ldo_set_voltage(0,1800,1800);//TP_VBUS
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(3,1800,1800); error.");
-				return ret;
-			}
-		ret = act8846_ldo_set_voltage(2,1800,1800);//LCD_DVDD
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(3,1800,1800); error.");
-				return ret;
-			}		
-		ret = act8846_ldo_set_voltage(4,3000,3000);//LCD_AVDD
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(4,3000,3000); error.");
-				return ret;
-			}
-		ret = act8846_ldo_set_voltage(5,2500,2500);//EXT_POWER2
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(5,2500,2500); error.");
-				return ret;
-			}
-		ret = act8846_ldo_set_voltage(3,3300,3300);//VSP/VSN_POWER
-		if(ret < 0){
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(6,3300,3300); error.");
-				return ret;
-			}
-		ret = act8846_ldo_set_voltage(8,1800,1800);//EXT_POWER3
-		if(ret < 0)
-		{
-				TESTER_MAIN_DEBUG("act8846_ldo_set_voltage(7,1800,1800); error.");
-				return ret;
-		}
-#else
 		
-		temp = Get_Volt_Val(PWR13_EXT_PWR_A_INDEX);
+		
+		temp = 1850;//Get_Volt_Val(PWR13_EXT_PWR_A_INDEX);
 		if(temp != 0)
 		{
 			ret = act8846_ldo_set_voltage(6,temp,temp);//EXT_POWER_1
@@ -222,7 +172,7 @@ int act8846_init(void)
 			}	
 		
 		///////////////////////////////////////////////////////////////////////
-		temp = Get_Volt_Val(PWR4_TP_VIO_INDEX);
+		temp = 1850;//Get_Volt_Val(PWR4_TP_VIO_INDEX);
 		if(temp != 0)
 		{
 			ret = act8846_ldo_set_voltage(0,temp,temp);//TP_VBUS
@@ -297,7 +247,6 @@ int act8846_init(void)
 			return ret;
 		}
 		
-#endif
 		
 		Delay_ms(5); 
 	//}		
@@ -475,9 +424,37 @@ const static int ldo_voltage_map[] =
 
 
 
+
 /*
  *
  */
+ 
+u8 act8846_Read(u8 reg)
+{
+	u8 date = 0x5a;
+ 	IIC_Start();	
+ 	IIC_Send_Byte(act8846_I2C_7BIT_ADDRESS<<1);  
+	IIC_Wait_Ack();
+ 	IIC_Send_Byte(reg);   	
+	IIC_Wait_Ack();  
+ 	IIC_Start();  	 	   
+	IIC_Send_Byte((act8846_I2C_7BIT_ADDRESS<<1)|0x01);   //读 - 地址最低位为1    写- 地址最低位为0
+	IIC_Wait_Ack();	
+
+	date = IIC_Read_Byte(); 
+
+	IIC_Stop();
+	return date;
+}
+/*
+int act8846_i2c_read(uint8_t reg, uint8_t* pBuffer)
+{
+	*pBuffer = act8846_Read(reg);
+	return 0;
+}
+*/
+
+
 int act8846_i2c_read(uint8_t reg, uint8_t* pBuffer)
 {
     int retval;
@@ -525,7 +502,26 @@ int act8846_i2c_read(uint8_t reg, uint8_t* pBuffer)
 }
 
 
-
+u8 act8846_Write(u8 reg,u8 date)
+{
+	u8 ret=0;
+	IIC_Start();	
+ 	IIC_Send_Byte(act8846_I2C_7BIT_ADDRESS<<1);   // 写- 地址最低位为0
+	IIC_Wait_Ack();
+	IIC_Send_Byte(reg);   	
+	IIC_Wait_Ack();  
+	IIC_Send_Byte(date);  	
+	ret = IIC_Wait_Ack();
+	if(ret)	return 255;  
+	IIC_Stop();					
+	return ret; 
+}
+/*
+int act8846_i2c_write(uint8_t reg, uint8_t val)
+{
+	return act8846_Write(reg,val);
+}
+*/
 
 int act8846_i2c_write(uint8_t reg, uint8_t val)
 {
@@ -596,8 +592,8 @@ int act8846_ldo_is_enabled(uint8_t ldo_id)
 	uint8_t val;
 	uint8_t mask=0x80;
 	retval = act8846_i2c_read(act8846_LDO_CONTR_REG(ldo_id), &val);
-	if (val < 0)
-		return val;
+	if (retval < 0)
+		return retval;
 	val=val&~0x7f;
 	if (val & mask)
 		return 1;

@@ -3,7 +3,7 @@
 ..\OBJ\usmart_config.o: ..\USMART\usmart_str.h
 ..\OBJ\usmart_config.o: ..\USER\stm32f10x.h
 ..\OBJ\usmart_config.o: ..\CORE\core_cm3.h
-..\OBJ\usmart_config.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\usmart_config.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\usmart_config.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\usmart_config.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\usmart_config.o: ..\USER\system_stm32f10x.h
@@ -17,8 +17,8 @@
 ..\OBJ\usmart_config.o: ..\SYSTEM\delay\delay.h
 ..\OBJ\usmart_config.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\usmart_config.o: ..\SYSTEM\usart\usart.h
-..\OBJ\usmart_config.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\usmart_config.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
 ..\OBJ\usmart_config.o: ..\HARDWARE\LCD\lcd.h
-..\OBJ\usmart_config.o: E:\Keil_v5\ARM\RV31\INC\stdlib.h
+..\OBJ\usmart_config.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 ..\OBJ\usmart_config.o: ..\HARDWARE\SSD\ssd2828.h
 ..\OBJ\usmart_config.o: ..\HARDWARE\SSD\lcd_drv.h

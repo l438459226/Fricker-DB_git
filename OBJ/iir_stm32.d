@@ -2,7 +2,7 @@
 ..\OBJ\iir_stm32.o: ..\STM32F10x_DSP_Lib\inc\stm32_dsp.h
 ..\OBJ\iir_stm32.o: ..\USER\stm32f10x.h
 ..\OBJ\iir_stm32.o: ..\CORE\core_cm3.h
-..\OBJ\iir_stm32.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\iir_stm32.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\iir_stm32.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\iir_stm32.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\iir_stm32.o: ..\USER\system_stm32f10x.h

@@ -2,7 +2,7 @@
 ..\OBJ\usmart_str.o: ..\USMART\usmart_str.h
 ..\OBJ\usmart_str.o: ..\USER\stm32f10x.h
 ..\OBJ\usmart_str.o: ..\CORE\core_cm3.h
-..\OBJ\usmart_str.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\usmart_str.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\usmart_str.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\usmart_str.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\usmart_str.o: ..\USER\system_stm32f10x.h

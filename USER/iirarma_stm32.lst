@@ -148,9 +148,9 @@ ARM Macro Assembler    Page 3
    97 0000009A 4770            BX               LR          ; return
    98 0000009C                 END
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\OBJ\i
-irarma_stm32.d -o..\OBJ\iirarma_stm32.o -IE:\Keil_v5\ARM\CMSIS\Include -IE:\Kei
-l_v5\ARM\INC\ST\STM32F10x --list=.\iirarma_stm32.lst ..\STM32F10x_DSP_Lib\src\a
-sm\arm\iirarma_stm32.s
+irarma_stm32.d -o..\OBJ\iirarma_stm32.o -ID:\ARM\Keil\ARM\RV31\INC -ID:\ARM\Kei
+l\ARM\CMSIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --list=.\iirarma_stm32.l
+st ..\STM32F10x_DSP_Lib\src\asm\arm\iirarma_stm32.s
 
 
 

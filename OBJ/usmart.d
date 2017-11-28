@@ -3,7 +3,7 @@
 ..\OBJ\usmart.o: ..\USMART\usmart_str.h
 ..\OBJ\usmart.o: ..\USER\stm32f10x.h
 ..\OBJ\usmart.o: ..\CORE\core_cm3.h
-..\OBJ\usmart.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\usmart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\usmart.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\usmart.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\usmart.o: ..\USER\system_stm32f10x.h
@@ -15,5 +15,5 @@
 ..\OBJ\usmart.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\usmart.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\usmart.o: ..\SYSTEM\usart\usart.h
-..\OBJ\usmart.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\usmart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
 ..\OBJ\usmart.o: ..\SYSTEM\sys\sys.h

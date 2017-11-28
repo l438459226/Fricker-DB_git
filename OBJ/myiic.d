@@ -3,7 +3,7 @@
 ..\OBJ\myiic.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\myiic.o: ..\USER\stm32f10x.h
 ..\OBJ\myiic.o: ..\CORE\core_cm3.h
-..\OBJ\myiic.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\myiic.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\myiic.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\myiic.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\myiic.o: ..\USER\system_stm32f10x.h
@@ -16,4 +16,4 @@
 ..\OBJ\myiic.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\myiic.o: ..\SYSTEM\delay\delay.h
 ..\OBJ\myiic.o: ..\SYSTEM\usart\usart.h
-..\OBJ\myiic.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\myiic.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h

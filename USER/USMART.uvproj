@@ -61,6 +61,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopU1X>0</nStopU1X>
+            <nStopU2X>0</nStopU2X>
           </BeforeCompile>
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
@@ -134,9 +136,10 @@
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>0</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
+            <RestoreTracepoints>0</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>6</TargetSelection>
+          <TargetSelection>7</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -342,11 +345,12 @@
             <Rwpi>0</Rwpi>
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
+            <uSurpInc>0</uSurpInc>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--C99</MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER,ARM_MATH_CM3</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE;..\HARDWARE\PMU;..\HARDWARE\lcmparm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -357,6 +361,7 @@
             <SplitLS>0</SplitLS>
             <SwStkChk>0</SwStkChk>
             <NoWarn>0</NoWarn>
+            <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -630,6 +635,31 @@
               <FileName>LT3582.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\LT3582.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>PMU</GroupName>
+          <Files>
+            <File>
+              <FileName>act8846.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\act8846.c</FilePath>
+            </File>
+            <File>
+              <FileName>GPIO_Config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\LED\GPIO_Config.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>lcmparm</GroupName>
+          <Files>
+            <File>
+              <FileName>parm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\lcmparm\parm.c</FilePath>
             </File>
           </Files>
         </Group>

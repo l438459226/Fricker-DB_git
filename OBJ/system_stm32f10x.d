@@ -1,7 +1,7 @@
 ..\OBJ\system_stm32f10x.o: system_stm32f10x.c
 ..\OBJ\system_stm32f10x.o: stm32f10x.h
 ..\OBJ\system_stm32f10x.o: ..\CORE\core_cm3.h
-..\OBJ\system_stm32f10x.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\system_stm32f10x.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\system_stm32f10x.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\system_stm32f10x.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\system_stm32f10x.o: system_stm32f10x.h

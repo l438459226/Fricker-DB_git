@@ -3,7 +3,7 @@
 ..\OBJ\lt35825.o: ..\SYSTEM\sys\sys.h
 ..\OBJ\lt35825.o: ..\USER\stm32f10x.h
 ..\OBJ\lt35825.o: ..\CORE\core_cm3.h
-..\OBJ\lt35825.o: E:\Keil_v5\ARM\RV31\INC\stdint.h
+..\OBJ\lt35825.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
 ..\OBJ\lt35825.o: ..\CMSIS\Include\core_cmInstr.h
 ..\OBJ\lt35825.o: ..\CMSIS\Include\core_cmFunc.h
 ..\OBJ\lt35825.o: ..\USER\system_stm32f10x.h
@@ -17,5 +17,5 @@
 ..\OBJ\lt35825.o: ..\SYSTEM\delay\delay.h
 ..\OBJ\lt35825.o: ..\HARDWARE\IIC\myiic.h
 ..\OBJ\lt35825.o: ..\SYSTEM\usart\usart.h
-..\OBJ\lt35825.o: E:\Keil_v5\ARM\RV31\INC\stdio.h
+..\OBJ\lt35825.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
 ..\OBJ\lt35825.o: ..\HARDWARE\LT3582.h
