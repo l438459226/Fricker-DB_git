@@ -63,7 +63,7 @@
 
 
 
-
+//#define ENABLE_UART2_IDLE_IRQ
 
 
 

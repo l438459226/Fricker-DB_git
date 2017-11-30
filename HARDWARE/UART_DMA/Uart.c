@@ -23,7 +23,8 @@
 #include <stdlib.h>
 #include "UartQue.h"
 #include "stm32f10x_dma.h"
-
+#include "sys.h"
+#include "usart.h"
 
 /*********************************************************************************************************
 *                                              宏定义定义
@@ -441,6 +442,8 @@ u8 USARTx_Configuration(USART_PORT_COMX Usart_Comx)
 {
 	u8 ok = 0;	
 	USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
 	
 	USART_DeInit((UsartxConfigManage+Usart_Comx)->USART_PORT);
 	
@@ -449,20 +452,37 @@ u8 USARTx_Configuration(USART_PORT_COMX Usart_Comx)
 		ok = 1;	
 		USARTxPinConfiguration(Usart_Comx);		//端口，引脚配置
 		
+		
+		if(Usart_Comx == USART_PORT_COM2)
+		{
+			    NVIC_InitStructure.NVIC_IRQChannel = USART2_IRQn;
+					NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=4 ;//抢占优先级3
+					NVIC_InitStructure.NVIC_IRQChannelSubPriority = 4;		//子优先级3
+					NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
+					NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
+			
+					
+		}
+		
+		
 		USART_StructInit(&USART_InitStructure);	
 		USART_InitStructure.USART_BaudRate = (UsartxConfigManage+Usart_Comx)->USART_BAUD;
 		USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-	    USART_InitStructure.USART_StopBits = USART_StopBits_1;			 
-	    USART_InitStructure.USART_Parity = USART_Parity_No;
-	    USART_InitStructure.USART_Mode = USART_Mode_Rx|USART_Mode_Tx;
-	    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; 
+	  USART_InitStructure.USART_StopBits = USART_StopBits_1;			 
+	  USART_InitStructure.USART_Parity = USART_Parity_No;
+	  USART_InitStructure.USART_Mode = USART_Mode_Rx|USART_Mode_Tx;
+	  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; 
 		USART_Init((UsartxConfigManage+Usart_Comx)->USART_PORT,&USART_InitStructure);
 		
 		USART_DMACmd((UsartxConfigManage+Usart_Comx)->USART_PORT,USART_DMAReq_Rx,ENABLE);
 		USART_DMACmd((UsartxConfigManage+Usart_Comx)->USART_PORT,USART_DMAReq_Tx,ENABLE);
-		USART_Cmd((UsartxConfigManage+Usart_Comx)->USART_PORT, ENABLE );  
-
+		USART_Cmd((UsartxConfigManage+Usart_Comx)->USART_PORT, ENABLE ); 
+#ifdef ENABLE_UART2_IDLE_IRQ
+		USART_ITConfig(USART2, USART_IT_IDLE, ENABLE);//开启中断
+#endif
 		USARTx_Rx_Init_FIFO(Usart_Comx,&sFifo_Comx[Usart_Comx],RECEVIE_BUFFER_MAX_SIZE);			//串口dma接收fifo初始化
+		
+
 		
 	}
 	else if(Usart_Comx == USART_PORT_COM5)
@@ -483,15 +503,29 @@ u8 USARTx_Configuration(USART_PORT_COMX Usart_Comx)
 		USART_ITConfig( UART5, USART_IT_TC,  ENABLE );       	  //使能串口发送中断 
 
 		USART_Cmd(UART5, ENABLE );  
-		
 	}
-
 	return ok;
-	
-   
 }
 
-
+void USART2_IRQHandler(void)                	//串口1中断服务程序
+{
+	uint8_t Clear = Clear,tt=0,dlen=0;
+	
+	if(USART_GetITStatus(USART2, USART_IT_RXNE) == SET)  //接收中断		(接收到的数据必须'\r'结尾)
+	{
+			tt++;
+			//printf("uart2 USART_IT_RXNE\r\n");
+   } 
+	 if(USART_GetITStatus(USART2, USART_IT_IDLE) == SET)  //接收中断		(接收到的数据必须'\r'结尾)
+	{
+			Clear = USART2->SR;		//READ SR Reg
+			Clear = USART2->DR;		//READ DR Reg
+			USARTx_Rx_Get_FIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
+			printf("\r\nuart idle irterrupt:%d\r\n",dlen);
+			
+   } 
+	 printf("\r\n uart2 irq\r\n");
+} 
 
 u8 Get_Usartx_Config_Sts(USART_PORT_COMX Usart_Comx)
 {	

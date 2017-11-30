@@ -167,38 +167,18 @@ void uart2_init(u32 bound){
     USART_Cmd(USART2, ENABLE);                    //使能串口 
 }
 
-#if EN_USART2_RX   //如果使能了接收
+#if 0//EN_USART2_RX   //如果使能了接收
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	u8 Res;
 
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)  //接收中断		(接收到的数据必须'\r'结尾)
 	{
-		Res =USART_ReceiveData(USART2);//(USART1->DR);	//读取接收到的数据
-	  
-		if(Res == '\t')	
-		{ 	
-			while(USART_RX_BUF[USART_RX_STA] != '\0') 
-				//printf("%c",USART_RX_BUF[USART_RX_STA++]);
-			USART_RX_STA++;
-		}
 		
-		if((USART_RX_STA&0x8000)==0)//接收未完成
-		{
-			if(Res=='\r')//回车键  '\r'
-			{	
-				//USART_SendData(USART1,'\n');
-				USART_RX_STA|=0x8000;	
-			}else{
-				if(Res != '\b'&& Res != '\t'){
-					USART_RX_BUF[USART_RX_STA&0x3FFF]=Res ;
-					USART_RX_STA++;
-					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//接收数据错误,重新开始接收 超出接收buffer大小
-				}else{
-						if(USART_RX_STA > 0)	{USART_RX_STA--;printf(" \b");}
-				}
-			}
-		}   	 
+   } 
+	 if(USART_GetITStatus(USART2, USART_IT_IDLE) != RESET)  //接收中断		(接收到的数据必须'\r'结尾)
+	{
+			printf("uart idle irterrupt\r\n");
    } 
 } 
 #endif
