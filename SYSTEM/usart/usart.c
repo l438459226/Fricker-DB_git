@@ -68,24 +68,6 @@ int fputc(int ch, FILE *f)
 }
 #endif 
 
-/*使用microLib的方法*/
- /* 
-int fputc(int ch, FILE *f)
-{
-	USART_SendData(USART1, (uint8_t) ch);
-
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET) {}	
-   
-    return ch;
-}
-int GetKey (void)  { 
-
-    while (!(USART1->SR & USART_FLAG_RXNE));
-
-    return ((int)(USART1->DR & 0x1FF));
-}
-*/
- 
 
 //串口1中断服务程序
 //注意,读取USARTx->SR能避免莫名其妙的错误   	
@@ -120,19 +102,19 @@ void uart_init(u32 bound){
    //Usart1 NVIC 配置
 
     NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=3 ;//抢占优先级3
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//子优先级3
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
-	NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=3 ;//抢占优先级3
+		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;		//子优先级3
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			//IRQ通道使能
+		NVIC_Init(&NVIC_InitStructure);	//根据指定的参数初始化VIC寄存器
   
    //USART 初始化设置
 
-	USART_InitStructure.USART_BaudRate = bound;//一般设置为9600;
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
-	USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位
-	USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
+		USART_InitStructure.USART_BaudRate = bound;//一般设置为9600;
+		USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
+		USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位
+		USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
+		USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
+		USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
 
     USART_Init(USART1, &USART_InitStructure); //初始化串口
     USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);//开启中断
@@ -173,12 +155,12 @@ void uart2_init(u32 bound){
   
    //USART 初始化设置
 
-	USART_InitStructure.USART_BaudRate = bound;//一般设置为9600;
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
-	USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位
-	USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
+		USART_InitStructure.USART_BaudRate = bound;//一般设置为9600;
+		USART_InitStructure.USART_WordLength = USART_WordLength_8b;//字长为8位数据格式
+		USART_InitStructure.USART_StopBits = USART_StopBits_1;//一个停止位
+		USART_InitStructure.USART_Parity = USART_Parity_No;//无奇偶校验位
+		USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;//无硬件数据流控制
+		USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//收发模式
 
     USART_Init(USART2, &USART_InitStructure); //初始化串口
     USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);//开启中断
@@ -187,14 +169,12 @@ void uart2_init(u32 bound){
 
 #if EN_USART2_RX   //如果使能了接收
 void USART2_IRQHandler(void)                	//串口1中断服务程序
-	{
+{
 	u8 Res;
-#ifdef OS_TICKS_PER_SEC	 	//如果时钟节拍数定义了,说明要使用ucosII了.
-	OSIntEnter();    
-#endif
+
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)  //接收中断		(接收到的数据必须'\r'结尾)
 	{
-		Res =USART_ReceiveData(USART1);//(USART1->DR);	//读取接收到的数据
+		Res =USART_ReceiveData(USART2);//(USART1->DR);	//读取接收到的数据
 	  
 		if(Res == '\t')	
 		{ 	
@@ -202,7 +182,6 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 				//printf("%c",USART_RX_BUF[USART_RX_STA++]);
 			USART_RX_STA++;
 		}
-		//else USART_SendData(USART1,Res);
 		
 		if((USART_RX_STA&0x8000)==0)//接收未完成
 		{
@@ -221,9 +200,6 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 			}
 		}   	 
    } 
-#ifdef OS_TICKS_PER_SEC	 	//如果时钟节拍数定义了,说明要使用ucosII了.
-	OSIntExit();  											 
-#endif
 } 
 #endif
 

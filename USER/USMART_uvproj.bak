@@ -616,6 +616,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\IIC\myiic.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c1_bitbang.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\i2c1_bitbang.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -655,6 +660,36 @@
               <FileName>TPS22993.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\PMU\TPS22993.c</FilePath>
+            </File>
+            <File>
+              <FileName>LM36923.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\LM36923.c</FilePath>
+            </File>
+            <File>
+              <FileName>tps65132.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\tps65132.c</FilePath>
+            </File>
+            <File>
+              <FileName>tps65651.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\tps65651.c</FilePath>
+            </File>
+            <File>
+              <FileName>AD715.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\AD715.c</FilePath>
+            </File>
+            <File>
+              <FileName>INA226.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\INA226.c</FilePath>
+            </File>
+            <File>
+              <FileName>VoltCurrentProc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\PMU\VoltCurrentProc.c</FilePath>
             </File>
           </Files>
         </Group>

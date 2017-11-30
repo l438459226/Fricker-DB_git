@@ -2,7 +2,7 @@
 #define	__TESTER_DEBUG_H
 
 
-#include "uart.h"
+#include "usart.h"
 
 #define TESTER_DBG_ON            1
 #define TESTER_NET_DBG_ON        1

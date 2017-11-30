@@ -1,0 +1,17 @@
+..\OBJ\ad715.o: ..\HARDWARE\PMU\AD715.c
+..\OBJ\ad715.o: ..\HARDWARE\PMU\AD715.h
+..\OBJ\ad715.o: ..\USER\stm32f10x.h
+..\OBJ\ad715.o: ..\CORE\core_cm3.h
+..\OBJ\ad715.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
+..\OBJ\ad715.o: ..\CMSIS\Include\core_cmInstr.h
+..\OBJ\ad715.o: ..\CMSIS\Include\core_cmFunc.h
+..\OBJ\ad715.o: ..\USER\system_stm32f10x.h
+..\OBJ\ad715.o: ..\USER\stm32f10x_conf.h
+..\OBJ\ad715.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\OBJ\ad715.o: ..\USER\stm32f10x.h
+..\OBJ\ad715.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\OBJ\ad715.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\OBJ\ad715.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\OBJ\ad715.o: ..\STM32F10x_FWLib\inc\misc.h
+..\OBJ\ad715.o: ..\HARDWARE\IIC\myiic.h
+..\OBJ\ad715.o: ..\SYSTEM\sys\sys.h

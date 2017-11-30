@@ -16,11 +16,11 @@
 
 
 #include "tps65132.h"
-#include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "stm32f10x.h"
-#include "uart.h"
-#include "SysTick.h"
-#include "tester_debug.h"
+#include "usart.h"
+#include "sys.h"
+
 
 #define tps65132_I2C_7BIT_ADDRESS 0x3E
 #define ENABLE_ERROR_PRINT
@@ -29,7 +29,7 @@
 int tps65132_i2c_write(uint8_t reg, uint8_t val)
 {
 	int retval;
-	uint8_t i;
+//	uint8_t i;
 	
 	retval = i2c1_start(tps65132_I2C_7BIT_ADDRESS<<1);
 	if(retval<0){
@@ -129,6 +129,7 @@ int tps65132_set_voltage(uint16_t voltage_mV,uint8_t is_Vneg)//0 - VPOS, 1 - VNE
 {
 	uint8_t val = 0;
 	int ret = 0;
+	u8 regdat;
 
 	if (voltage_mV < 4000 ||
 	    voltage_mV > 6000)
@@ -140,9 +141,12 @@ int tps65132_set_voltage(uint16_t voltage_mV,uint8_t is_Vneg)//0 - VPOS, 1 - VNE
 	
 	if(is_Vneg){
 		ret = tps65132_i2c_write(0x01,val);
+		tps65132_i2c_read(0x01,&regdat,0);
 	}else{
 		ret = tps65132_i2c_write(0x00,val);
+		tps65132_i2c_read(0x00,&regdat,0);
 	}
+	printf("read reg:%d\r\n",regdat);
 	return ret;
 }
 
@@ -177,5 +181,6 @@ int Tps65132_Init(u16 vsp, u16 vsn)
 	tps65132_set_voltage(vsn,1);			//…Ë÷√VSP VSNµÁ—π
 	tps65132_set_voltage(vsp,0);	
 	tps65132_set_mode(0,1,1);	
+	return 0;
 }
 

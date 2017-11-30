@@ -134,8 +134,8 @@ ID_stm32.d -o..\OBJ\PID_stm32.o -ID:\ARM\Keil\ARM\RV31\INC -ID:\ARM\Keil\ARM\CM
 ARM Macro Assembler    Page 3 
 
 
-SIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --list=.\PID_stm32.lst ..\STM32F
-10x_DSP_Lib\src\asm\arm\PID_stm32.s
+SIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --predefine="__MICROLIB SETA 1" 
+--list=.\PID_stm32.lst ..\STM32F10x_DSP_Lib\src\asm\arm\PID_stm32.s
 
 
 
@@ -183,4 +183,4 @@ Symbol: PrevError
       At line 51 in file ..\STM32F10x_DSP_Lib\src\asm\arm\PID_stm32.s
 Comment: PrevError used once
 2 symbols
-345 symbols in table
+346 symbols in table

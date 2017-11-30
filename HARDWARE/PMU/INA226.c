@@ -1,25 +1,14 @@
 /*
-//                              COMPANY CONFIDENTIAL
-//                               INTERNAL USE ONLY
-//
-// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
-//
-// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
-// The holder of this document shall treat all information contained herein as confidential, 
-// shall use the information only for its intended purpose, and shall protect the information 
-// in whole or part from duplication, disclosure to any other party, or dissemination in 
-// any media without the written permission of Comshare Technology Co.,Ltd.
-//
-// Comshare Technology Co.,Ltd
-// www.comshare-sz.com
+
 */
 
 
 #include "INA226.h"
 #include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "stm32f10x.h"
-#include "uart.h"
-#include "SysTick.h"
+#include "usart.h"
+#include "delay.h"
 
 
 #define INA226_0_I2C_7BIT_ADDRESS 0x40
@@ -48,6 +37,8 @@ void INA226_selectDevice(uint8_t ina226_index)
 		INA226_I2C_7BIT_ADDRESS = INA226_2_I2C_7BIT_ADDRESS;
 	}
 }
+
+
 
 int INA226_writeRegister16(uint8_t reg, uint16_t val)
 {
@@ -184,14 +175,14 @@ int INA226_configure(ina226_averages_t avg, ina226_busConvTime_t busConvTime, in
 int INA226_calibrate(float rShuntValue, float iMaxExpected)
 {
 		int retval;
-		double iMaxPossible, minimumLSB;
+		double  minimumLSB;	//iMaxPossible
 	
     uint16_t calibrationValue;
     rShunt = rShuntValue;
 
-		iMaxPossible = vShuntMax / rShunt;
+		//iMaxPossible = vShuntMax / rShunt;
 
-    minimumLSB = ((double)iMaxExpected)/ 32768;//
+    minimumLSB = ((double)iMaxExpected)/ 32768;
 
 	/*
 
@@ -205,9 +196,7 @@ int INA226_calibrate(float rShuntValue, float iMaxExpected)
 
      */
 
-	
-
-    calibrationValue = (uint16_t)((0.00512) / (minimumLSB * rShunt));
+  calibrationValue = (uint16_t)((0.00512) / (minimumLSB * rShunt));
 	currentLSB = minimumLSB;
 	//currentLSB = 0;
 	powerLSB = currentLSB * 25;

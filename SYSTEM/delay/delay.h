@@ -36,7 +36,7 @@ void delay_ms(u16 nms);
 void delay_us(u32 nus);
 
 void Delay_ms(u16 nms);
-
+void Delay_us(u32 val);
 
 #endif
 

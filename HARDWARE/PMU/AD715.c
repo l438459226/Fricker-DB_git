@@ -13,7 +13,7 @@
 // www.comshare-sz.com
 
 #include "AD715.h"
-#include "i2c1_bitbang.h"
+#include "myiic.h"
 #include "stm32f10x.h"
 
 

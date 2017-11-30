@@ -69,5 +69,15 @@
 void NVIC_Configuration(void);
 
 
+typedef  signed int        i32;
+
+#define  TIM2_IRQ_PrePriority		0		//定时器中断抢占优先级设置
+#define  UART5_IRQ_PrePriority		1		//串口5中断抢占优先级设置
+
+//临界段保护
+#define  DISABLE_IRQ()   __disable_irq() 	//关闭总中断   
+#define  ENABLE_IRQ()   __enable_irq() 		//开放总中断
+
+
 
 #endif

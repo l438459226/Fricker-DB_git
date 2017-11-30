@@ -149,8 +149,9 @@ ARM Macro Assembler    Page 3
    98 0000009C                 END
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\OBJ\i
 irarma_stm32.d -o..\OBJ\iirarma_stm32.o -ID:\ARM\Keil\ARM\RV31\INC -ID:\ARM\Kei
-l\ARM\CMSIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --list=.\iirarma_stm32.l
-st ..\STM32F10x_DSP_Lib\src\asm\arm\iirarma_stm32.s
+l\ARM\CMSIS\Include -ID:\ARM\Keil\ARM\Inc\ST\STM32F10x --predefine="__MICROLIB 
+SETA 1" --list=.\iirarma_stm32.lst ..\STM32F10x_DSP_Lib\src\asm\arm\iirarma_stm
+32.s
 
 
 
@@ -190,4 +191,4 @@ Symbol: iirarma_stm32
       At line 22 in file ..\STM32F10x_DSP_Lib\src\asm\arm\iirarma_stm32.s
 Comment: iirarma_stm32 used once
 4 symbols
-343 symbols in table
+344 symbols in table

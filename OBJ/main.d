@@ -46,3 +46,8 @@
 ..\OBJ\main.o: ..\HARDWARE\LED\GPIO_Config.h
 ..\OBJ\main.o: ..\HARDWARE\PMU\TPS22993.h
 ..\OBJ\main.o: ..\HARDWARE\PMU\LM36923.h
+..\OBJ\main.o: ..\HARDWARE\PMU\tps65132.h
+..\OBJ\main.o: ..\HARDWARE\PMU\INA226.h
+..\OBJ\main.o: ..\HARDWARE\PMU\AD715.h
+..\OBJ\main.o: ..\HARDWARE\UART_DMA\Uart.h
+..\OBJ\main.o: ..\HARDWARE\PMU\VoltCurrentProc.h

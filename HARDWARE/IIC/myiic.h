@@ -1,6 +1,7 @@
 #ifndef __MYIIC_H
 #define __MYIIC_H
 #include "sys.h"
+//#include "i2c1_bitbang.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //Mini STM32开发板
@@ -42,13 +43,17 @@ int IIC_Wait_Ack(void); 				//IIC等待ACK信号
 void IIC_Ack(void);					//IIC发送ACK信号
 void IIC_NAck(void);				//IIC不发送ACK信号
 
-
-void i2c1_init(void);
+void IIC_Scl(u8 bit);
+void IIC_Sda(u8 bit);
+void i2c1_init(void);//i2c11__send_start
 int i2c1_start(u8 sla_adr);
 int i2c1_write_u8(u8 txd);
 int i2c1_stop(void);
 int i2c1_start_repeat(u8 sla_adr);
 int i2c1_read_u8(u8 *data, u8 nak);
+
+void I2C_Detect(void);
+int i2c1_read_data(u8 *data, u32 nr_of_bytes, u8 nak_last_byte);
 
 void IIC_Write_One_Byte(u8 daddr,u8 addr,u8 data);
 u8 IIC_Read_One_Byte(u8 daddr,u8 addr);	  

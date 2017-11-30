@@ -1,24 +1,16 @@
 /* =============================================================================
- //                              COMPANY CONFIDENTIAL
-//                               INTERNAL USE ONLY
-//
-// Copyright (C) 2017  Comshare Technology Co.,Ltd.  All right reserved.
-//
-// This document contains information that is proprietary to Comshare Technology Co.,Ltd. 
-// The holder of this document shall treat all information contained herein as confidential, 
-// shall use the information only for its intended purpose, and shall protect the information 
-// in whole or part from duplication, disclosure to any other party, or dissemination in 
-// any media without the written permission of Comshare Technology Co.,Ltd.
-//
-// Comshare Technology Co.,Ltd
-// www.comshare-sz.com
+    Title:          i2c_bitbang.h : Bit bang I2C master driver
+    Author(s):      Pieter Conradie
+    Creation Date:  2012-06-25
+    Revision Info:  $Id$
+
 ============================================================================= */
 
 /* _____STANDARD INCLUDES____________________________________________________ */
 
 /* _____PROJECT INCLUDES_____________________________________________________ */
 #include "i2c1_bitbang.h"
-
+#include "myiic.h"
 
 /* _____LOCAL DEFINITIONS____________________________________________________ */
 /// Select I2C clock frequency
@@ -32,7 +24,7 @@
 #define I2C_SCL_IS_LO()     ((GPIOB->IDR&GPIO_Pin_6)==0)
 //@}
 
-
+int i2c11__write_u8(u8 data);
 /// @name I2C Data GPIO pin manipulation macros
 //@{
 #define I2C_SDA_SET_HIZ()   GPIOB->BSRR=GPIO_Pin_7
@@ -42,14 +34,14 @@
 //@} 
 /* _____LOCAL VARIABLES______________________________________________________ */
 
-//G_i2c1_nop_count: 10 -> 4706.8K (T = 2.459us)  55 -> 100.4k (T = 10.05us)  11 -> 381K
-uint8_t G_i2c1_nop_count = 55;		//不能取更小的值了
+//G_i2c11__nop_count: 10 -> 4706.8K (T = 2.459us)  55 -> 100.4k (T = 10.05us)  11 -> 381K
+uint8_t G_i2c11__nop_count = 55;		//不能取更小的值了
 
 /* _____PRIVATE FUNCTIONS____________________________________________________ */
 static void i2c_delay_half_clk(void)
 {
 	//board_delay_us(UDIV_ROUND(1E6,2*I2C_BIT_RATE_HZ));
-	u32 i = G_i2c1_nop_count;
+	u32 i = G_i2c11__nop_count;
 	while(i--);
 }
 
@@ -73,7 +65,7 @@ static int i2c_scl_set_hiz_and_wait_clk_stretch(void)
     return I2C_ERR;
 }
 
-static int i2c_tx_bit(u8 bit)
+int i2c_tx_bit(u8 bit)
 {
     // Output bit
     if(bit)
@@ -108,7 +100,7 @@ static int i2c_tx_bit(u8 bit)
     return I2C_OK;
 }
 
-static int i2c_rx_bit(u8 *bit)
+int i2c_rx_bit(u8 *bit)
 {
     // Release data line so that slave can drive it
     I2C_SDA_SET_HIZ();
@@ -129,7 +121,7 @@ static int i2c_rx_bit(u8 *bit)
 }
 
 
-void i2c1_anti_death(void)		//防死锁
+void i2c11__anti_death(void)		//防死锁
 {
 	u8 i = 0;
 	for(i=0;i<9;i++)				//SDA拉高，SCL连续发送9个脉冲复位I2c设备，一定要重新复位，否则上电容易出错
@@ -144,9 +136,9 @@ void i2c1_anti_death(void)		//防死锁
 
 
 /* _____GLOBAL FUNCTIONS_____________________________________________________ */
-void i2c1_init(void)
+void i2c11__init(void)
 {
-	u8 i = 0;
+//	u8 i = 0;
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
 
@@ -162,7 +154,7 @@ void i2c1_init(void)
 
 
 	I2C_SDA_SET_HIZ();
-	i2c1_anti_death();				//SDA拉高，SCL连续发送9个脉冲复位I2c设备，一定要重新复位，否则上电容易出错	
+	i2c11__anti_death();				//SDA拉高，SCL连续发送9个脉冲复位I2c设备，一定要重新复位，否则上电容易出错	
 
 
 	i2c_delay_half_clk();
@@ -180,15 +172,14 @@ void i2c1_init(void)
 }
 
 
-
-int i2c1_start(u8 sla_adr)
+int i2c11__start(u8 sla_adr)
 {   
     // Check bus
     if(I2C_SCL_IS_LO() || I2C_SDA_IS_LO())
     {
         // Bus error
        // printf("levevl is low!!\r\n");
-       	i2c1_anti_death();				//总线有问题后尝试恢复总线
+       	i2c11__anti_death();				//总线有问题后尝试恢复总线
        	//Set_I2C_Start_Flag(1);			//开始超时计数
         return I2C_ERR;
     }
@@ -206,17 +197,18 @@ int i2c1_start(u8 sla_adr)
 	//i2c_delay_half_clk();
 
     // Send address
-    return i2c1_write_u8(sla_adr);
+    //return i2c11__write_u8(sla_adr);
+		return i2c1_write_u8(sla_adr);
 }
 
-int i2c1_send_start(void)
+int i2c11__send_start(void)
 {   
     // Check bus
     if(I2C_SCL_IS_LO() || I2C_SDA_IS_LO())
     {
         // Bus error
        // printf("levevl is low!!\r\n");
-       	i2c1_anti_death();				//总线有问题后尝试恢复总线
+       	i2c11__anti_death();				//总线有问题后尝试恢复总线
         return I2C_ERR;
     }
 
@@ -232,7 +224,7 @@ int i2c1_send_start(void)
 }
 
 
-int i2c1_start_repeat(u8 sla_adr)
+int i2c11__start_repeat(u8 sla_adr)
 {
     I2C_SDA_SET_HIZ();
     i2c_delay_half_clk();
@@ -244,10 +236,10 @@ int i2c1_start_repeat(u8 sla_adr)
         return I2C_ERR;
     }
 
-    return i2c1_start(sla_adr);
+    return i2c11__start(sla_adr);
 }
 
-int i2c1_stop(void)
+int i2c11__stop(void)
 {
     I2C_SDA_SET_LO();
     i2c_delay_half_clk();
@@ -273,7 +265,7 @@ int i2c1_stop(void)
     return I2C_OK;
 }
 
-int i2c1_write_u8(u8 data)
+int i2c11__write_u8(u8 data)
 {
     u8 bit_mask;
     u8 nak;
@@ -299,7 +291,7 @@ int i2c1_write_u8(u8 data)
     {
         // Release bus
 		//printf("NAK\r\n");
-        i2c1_stop();            
+        i2c11__stop();            
         return I2C_ERR;
     }
 	//printf("ACK\r\n");
@@ -307,7 +299,7 @@ int i2c1_write_u8(u8 data)
     return I2C_OK;
 }
 
-int i2c1_read_u8(u8 *data, u8 nak)
+int i2c11__read_u8(u8 *data, u8 nak)
 {
     u8	bit_mask;
     u8	bit;
@@ -341,12 +333,12 @@ int i2c1_read_u8(u8 *data, u8 nak)
     return I2C_OK;
 }
 
-int i2c1_write_data(const u8 *data, u32 nr_of_bytes)
+int i2c11__write_data(const u8 *data, u32 nr_of_bytes)
 {
     while(nr_of_bytes != 0)
     {
         // Send data
-        if(i2c1_write_u8(*data))
+        if(i2c11__write_u8(*data))
         {
             // Error
             return I2C_ERR;
@@ -359,13 +351,13 @@ int i2c1_write_data(const u8 *data, u32 nr_of_bytes)
     return I2C_OK;
 }
 
-int i2c1_read_data(u8 *data, u32 nr_of_bytes, u8 nak_last_byte)
+int i2c11__read_data(u8 *data, u32 nr_of_bytes, u8 nak_last_byte)
 {
     while(nr_of_bytes != 0)
     {
         if((nr_of_bytes == 1) && (nak_last_byte))
         {
-            if(i2c1_read_u8(data, 1))
+            if(i2c11__read_u8(data, 1))
             {
                 // Error
                 return I2C_ERR;
@@ -373,7 +365,7 @@ int i2c1_read_data(u8 *data, u32 nr_of_bytes, u8 nak_last_byte)
         }
         else
         {
-            if(i2c1_read_u8(data, 0))
+            if(i2c11__read_u8(data, 0))
             {
                 // Error
                 return I2C_ERR;

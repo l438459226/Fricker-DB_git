@@ -72,33 +72,8 @@ typedef enum
 
 
 
-
-u8 Volt_Current_Ua_Calibration(void);
-void Volt_Current_Detect(void);
-u8	Sys_Err_Handle(void);
-u8 V_UA_Alarm_Handle(void);
-u8 V_A_Alarm_Handle(void);
-void LED_DETECT_Hanlde(void);
-
-
-
-
-u8 Get_UA_Err_Flag(void);
-void Set_UA_Err_Flag(u8 val);
-u8 Get_A_Err_Flag(void);
-void Set_A_Err_Flag(u8 val);
-u8 Get_V_Err_Flag(void);
-void Set_V_Err_Flag(u8 val);
-void Set_V_UA_Detect_Over_Flag(u8 val);
-u8 Get_V_UA_Detect_Over_Flag(void);
-
-
-
-
-u8 Get_Flag_Sys_Ready(void);
-void Clear_Flag_Sys_Ready(void);
-
-
+void INA226_Volt(void);
+void  Current_Volt(void);
 
 
 

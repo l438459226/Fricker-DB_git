@@ -14,3 +14,4 @@
 ..\OBJ\delay.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
 ..\OBJ\delay.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\delay.o: ..\STM32F10x_FWLib\inc\misc.h
+..\OBJ\delay.o: ..\HARDWARE\UART_DMA\Uart.h

@@ -1,0 +1,17 @@
+..\OBJ\tps65651.o: ..\HARDWARE\PMU\tps65651.c
+..\OBJ\tps65651.o: ..\HARDWARE\PMU\tps65651.h
+..\OBJ\tps65651.o: ..\USER\stm32f10x.h
+..\OBJ\tps65651.o: ..\CORE\core_cm3.h
+..\OBJ\tps65651.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
+..\OBJ\tps65651.o: ..\CMSIS\Include\core_cmInstr.h
+..\OBJ\tps65651.o: ..\CMSIS\Include\core_cmFunc.h
+..\OBJ\tps65651.o: ..\USER\system_stm32f10x.h
+..\OBJ\tps65651.o: ..\USER\stm32f10x_conf.h
+..\OBJ\tps65651.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\OBJ\tps65651.o: ..\USER\stm32f10x.h
+..\OBJ\tps65651.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\OBJ\tps65651.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\OBJ\tps65651.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\OBJ\tps65651.o: ..\STM32F10x_FWLib\inc\misc.h
+..\OBJ\tps65651.o: ..\SYSTEM\delay\delay.h
+..\OBJ\tps65651.o: ..\SYSTEM\sys\sys.h

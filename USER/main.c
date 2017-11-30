@@ -14,21 +14,24 @@
 #include "GPIO_Config.h"
 #include "TPS22993.h"
 #include "LM36923.h"
+#include "tps65132.h"
 
+#include "INA226.h"
+#include "AD715.h"
+#include "Uart.h"
+#include "VoltCurrentProc.h"
 
+u8 bufer[512];
 
 int main(void)
 { 
-	//u32 iitime;
-//	u8 sram_per;
-//	u8 data,i,temp;
-	
 	
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
 	System_GPIO_Config();	
-	uart2_init(115200);	 	//串口初始化为9600
+	//uart2_init(115200);	 	//串口初始化为9600
+	InitUart();
  	
 	usmart_dev.init(72); 	//初始化USMART				 	
 	mem_init(SRAMIN);
@@ -38,7 +41,7 @@ int main(void)
 	IIC_Init();
 	Flicker_init();//使用内存管理
 	printf("uart2 init ok!\r\n");
-	
+	//I2C_Detect();
 
 	TL35825_init();
 	Set_Voutp(5.11);//4.95v~12.75v
@@ -78,13 +81,9 @@ int main(void)
 	TPS22993_IOVCC_ON_OFF(1);
 	TPS22993_VSP_VSN_ON_OFF(1);
 	
-	delay_ms(200);
+	Delay_ms(200);
 	
 	OTP_P_ON_OFF(1);					//MOS管开关
-	
-	
-	BL_POWER_ON(); 						//mos管 控制  给bl供5V电源
-	Delay_ms(100);
 
 	OLEDLCD_MAIN_POWER_OFF(); 	//LCD OLED 电压切换   控制mos管  通过继电器切换电源
 
@@ -97,11 +96,29 @@ int main(void)
 	printf("bei guang dianliushezhi \r\n");
 	LM36923_Init(20);
 	
+	
+	VSP_ON();	//，使能 vsp  vsn
+	VSP_PWR_ON();	//	
+	VSN_ON();
+	
+	Delay_ms(10);
+	Tps65132_Init(Get_Volt_Val(PWR5_VSP_AVDD_INDEX), Get_Volt_Val(PWR6_VSN_AVEE_INDEX)); //设置VSP VSN电压
+	Delay_ms(10);
+
+
+	RELAY_UA_ALL_ON_OFF(1);
+	Delay_ms(500);
+	INA226_Volt();
+
   while(1) 
 	{
-		delay_ms(1000);
-		
-	}											    
+		//WriteUart(USART_PORT_COM2,"SDOIFUHODSFCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",60);
+		Current_Volt();
+		Delay_ms(50);
+		if(ReadUart(USART_PORT_COM2,bufer,64))
+			printf("read uart:%s\r\n",bufer);
+	}			
+	
 }	
 
 

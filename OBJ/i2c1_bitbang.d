@@ -1,0 +1,17 @@
+..\OBJ\i2c1_bitbang.o: ..\HARDWARE\PMU\i2c1_bitbang.c
+..\OBJ\i2c1_bitbang.o: ..\HARDWARE\PMU\i2c1_bitbang.h
+..\OBJ\i2c1_bitbang.o: ..\USER\stm32f10x.h
+..\OBJ\i2c1_bitbang.o: ..\CORE\core_cm3.h
+..\OBJ\i2c1_bitbang.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdint.h
+..\OBJ\i2c1_bitbang.o: ..\CMSIS\Include\core_cmInstr.h
+..\OBJ\i2c1_bitbang.o: ..\CMSIS\Include\core_cmFunc.h
+..\OBJ\i2c1_bitbang.o: ..\USER\system_stm32f10x.h
+..\OBJ\i2c1_bitbang.o: ..\USER\stm32f10x_conf.h
+..\OBJ\i2c1_bitbang.o: ..\STM32F10x_FWLib\inc\stm32f10x_gpio.h
+..\OBJ\i2c1_bitbang.o: ..\USER\stm32f10x.h
+..\OBJ\i2c1_bitbang.o: ..\STM32F10x_FWLib\inc\stm32f10x_rcc.h
+..\OBJ\i2c1_bitbang.o: ..\STM32F10x_FWLib\inc\stm32f10x_tim.h
+..\OBJ\i2c1_bitbang.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
+..\OBJ\i2c1_bitbang.o: ..\STM32F10x_FWLib\inc\misc.h
+..\OBJ\i2c1_bitbang.o: ..\HARDWARE\IIC\myiic.h
+..\OBJ\i2c1_bitbang.o: ..\SYSTEM\sys\sys.h

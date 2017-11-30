@@ -17,3 +17,4 @@
 ..\OBJ\myiic.o: ..\SYSTEM\delay\delay.h
 ..\OBJ\myiic.o: ..\SYSTEM\usart\usart.h
 ..\OBJ\myiic.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
+..\OBJ\myiic.o: ..\HARDWARE\PMU\i2c1_bitbang.h
