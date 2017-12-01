@@ -112,7 +112,6 @@ int main(void)
 
   while(1) 
 	{
-		//WriteUart(USART_PORT_COM2,"SDOIFUHODSFCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",60);
 		//Current_Volt();
 		Delay_ms(50);
 		if(ReadUart(USART_PORT_COM2,bufer,64))
