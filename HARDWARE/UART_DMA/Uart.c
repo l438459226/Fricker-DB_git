@@ -71,6 +71,10 @@ typedef struct
 *********************************************************************************************************/
 static FIFOTYPE * sFifo_Comx[USART_PORT_COM5];		//定义接收结构体,USART_PORT_COM5不支持dma模式
 
+u32 ReadPoint = 0;	//用于USART助手
+
+
+
 static UsartxSend sUsartxSendManage[USART_PORT_COM5];
 
 static u8 sUart5_Send_Flag = 0;
@@ -336,6 +340,7 @@ u8 USARTx_Rx_Init_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE * *fifo,u32 fifosize)
 	    (*fifo)->staraddr = (u32)(&(*fifo)->buffer[0]);                //记录FIFO缓冲区起始地址
 	    (*fifo)->endaddr = (u32)(&(*fifo)->buffer[fifosize-1]);        //记录FIFO缓冲区结束地址
 	    (*fifo)->front = (*fifo)->staraddr;                            //FIFO下一读取数据地址
+	    ReadPoint = (*fifo)->staraddr;
 	    memset((*fifo)->buffer,0,(*fifo)->size);                       //清除缓冲区里面的数据，可省略
 
 		USARTx_DMA_Rx_init(Usart_Comx,(*fifo)->buffer,RECEVIE_BUFFER_MAX_SIZE);	//串口rx dma设置
@@ -377,6 +382,29 @@ u8 USARTx_Rx_Get_FIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len)
 	return ok;
 }
 
+u8 USARTx_Rx_GetFIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len)
+{	
+	u8 ok = 0;
+    i32 res,nextsave;
+	
+	if(Usart_Comx < USART_PORT_COM5)
+	{
+		ok = 1;	
+        //i32 nextsave = (i32)fifo->endaddr + 1 - (i32)(UsartxConfigManage+Usart_Comx)->DMA_RX_CHN->CNDTR;
+        
+        nextsave = (i32)fifo->endaddr + 1 - DMA_GetCurrDataCounter((UsartxConfigManage+Usart_Comx)->DMA_RX_CHN);
+        res = nextsave- (i32)(ReadPoint);
+		
+        if(res < 0)
+        {
+                res = ( (i32)(fifo->endaddr)+1 - (i32)(ReadPoint) ) + (nextsave - (i32)fifo->staraddr);
+        }
+		
+        *len =  (u8)res;
+	}
+
+	return ok;
+}
 
 /*******************************************************************************
 * 文件名	    : USARTx_Rx_Read_FIFO
@@ -428,6 +456,7 @@ u8 USARTx_Rx_Read_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len
 
 
 
+
 /*******************************************************************************
 * 文件名	    : USARTx_Rx_Read_FIFO
 * 描述	           : 从FIFO队列中读出1byte数据
@@ -438,21 +467,21 @@ u8 USARTx_Rx_Read_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len
 u8 USARTx_Rx_Read_NOTFIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len,u8 *reallen)
 {
 	u8 i = 0,dlen = 0,rLen = 0,ok = 0;
-	u32 ReadPoint = 0;
+	
 	
 	if(Usart_Comx < USART_PORT_COM5)
 	{
 		ok = 1;	
 		if(len > 0)
 		{
-			USARTx_Rx_Get_FIFO_Status(Usart_Comx,fifo,&dlen);
+			USARTx_Rx_GetFIFO_Status(Usart_Comx,fifo,&dlen);
 			if(dlen > 0)
 			{
 				rLen = len;
 				if(dlen < len)
 					rLen = dlen; 
 				
-				ReadPoint = fifo->front;
+				//ReadPoint = fifo->front;
 				for(i=0;i<rLen;i++) 
 				{
 					*(data+i) = (u8)(*((u8 *)(ReadPoint)));
@@ -561,6 +590,7 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	uint8_t Clear = Clear,tt=0,dlen=0;
 	
+	
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) == SET)  //接收中断		(接收到的数据必须'\r'结尾)
 	{
 			tt++;
@@ -570,14 +600,19 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 	{
 			Clear = USART2->SR;		//READ SR Reg
 			Clear = USART2->DR;		//READ DR Reg
-			USARTx_Rx_Get_FIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
+
+			USARTx_Rx_GetFIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
 			USART_RX_STA = dlen;
 			USART_RX_STA |= 0x8000;
+			
 			Read_Uart(USART_PORT_COM2,USART_RX_BUF,dlen);
-			printf("\r\nuart idle irterrupt:%d\r\n",dlen);
+
+			
+			
+			printf("\r\nuart idle IRQ:%s,%d\r\n",USART_RX_BUF,dlen);
 			
    } 
-	 printf("\r\n uart2 irq\r\n");
+	 //printf("\r\n uart2 irq\r\n");
 } 
 
 u8 Get_Usartx_Config_Sts(USART_PORT_COMX Usart_Comx)

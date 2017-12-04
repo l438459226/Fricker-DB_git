@@ -48,7 +48,7 @@ typedef struct
     //u8  *buffer;
 }FIFOTYPE;
 
-
+extern u32 ReadPoint ;
 
 
 

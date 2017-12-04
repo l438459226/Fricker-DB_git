@@ -128,6 +128,7 @@ void USARTx_Test(USART_PORT_COMX Usart_Comx);			//´®¿Ú×Ô·¢×ÔÊÕ²âÊÔ£¬Òª±£Ö¤4msÔËÐ
 
 
 
+//u8 USARTx_Rx_GetFIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len);
 
 
 

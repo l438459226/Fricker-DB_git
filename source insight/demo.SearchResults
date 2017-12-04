@@ -1,0 +1,19 @@
+---- sFifo_Comx[USART_PORT_COM2] Matches (1 in 1 files) ----
+Uart.c (hardware\uart_dma):			USARTx_Rx_Get_FIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
+---- sFifo_Comx[Usart_Comx] Matches (3 in 1 files) ----
+Uart.c (hardware\uart_dma):		USARTx_Rx_Init_FIFO(Usart_Comx,&sFifo_Comx[Usart_Comx],RECEVIE_BUFFER_MAX_SIZE);			//串口dma接收fifo初始化
+Uart.c (hardware\uart_dma):		USARTx_Rx_Read_FIFO(Usart_Comx,sFifo_Comx[Usart_Comx],buffer,len,&rLen);
+Uart.c (hardware\uart_dma):		USARTx_Rx_Read_NOTFIFO(Usart_Comx,sFifo_Comx[Usart_Comx],buffer,len,&rLen);
+---- USARTx_DMA_Rx_init Matches (12 in 2 files) ----
+Uart.c (hardware\uart_dma):u8 USARTx_DMA_Rx_init(USART_PORT_COMX Usart_Comx,u8 *RxBuffer,u16 num)
+Uart.c (hardware\uart_dma):		USARTx_DMA_Rx_init(Usart_Comx,(*fifo)->buffer,RECEVIE_BUFFER_MAX_SIZE);	//串口rx dma设置
+USMART.htm (obj):<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
+USMART.htm (obj):<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
+USMART.htm (obj):<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
+USMART.htm (obj):<LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
+USMART.htm (obj):<P><STRONG><a name="[175]"></a>USARTx_DMA_Rx_init</STRONG> (Thumb, 138 bytes, Stack size 64 bytes, uart.o(.text))
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<BR>[Calls]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = InitUart &rArr; USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
