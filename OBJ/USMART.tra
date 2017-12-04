@@ -60,7 +60,7 @@
 ### ADS-LD Output File: '..\OBJ\USMART.axf'
 ### ADS-LD Command File: '..\OBJ\USMART.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x00000350
+### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x00000BDC
 ### Writing '.lnp' file
 ### ADS-LD Command file '..\OBJ\USMART.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

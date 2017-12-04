@@ -119,6 +119,8 @@ u8 WriteUart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len);
 //丢失或者错误，其他port用的都是dma，可以放在其他中断中
 u8	ReadUart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len); 
 
+u8	Read_Uart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len);
+
 //建议读取或者写入都放在主函数中运行，特殊情况也要遵守上述规则
 
 

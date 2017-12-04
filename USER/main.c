@@ -23,6 +23,104 @@
 
 u8 bufer[512];
 
+
+#define	PACK_HEAD 					0x80		//包头
+#define	PACK_TAIL 					0x88		//包尾
+
+//下位机 --> 上位机
+#define	CMD_UA_CAL_STATUS			0x02
+#define	CMD_LOADBIN_STATUS			0x03
+#define	CMD_VA_VAL					0x04
+#define	CMD_SYS_ERR					0x05
+#define	CMD_VERSION					0x40
+
+#define	CMD_UA_CAL_STATUS_LEN		0x01
+#define	CMD_LOADBIN_STATUS_LEN		0x01
+#define	CMD_VA_VAL_LEN				0x04
+#define	CMD_VERSION_LEN				0x02
+#define	CMD_SYS_ERR_LEN				0x01
+
+
+
+//上位机  --> 下位机
+#define	CMD_POWER_SEQ				0x41
+#define	CMD_INIT_STATUS				0x42
+#define	CMD_VA_STATUS				0x43
+//#define	CMD_SYS_STATUS				0x44
+
+
+
+#define	CMD_POWER_SEQ_LEN			0x01
+#define	CMD_INIT_STATUS_LEN			0x01
+#define	CMD_VA_STATUS_LEN			0x01
+//#define	CMD_SYS_STATUS_LEN			0x01
+
+
+void test(u8 ii)
+{
+	printf("QQ AA HH YY I :%d\r\n",ii);
+}
+
+
+void Clear_buffer(u8 *buf,u8 len)
+{
+	u32 i;
+	for(i=0;i<len;i++)
+	{
+		buf[i] = 0x00;
+	}
+}
+
+
+int UnPack(u8 *package,u8 len)
+{
+	static u8 i = 0,start = 0;
+	u8 lenth;
+
+	if(ReadUart(USART_PORT_COM2,&package[i],1)==0)//没有读到数据
+	{
+			return -1;
+	}
+	
+	if(start)	//
+	{
+	#if 0 
+		//printf("start \r\n");
+		if(package[i] == PACK_HEAD)	//
+		{
+			printf("package agan\r\n");
+			Clear_buffer(package,len);
+			
+			start = 1;
+			i = 0;	//重新接收包
+			return 0;
+		}
+		#endif
+		
+		if(package[i] == PACK_TAIL)
+		{		
+			lenth = i;
+			start = 0;
+			i = 0;
+			return lenth;
+		}
+		else
+		{
+			i++;
+			if(i==(len-1)) {start = 0;i = 0;Clear_buffer(package,len);}	//超出数值 重新接收包
+			
+		}
+	}
+	if((package[i] == PACK_HEAD)&&(i==0))
+	{
+		i = 0;
+		start = 1;
+		//printf("start \r\n");
+		return 0 ;
+	}
+	return 0;
+}
+
 int main(void)
 { 
 	

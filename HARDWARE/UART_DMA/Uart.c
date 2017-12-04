@@ -18,7 +18,7 @@
 #include "Fifo.h"
 #include <stdarg.h>
 #include <stdio.h>
-//#include "SysTick.h"
+#include "usart.h"
 #include "string.h"
 #include <stdlib.h>
 #include "UartQue.h"
@@ -62,7 +62,7 @@ typedef struct
 
 
 
-
+#define ENABLE_UART2_IDLE_IRQ
 
 
 
@@ -428,6 +428,55 @@ u8 USARTx_Rx_Read_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len
 
 
 
+/*******************************************************************************
+* 文件名	    : USARTx_Rx_Read_FIFO
+* 描述	           : 从FIFO队列中读出1byte数据
+* 输入           : 
+* 输出           : 无
+* 返回           : 无
+*******************************************************************************/
+u8 USARTx_Rx_Read_NOTFIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len,u8 *reallen)
+{
+	u8 i = 0,dlen = 0,rLen = 0,ok = 0;
+	u32 ReadPoint = 0;
+	
+	if(Usart_Comx < USART_PORT_COM5)
+	{
+		ok = 1;	
+		if(len > 0)
+		{
+			USARTx_Rx_Get_FIFO_Status(Usart_Comx,fifo,&dlen);
+			if(dlen > 0)
+			{
+				rLen = len;
+				if(dlen < len)
+					rLen = dlen; 
+				
+				ReadPoint = fifo->front;
+				for(i=0;i<rLen;i++) 
+				{
+					*(data+i) = (u8)(*((u8 *)(ReadPoint)));
+					if(ReadPoint == fifo->endaddr)
+				    {
+				        ReadPoint = fifo->staraddr;
+				    }
+				    else
+				    {
+				        ReadPoint++;
+				    }
+				}
+			}
+			else
+			{
+				rLen = dlen;
+			}
+		}
+		*reallen = rLen;	
+	}
+
+	return ok;
+    
+}
 
 
 
@@ -507,6 +556,7 @@ u8 USARTx_Configuration(USART_PORT_COMX Usart_Comx)
 	return ok;
 }
 
+
 void USART2_IRQHandler(void)                	//串口1中断服务程序
 {
 	uint8_t Clear = Clear,tt=0,dlen=0;
@@ -521,6 +571,9 @@ void USART2_IRQHandler(void)                	//串口1中断服务程序
 			Clear = USART2->SR;		//READ SR Reg
 			Clear = USART2->DR;		//READ DR Reg
 			USARTx_Rx_Get_FIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
+			USART_RX_STA = dlen;
+			USART_RX_STA |= 0x8000;
+			Read_Uart(USART_PORT_COM2,USART_RX_BUF,dlen);
 			printf("\r\nuart idle irterrupt:%d\r\n",dlen);
 			
    } 
@@ -642,6 +695,38 @@ u8	ReadUart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len)
 }
 
 
+
+u8	Read_Uart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len)
+{
+	u8 i = 0,rLen = 0, n = 0;
+
+	if(Get_Usartx_Config_Sts(Usart_Comx) == 0)
+	{
+		return 0;
+	}
+	
+	
+
+	if(Usart_Comx < USART_PORT_COM5)                    
+	{
+		USARTx_Rx_Read_NOTFIFO(Usart_Comx,sFifo_Comx[Usart_Comx],buffer,len,&rLen);
+	}
+	else if(Usart_Comx == USART_PORT_COM5)
+	{
+		
+		n = CountUartRxCycQue(UART_RX_QUE_COM5);			
+		rLen = n;		
+
+		for(i = 0;i < n; i++)
+		{			
+			
+			ReadUartRxCycQue(UART_RX_QUE_COM5,buffer+i);
+					
+		}
+	}
+
+	return rLen;
+}
 
 
 

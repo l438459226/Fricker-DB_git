@@ -17,8 +17,8 @@
 ..\OBJ\uart.o: ..\HARDWARE\UART_DMA\Fifo.h
 ..\OBJ\uart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdarg.h
 ..\OBJ\uart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h
+..\OBJ\uart.o: ..\SYSTEM\usart\usart.h
 ..\OBJ\uart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\string.h
 ..\OBJ\uart.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 ..\OBJ\uart.o: ..\HARDWARE\UART_DMA\UartQue.h
 ..\OBJ\uart.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
-..\OBJ\uart.o: ..\SYSTEM\usart\usart.h
