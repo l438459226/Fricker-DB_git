@@ -108,7 +108,8 @@ static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
     *data = c;
     for (i = 1; i < (packet_size + PACKET_OVERHEAD); i ++)
     {
-        if (Receive_Byte(data + i, timeout) != 0)
+
+			if (Receive_Byte(data + i, timeout) != 0)
         {
             return -1;
         }

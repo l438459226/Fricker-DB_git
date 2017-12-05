@@ -25,6 +25,10 @@
 
 u8 bufer[512];
 
+typedef  void (*pFunction0)(void);
+
+pFunction0 iapmain = NULL;
+
 
 #define	PACK_HEAD 					0x80		//包头
 #define	PACK_TAIL 					0x88		//包尾
@@ -127,11 +131,12 @@ void Ymode(void)
 {
 	Main_Menu();
 }
-extern void fifo_datanum(USART_PORT_COMX Usart_Comx, u8 dlen);
+
 
 int main(void)
 { 
 	u8 len;
+	u32 *p=(u32 *)0x2000C000;
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
@@ -216,12 +221,20 @@ int main(void)
 	Delay_ms(500);
 	INA226_Volt();
 
+	Ymode();
+	
+	
+	iapmain = (pFunction0)(*p);
+	printf("running....app:0x%x",(u32)iapmain);
+	iapmain = (pFunction0)(*p);
+	
+	//iapmain();
+	
   while(1) 
 	{
 		//Current_Volt();
-		//Ymode();
+		
 		Delay_ms(500);
-		//fifo_datanum(USART_PORT_COM2,dd);
 		len = ReadUart(USART_PORT_COM2,bufer,1);
 		if(len)
 			printf("read uart:%d   0x%x  \r\n",len,bufer[0]);

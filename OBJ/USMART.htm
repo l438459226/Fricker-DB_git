@@ -3,9 +3,9 @@
 <title>Static Call Graph - [..\OBJ\USMART.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\USMART.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Tue Dec 05 13:31:37 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 24]: Last Updated: Tue Dec 05 18:18:36 2017
 <BR><P>
-<H3>Maximum Stack Usage =       1512 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =       1520 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 Ymode &rArr; Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
 <P>
@@ -146,14 +146,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3]"></a>Ymode</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 1512<LI>Call Chain = Ymode &rArr; Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
+<BR><BR>[Stack]<UL><LI>Max Depth = 1520<LI>Call Chain = Ymode &rArr; Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Main_Menu
 </UL>
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
-<P><STRONG><a name="[50]"></a>main</STRONG> (Thumb, 410 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = main &rArr; act8846_init &rArr; act8846_dcdc_set_voltage &rArr; act8846_set_bits &rArr; act8846_i2c_read &rArr; i2c1_start_repeat &rArr; i2c1_start &rArr; i2c1_write_u8 &rArr; IIC_Wait_Ack &rArr; IIC_Stop &rArr; IIC_Buscheck &rArr; __2printf
+<P><STRONG><a name="[50]"></a>main</STRONG> (Thumb, 438 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 1520<LI>Call Chain = main &rArr; Ymode &rArr; Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mem_init
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
@@ -177,6 +179,7 @@ Global Symbols
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ACT8846_LDO_Switch
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ACT8846_DCDC_Switch
+<LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymode
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -3292,8 +3295,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Main_Menu
 </UL>
 
-<P><STRONG><a name="[5a]"></a>Main_Menu</STRONG> (Thumb, 522 bytes, Stack size 8 bytes, common.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 1504<LI>Call Chain = Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
+<P><STRONG><a name="[5a]"></a>Main_Menu</STRONG> (Thumb, 514 bytes, Stack size 16 bytes, common.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 1512<LI>Call Chain = Main_Menu &rArr; SerialUpload &rArr; Ymodem_Transmit &rArr; Receive_Byte &rArr; SerialKeyPressed &rArr; ReadUart &rArr; USARTx_Rx_Read_FIFO &rArr; USARTx_Rx_Get_FIFO_Status
 </UL>
 <BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadUart
 <LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SerialUpload
@@ -3302,6 +3305,7 @@ Global Symbols
 <LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetKey
 <LI><a href="#[1a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Serial_PutString
 <LI><a href="#[1aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_GetWriteProtectionOptionByte
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymode
 </UL>
@@ -3833,6 +3837,7 @@ Global Symbols
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Voutp_Upfirst
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Voutp
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Set_Voutn
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Main_Menu
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LM36923_Init
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test

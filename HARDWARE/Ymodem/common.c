@@ -13,21 +13,31 @@
 
 
 /* 变量 ----------------------------------------------------------------------*/
-pFunction Jump_To_Application;
+pFunction Jump_To_Application=NULL;
+
+
+
+typedef  void (*pFunction0)(void);
+
+pFunction0 IAP_W25QXX_Init = NULL;
+
+
+
 uint32_t JumpAddress;
 uint32_t BlockNbr = 0, UserMemoryMask = 0;
 __IO uint32_t FlashProtection = 0;
 extern uint32_t FlashDestination;
 
-#define Code_Size   16*256	//256*4=1024
+#define Code_Size   12*256	//256*4=1024
 
+#define IRAM_SIZE   128	//256*4=1024
 
+//0x2000C000 - 0x2000F000
+u32 IAP_Code_Addr[Code_Size] __attribute__((at(ApplicationAddress)));//code section
 
-u32 IAP_Code_Addr[Code_Size] __attribute__((at(0x2000C000)));//code section
+u32 IRAM[IRAM_SIZE] __attribute__((at(0x2000FE00)));	//0x2000F000 - 0x20010000
 
-
-
-
+u32 IIRAM[896] __attribute__((at(0x2000F000)));	//0x2000F000 - 0x20010000
 /*******************************************************************************
   * @函数名称	Int2Str
   * @函数说明   整形数据转到字符串
@@ -421,6 +431,7 @@ void FLASH_DisableWriteProtectionPages(void)
 void Main_Menu(void)
 {
     uint8_t key = 0;
+		u32 * p = (u32*)0x2000C000;
     BlockNbr = (FlashDestination - 0x08000000) >> 12;
 
 	
@@ -467,9 +478,11 @@ void Main_Menu(void)
         if (key == 0x31)
         {
             //下载程序
-					while(ReadUart(USART_PORT_COM2,&key,1));	//清除残余数据
+						while(ReadUart(USART_PORT_COM2,&key,1));	//清除残余数据
             SerialDownload();
-						return ;
+					
+						printf("app addr:0x%x\r\n",*p);
+						return;
         }
         else if (key == 0x32)
         {
@@ -478,14 +491,18 @@ void Main_Menu(void)
         }
         else if (key == 0x33)
         {
-            SerialPutString("Execute user Program\r\n\n");
-            JumpAddress = *(__IO uint32_t*) (ApplicationAddress + 4);
-
+					IAP_W25QXX_Init = (pFunction0)(IRAM[0]);
+					/*
+            JumpAddress = *(__IO uint32_t*) ((uint32_t)(ApplicationAddress + 4));
+						printf("run appaddr:0x%x",JumpAddress);
             //跳转到用户程序
-            Jump_To_Application = (pFunction) JumpAddress;
+            Jump_To_Application = (pFunction) (JumpAddress);
             //初始化用户程序的堆栈指针
-            __set_MSP(*(__IO uint32_t*) ApplicationAddress);
+            //__set_MSP(*(__IO uint32_t*) ApplicationAddress);
             Jump_To_Application();
+					*/
+						SerialPutString("Execute user Program\r\n\n");
+					
         }
         else if ((key == 0x34) && (FlashProtection == 1))
         {
