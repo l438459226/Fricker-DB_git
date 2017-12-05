@@ -17,3 +17,38 @@ USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = USARTx_Rx
 USMART.htm (obj):<BR>[Calls]<UL><LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_DMA_Rx_init
 USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
 USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = InitUart &rArr; USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+---- USARTx_Rx_Init_FIFO Matches (11 in 3 files) ----
+Main.c (user):		USARTx_Rx_Init_FIFO();
+Uart.c (hardware\uart_dma):u8 USARTx_Rx_Init_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE * *fifo,u32 fifosize)
+Uart.c (hardware\uart_dma):		USARTx_Rx_Init_FIFO(Usart_Comx,&sFifo_Comx[Usart_Comx],RECEVIE_BUFFER_MAX_SIZE);			//串口dma接收fifo初始化
+USMART.htm (obj):<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_Init_FIFO
+USMART.htm (obj):<P><STRONG><a name="[187]"></a>USARTx_Rx_Init_FIFO</STRONG> (Thumb, 116 bytes, Stack size 24 bytes, uart.o(.text))
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_Init_FIFO
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = InitUart &rArr; USARTx_Configuration &rArr; USARTx_Rx_Init_FIFO &rArr; USARTx_DMA_Rx_init &rArr; DMA_Init
+USMART.htm (obj):<BR><BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_Init_FIFO
+USMART.htm (obj):<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_Init_FIFO
+---- USARTx_Rx_GetFIFO_Status Matches (12 in 3 files) ----
+Uart.c (hardware\uart_dma):u8 USARTx_Rx_GetFIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len)
+Uart.c (hardware\uart_dma):			USARTx_Rx_GetFIFO_Status(Usart_Comx,fifo,&dlen);
+Uart.c (hardware\uart_dma):			USARTx_Rx_GetFIFO_Status(USART_PORT_COM2,sFifo_Comx[USART_PORT_COM2],&dlen);
+Uart.h (hardware\uart_dma)://u8 USARTx_Rx_GetFIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len);
+USMART.htm (obj):<BR><BR>[Called By]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<P><STRONG><a name="[18d]"></a>USARTx_Rx_GetFIFO_Status</STRONG> (Thumb, 78 bytes, Stack size 32 bytes, uart.o(.text))
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = USARTx_Rx_Read_NOTFIFO &rArr; USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<BR>[Calls]<UL><LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = Read_Uart &rArr; USARTx_Rx_Read_NOTFIFO &rArr; USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = USART2_IRQHandler &rArr; Read_Uart &rArr; USARTx_Rx_Read_NOTFIFO &rArr; USARTx_Rx_GetFIFO_Status
+USMART.htm (obj):<LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USARTx_Rx_GetFIFO_Status
+---- Ymodem_Receive Matches (9 in 1 files) ----
+USMART.htm (obj):<BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive
+USMART.htm (obj):<BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 1192<LI>Call Chain = SerialDownload &rArr; Ymodem_Receive &rArr; Receive_Packet &rArr; Receive_Byte &rArr; SerialKeyPressed
+USMART.htm (obj):<BR>[Calls]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive
+USMART.htm (obj):<P><STRONG><a name="[1af]"></a>Ymodem_Receive</STRONG> (Thumb, 440 bytes, Stack size 1112 bytes, ymodem.o(.text))
+USMART.htm (obj):<BR><BR>[Stack]<UL><LI>Max Depth = 1168<LI>Call Chain = Ymodem_Receive &rArr; Receive_Packet &rArr; Receive_Byte &rArr; SerialKeyPressed
+USMART.htm (obj):<BR><BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive
+USMART.htm (obj):<LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive
+USMART.htm (obj):<BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ymodem_Receive

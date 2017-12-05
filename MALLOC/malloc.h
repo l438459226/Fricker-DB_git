@@ -30,7 +30,7 @@ typedef unsigned char  u8;
 
 //mem1内存参数设定.mem1完全处于内部SRAM里面
 #define MEM1_BLOCK_SIZE			32  	  						//内存块大小为32字节
-#define MEM1_MAX_SIZE			54*1024  						//最大管理内存 40K
+#define MEM1_MAX_SIZE			24*1024  						//最大管理内存 40K
 #define MEM1_ALLOC_TABLE_SIZE	MEM1_MAX_SIZE/MEM1_BLOCK_SIZE 	//内存表大小
 
 //内存管理控制器

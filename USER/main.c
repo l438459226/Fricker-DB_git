@@ -20,6 +20,10 @@
 #include "AD715.h"
 #include "Uart.h"
 #include "VoltCurrentProc.h"
+#include "common.h"
+#include "stm32f10x_dma.h"
+#include "fifo.h"
+
 
 u8 bufer[512];
 
@@ -55,6 +59,8 @@ u8 bufer[512];
 #define	CMD_VA_STATUS_LEN			0x01
 //#define	CMD_SYS_STATUS_LEN			0x01
 
+
+extern u8 USARTx_Rx_InitFIFO(void);
 
 void test(u8 ii)
 {
@@ -121,13 +127,33 @@ int UnPack(u8 *package,u8 len)
 	return 0;
 }
 
+void Ymode(void)
+{
+		USART_ITConfig(USART2, USART_IT_IDLE, DISABLE);//开启空闲中断
+		//USART_ITConfig(USART2, USART_IT_RXNE, DISABLE);//开启中断
+		DMA_Cmd(DMA1_Channel6,DISABLE);
+		DMA_Cmd(DMA1_Channel7,DISABLE);
+		//USARTx_Rx_InitFIFO();
+		Main_Menu();
+	
+		Delay_ms(200);
+		USART_ITConfig(USART2, USART_IT_IDLE, ENABLE);//开启空闲中断
+		USARTx_Rx_InitFIFO();
+		DMA_Cmd(DMA1_Channel6,ENABLE);
+		DMA_Cmd(DMA1_Channel7,ENABLE);
+}
+
+
+
+
 int main(void)
 { 
-	
+	u8 temp,len;
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
 	System_GPIO_Config();	
+	
 	//uart2_init(115200);	 	//串口初始化为9600
 	InitUart();
  	
@@ -211,9 +237,10 @@ int main(void)
   while(1) 
 	{
 		//Current_Volt();
-		Delay_ms(50);
-		if(ReadUart(USART_PORT_COM2,bufer,64))
-			printf("read uart:%s\r\n",bufer);
+		Delay_ms(1000);
+		len = ReadUart(USART_PORT_COM2,&temp,1);
+		
+			printf("read uart len:%d\r\n",len);
 	}			
 	
 }	

@@ -211,7 +211,7 @@
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -350,7 +350,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER,ARM_MATH_CM3</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE;..\HARDWARE\PMU;..\HARDWARE\lcmparm</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE;..\HARDWARE\PMU;..\HARDWARE\lcmparm;..\HARDWARE\UART_DMA</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -700,6 +700,21 @@
               <FileName>parm.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\lcmparm\parm.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>UARTDMA</GroupName>
+          <Files>
+            <File>
+              <FileName>Uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\UART_DMA\Uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>UartQue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\UART_DMA\UartQue.c</FilePath>
             </File>
           </Files>
         </Group>

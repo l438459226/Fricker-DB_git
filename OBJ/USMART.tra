@@ -21,6 +21,7 @@
 ### List of Objects: adding '"..\obj\stm32f10x_i2c.o"'
 ### List of Objects: adding '"..\obj\stm32f10x_spi.o"'
 ### List of Objects: adding '"..\obj\stm32f10x_dma.o"'
+### List of Objects: adding '"..\obj\stm32f10x_flash.o"'
 ### List of Objects: adding '"..\obj\usmart.o"'
 ### List of Objects: adding '"..\obj\usmart_config.o"'
 ### List of Objects: adding '"..\obj\usmart_str.o"'
@@ -51,8 +52,12 @@
 ### List of Objects: adding '"..\obj\parm.o"'
 ### List of Objects: adding '"..\obj\uart.o"'
 ### List of Objects: adding '"..\obj\uartque.o"'
+### List of Objects: adding '"..\obj\common.o"'
+### List of Objects: adding '"..\obj\download.o"'
+### List of Objects: adding '"..\obj\upload.o"'
+### List of Objects: adding '"..\obj\ymodem.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "..\obj\main.o" "..\obj\stm32f10x_it.o" "..\obj\system_stm32f10x.o" "..\obj\timer.o" "..\obj\adc.o" "..\obj\delay.o" "..\obj\sys.o" "..\obj\usart.o" "..\obj\core_cm3.o" "..\obj\startup_stm32f10x_hd.o" "..\obj\stm32f10x_gpio.o" "..\obj\stm32f10x_rcc.o" "..\obj\stm32f10x_usart.o" "..\obj\misc.o" "..\obj\stm32f10x_tim.o" "..\obj\stm32f10x_adc.o" "..\obj\stm32f10x_exti.o" "..\obj\stm32f10x_i2c.o" "..\obj\stm32f10x_spi.o" "..\obj\stm32f10x_dma.o" "..\obj\usmart.o" "..\obj\usmart_config.o" "..\obj\usmart_str.o" "..\obj\malloc.o" C:\Users\github\Fricker-DB_git\CMSIS\Lib\ARM\arm_cortexM3l_math.lib "..\obj\cr4_fft_64_stm32.o" "..\obj\cr4_fft_256_stm32.o" "..\obj\cr4_fft_1024_stm32.o" "..\obj\fir_stm32.o" "..\obj\iirarma_stm32.o" "..\obj\pid_stm32.o" "..\obj\iir_stm32.o" "..\obj\pid_c_stm32.o" "..\obj\fricker.o" "..\obj\myiic.o" "..\obj\i2c1_bitbang.o" "..\obj\lt35825.o" "..\obj\lt3582.o" "..\obj\act8846.o" "..\obj\gpio_config.o" "..\obj\tps22993.o" "..\obj\lm36923.o" "..\obj\tps65132.o" "..\obj\tps65651.o" "..\obj\ad715.o" "..\obj\ina226.o" "..\obj\voltcurrentproc.o" "..\obj\parm.o" "..\obj\uart.o" "..\obj\uartque.o" 
+--cpu Cortex-M3 "..\obj\main.o" "..\obj\stm32f10x_it.o" "..\obj\system_stm32f10x.o" "..\obj\timer.o" "..\obj\adc.o" "..\obj\delay.o" "..\obj\sys.o" "..\obj\usart.o" "..\obj\core_cm3.o" "..\obj\startup_stm32f10x_hd.o" "..\obj\stm32f10x_gpio.o" "..\obj\stm32f10x_rcc.o" "..\obj\stm32f10x_usart.o" "..\obj\misc.o" "..\obj\stm32f10x_tim.o" "..\obj\stm32f10x_adc.o" "..\obj\stm32f10x_exti.o" "..\obj\stm32f10x_i2c.o" "..\obj\stm32f10x_spi.o" "..\obj\stm32f10x_dma.o" "..\obj\stm32f10x_flash.o" "..\obj\usmart.o" "..\obj\usmart_config.o" "..\obj\usmart_str.o" "..\obj\malloc.o" C:\Users\github\Fricker-DB_git\CMSIS\Lib\ARM\arm_cortexM3l_math.lib "..\obj\cr4_fft_64_stm32.o" "..\obj\cr4_fft_256_stm32.o" "..\obj\cr4_fft_1024_stm32.o" "..\obj\fir_stm32.o" "..\obj\iirarma_stm32.o" "..\obj\pid_stm32.o" "..\obj\iir_stm32.o" "..\obj\pid_c_stm32.o" "..\obj\fricker.o" "..\obj\myiic.o" "..\obj\i2c1_bitbang.o" "..\obj\lt35825.o" "..\obj\lt3582.o" "..\obj\act8846.o" "..\obj\gpio_config.o" "..\obj\tps22993.o" "..\obj\lm36923.o" "..\obj\tps65132.o" "..\obj\tps65651.o" "..\obj\ad715.o" "..\obj\ina226.o" "..\obj\voltcurrentproc.o" "..\obj\parm.o" "..\obj\uart.o" "..\obj\uartque.o" "..\obj\common.o" "..\obj\download.o" "..\obj\upload.o" "..\obj\ymodem.o" 
 --library_type=microlib --strict --scatter "..\OBJ\USMART.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
@@ -60,7 +65,7 @@
 ### ADS-LD Output File: '..\OBJ\USMART.axf'
 ### ADS-LD Command File: '..\OBJ\USMART.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x000007E4
+### Creating CmdFile '..\OBJ\USMART.lnp', Handle=0x00000628
 ### Writing '.lnp' file
 ### ADS-LD Command file '..\OBJ\USMART.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

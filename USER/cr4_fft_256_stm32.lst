@@ -1089,13 +1089,13 @@ Symbol: NPT
    Definitions
       At line 46 in file ..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s
    Uses
-      At line 136 in macro ÿÿ$OPT
+      At line 136 in macro ÿÿðOPT
       at line 228 in file ..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s
-      At line 139 in macro ÿÿ$OPT
+      At line 139 in macro ÿÿðOPT
       at line 228 in file ..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s
-      At line 142 in macro ÿÿ$OPT
+      At line 142 in macro ÿÿðOPT
       at line 228 in file ..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s
-      At line 145 in macro ÿÿ$OPT
+      At line 145 in macro ÿÿðOPT
       at line 228 in file ..\STM32F10x_DSP_Lib\src\asm\arm\cr4_fft_256_stm32.s
 
 1 symbol

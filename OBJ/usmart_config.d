@@ -22,3 +22,6 @@
 ..\OBJ\usmart_config.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdlib.h
 ..\OBJ\usmart_config.o: ..\HARDWARE\SSD\ssd2828.h
 ..\OBJ\usmart_config.o: ..\HARDWARE\SSD\lcd_drv.h
+..\OBJ\usmart_config.o: ..\HARDWARE\Ymodem\common.h
+..\OBJ\usmart_config.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\string.h
+..\OBJ\usmart_config.o: ..\HARDWARE\Ymodem\ymodem.h

@@ -71,6 +71,9 @@ typedef struct
 *********************************************************************************************************/
 static FIFOTYPE * sFifo_Comx[USART_PORT_COM5];		//定义接收结构体,USART_PORT_COM5不支持dma模式
 
+
+static FIFOTYPE *fifobeifen;
+
 u32 ReadPoint = 0;	//用于USART助手
 
 
@@ -331,23 +334,28 @@ u8 USARTx_Rx_Init_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE * *fifo,u32 fifosize)
 			return 0;
 	    }
 	    (*fifo) = (FIFOTYPE *)malloc(16+fifosize);
+			fifobeifen = *fifo;
 	    if((*fifo) == NULL)                
 	    {
 	        //已经在堆里面申请了地址
 			return 0;
 	    }
-	    (*fifo)->size = fifosize;
+	    (*fifo)->size = fifosize;	//fifobeifen
+			
 	    (*fifo)->staraddr = (u32)(&(*fifo)->buffer[0]);                //记录FIFO缓冲区起始地址
 	    (*fifo)->endaddr = (u32)(&(*fifo)->buffer[fifosize-1]);        //记录FIFO缓冲区结束地址
 	    (*fifo)->front = (*fifo)->staraddr;                            //FIFO下一读取数据地址
 	    ReadPoint = (*fifo)->staraddr;
+			
 	    memset((*fifo)->buffer,0,(*fifo)->size);                       //清除缓冲区里面的数据，可省略
 
-		USARTx_DMA_Rx_init(Usart_Comx,(*fifo)->buffer,RECEVIE_BUFFER_MAX_SIZE);	//串口rx dma设置
+			//fifobeifen = sFifo_Comx[USART_PORT_COM2];
+			USARTx_DMA_Rx_init(Usart_Comx,(*fifo)->buffer,RECEVIE_BUFFER_MAX_SIZE);	//串口rx dma设置
 	}
     
     return ok;
 }
+
 
 
 
@@ -378,7 +386,7 @@ u8 USARTx_Rx_Get_FIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len)
 		
         *len =  (u8)res;
 	}
-
+	printf("staradd:0x%x  endaddr:0x%x  curaddr:0x%x counter:%d\r\n",fifo->staraddr,fifo->endaddr,fifo->front,DMA_GetCurrDataCounter((UsartxConfigManage+Usart_Comx)->DMA_RX_CHN));
 	return ok;
 }
 
@@ -397,12 +405,13 @@ u8 USARTx_Rx_GetFIFO_Status(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 * len)
 		
         if(res < 0)
         {
-                res = ( (i32)(fifo->endaddr)+1 - (i32)(ReadPoint) ) + (nextsave - (i32)fifo->staraddr);
+            res = ( (i32)(fifo->endaddr)+1 - (i32)(ReadPoint) ) + (nextsave - (i32)fifo->staraddr);
         }
 		
         *len =  (u8)res;
 	}
-
+	printf("IDL staradd:0x%x  endaddr:0x%x  curaddr:0x%x counter:%d\r\n",fifo->staraddr,fifo->endaddr,ReadPoint,DMA_GetCurrDataCounter((UsartxConfigManage+Usart_Comx)->DMA_RX_CHN));
+	
 	return ok;
 }
 
@@ -583,6 +592,25 @@ u8 USARTx_Configuration(USART_PORT_COMX Usart_Comx)
 		USART_Cmd(UART5, ENABLE );  
 	}
 	return ok;
+}
+
+void USARTx_Rx_IniFIFO(USART_PORT_COMX Usart_Comx)
+{
+	
+		sFifo_Comx[USART_PORT_COM2] = (FIFOTYPE*)0x20007aa8;
+		printf("IDL staradd:0x%x  endaddr:0x%x  curaddr:0x%x counter:%d\r\n",fifobeifen->staraddr,fifobeifen->endaddr,fifobeifen->front,
+		DMA_GetCurrDataCounter((UsartxConfigManage+Usart_Comx)->DMA_RX_CHN));
+		
+		//printf();//sFifo_Comx[USART_PORT_COM2] = fifobeifen;
+
+}
+
+
+u8 USARTx_Rx_InitFIFO(void)
+{
+	USARTx_Rx_IniFIFO(USART_PORT_COM2);
+	
+	
 }
 
 

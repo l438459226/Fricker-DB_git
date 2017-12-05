@@ -161,7 +161,7 @@ void Usr_Led_GPIO_Config(void)
   	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
   	GPIO_Init(GPIOB, &GPIO_InitStructure);			
 
-		GPIO_SetBits(GPIOB,GPIO_Pin_3);
+		GPIO_ResetBits(GPIOB,GPIO_Pin_3);
 }	
 
 
