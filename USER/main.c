@@ -21,6 +21,8 @@
 #include "Uart.h"
 #include "VoltCurrentProc.h"
 
+#include "common.h"
+
 u8 bufer[512];
 
 
@@ -121,9 +123,15 @@ int UnPack(u8 *package,u8 len)
 	return 0;
 }
 
+void Ymode(void)
+{
+	Main_Menu();
+}
+extern void fifo_datanum(USART_PORT_COMX Usart_Comx, u8 dlen);
+
 int main(void)
 { 
-	
+	u8 len;
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
@@ -211,9 +219,12 @@ int main(void)
   while(1) 
 	{
 		//Current_Volt();
-		Delay_ms(50);
-		if(ReadUart(USART_PORT_COM2,bufer,64))
-			printf("read uart:%s\r\n",bufer);
+		//Ymode();
+		Delay_ms(500);
+		//fifo_datanum(USART_PORT_COM2,dd);
+		len = ReadUart(USART_PORT_COM2,bufer,1);
+		if(len)
+			printf("read uart:%d   0x%x  \r\n",len,bufer[0]);
 	}			
 	
 }	

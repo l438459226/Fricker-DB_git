@@ -423,6 +423,7 @@ u8 USARTx_Rx_Read_FIFO(USART_PORT_COMX Usart_Comx,FIFOTYPE *fifo,u8 *data,u8 len
 		if(len > 0)
 		{
 			USARTx_Rx_Get_FIFO_Status(Usart_Comx,fifo,&dlen);
+			//printf("fifo data num:%d start:0x%x front:0x%x end:0x%x\r\n",dlen,fifo->staraddr,fifo->front,fifo->endaddr);
 			if(dlen > 0)
 			{
 				rLen = len;
@@ -694,6 +695,10 @@ u8 WriteUart(USART_PORT_COMX Usart_Comx, u8 *buffer, u8 len)
 	
 }
 
+void fifo_datanum(USART_PORT_COMX Usart_Comx, u8 dlen)
+{
+	USARTx_Rx_Get_FIFO_Status(Usart_Comx,sFifo_Comx[Usart_Comx],&dlen);
+}
 
 
 
