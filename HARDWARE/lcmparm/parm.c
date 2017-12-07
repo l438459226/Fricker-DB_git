@@ -51,6 +51,10 @@ void LED_Init(void)
  GPIO_SetBits(GPIOB,GPIO_Pin_0);						 //PA.8 Êä³ö¸ß
 }
 
+
+u32 rw[10] __attribute__ ((section ("codeinterge"))) ; 
+//const u32 TempBuf [6]  __attribute__  ((at(0X20002000)))         = {5};
+
 /*
 void Set_PMU_Init(void)
 {
@@ -94,7 +98,7 @@ void Set_PMU_PWREN_IO(u8 value)
 
 
 
-lcm_parameter lcm_para={
+const lcm_parameter lcm_para={
 	
 	.G_Select_Port = 1,
 	.G_disp_width = 1080,

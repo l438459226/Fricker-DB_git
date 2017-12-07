@@ -133,10 +133,47 @@ void Ymode(void)
 }
 
 
+typedef char * va_list; 
+
+#define _INTSIZEOF(n) \
+((sizeof(n)+sizeof(int)-1)&~(sizeof(int) - 1) ) 
+
+#define va_start(ap,v) ( ap = (va_list)&v + _INTSIZEOF(v) ) 
+
+#define va_arg(ap,t) \
+( *(t *)((ap += _INTSIZEOF(t)) - _INTSIZEOF(t)) ) 
+
+#define va_end(ap) ( ap = (va_list)0 ) 
+
+void simple_va_fun(int i,...);
+
+void simple_va_fun(int i,...)   
+{   
+    va_list   arg_ptr;     //定义可变参数指针 
+	
+    va_start(arg_ptr,i);   // i为最后一个固定参数，这里i为100
+    int a=va_arg(arg_ptr,int);
+    int b=va_arg(arg_ptr,int);
+    int c=va_arg(arg_ptr,int);
+    int d=va_arg(arg_ptr,int);
+	  int e=va_arg(arg_ptr,int);
+	  int f=va_arg(arg_ptr,int);
+	  int h=va_arg(arg_ptr,int);
+	  int x=va_arg(arg_ptr,int);
+	  int j=va_arg(arg_ptr,int);
+	  int q=va_arg(arg_ptr,int);
+	  int w=va_arg(arg_ptr,int);
+	  int r=va_arg(arg_ptr,int);
+	
+    va_end(arg_ptr);        //  清空参数指针
+    printf( "0x%x 0x%x 0x%x\r\n",i,d,q);   //输出为100 200 a
+    return;   
+}
+
 int main(void)
 { 
 	u8 len;
-	u32 *p=(u32 *)0x2000C000;
+//	u32 *p=(u32 *)0x2000C000;
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
@@ -221,20 +258,20 @@ int main(void)
 	Delay_ms(500);
 	INA226_Volt();
 
-	Ymode();
+	//Ymode();
 	
 	
-	iapmain = (pFunction0)(*p);
-	printf("running....app:0x%x",(u32)iapmain);
-	iapmain = (pFunction0)(*p);
+	//iapmain = (pFunction0)(*p);
+	//printf("running....app:0x%x",(u32)iapmain);
+	//iapmain = (pFunction0)(*p);
 	
 	//iapmain();
 	
   while(1) 
 	{
 		//Current_Volt();
-		
-		Delay_ms(500);
+		simple_va_fun(0x29,0xD0,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x19,0x29,0xD0,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x77);
+		Delay_ms(1000);
 		len = ReadUart(USART_PORT_COM2,bufer,1);
 		if(len)
 			printf("read uart:%d   0x%x  \r\n",len,bufer[0]);

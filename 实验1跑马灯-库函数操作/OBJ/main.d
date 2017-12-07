@@ -12,3 +12,4 @@
 ..\OBJ\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\main.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\main.o: ..\SYSTEM\delay\delay.h
+..\OBJ\main.o: D:\ARM\Keil\ARM\ARMCC\bin\..\include\stdio.h

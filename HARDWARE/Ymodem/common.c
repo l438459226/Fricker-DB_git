@@ -482,7 +482,7 @@ void Main_Menu(void)
             SerialDownload();
 					
 						printf("app addr:0x%x\r\n",*p);
-						return;
+						//return;
         }
         else if (key == 0x32)
         {
@@ -491,16 +491,16 @@ void Main_Menu(void)
         }
         else if (key == 0x33)
         {
-					IAP_W25QXX_Init = (pFunction0)(IRAM[0]);
-					/*
-            JumpAddress = *(__IO uint32_t*) ((uint32_t)(ApplicationAddress + 4));
+					//IAP_W25QXX_Init = (pFunction0)(IRAM[0]);
+					
+            JumpAddress = *(__IO uint32_t*) ((uint32_t)(ApplicationAddress ));
 						printf("run appaddr:0x%x",JumpAddress);
             //跳转到用户程序
             Jump_To_Application = (pFunction) (JumpAddress);
             //初始化用户程序的堆栈指针
             //__set_MSP(*(__IO uint32_t*) ApplicationAddress);
             Jump_To_Application();
-					*/
+					
 						SerialPutString("Execute user Program\r\n\n");
 					
         }
