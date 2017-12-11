@@ -52,50 +52,7 @@ void LED_Init(void)
 }
 
 
-u32 rw[10] __attribute__ ((section ("codeinterge"))) ; 
-//const u32 TempBuf [6]  __attribute__  ((at(0X20002000)))         = {5};
-
-/*
-void Set_PMU_Init(void)
-{
- 
- GPIO_InitTypeDef  GPIO_InitStructure;
- 	
- RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOG, ENABLE);	 //使能PB端口时钟
-	
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;				 //LED0-->PA.8 端口配置
- GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 		 //推挽输出
- GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;		 //IO口速度为50MHz
- GPIO_Init(GPIOG, &GPIO_InitStructure);					 //根据设定参数初始化GPIOA.8
- GPIO_SetBits(GPIOG,GPIO_Pin_8);						 //PA.8 输出高
-}
-
-void Set_PMU_RST_IO(u8 value)
-{			
-	if(value)
-	{
-		GPIO_SetBits(GPIOG, GPIO_Pin_8);
-	}
-	else
-	{
-		GPIO_ResetBits(GPIOG, GPIO_Pin_8);
-	}
-}
-
-void Set_PMU_PWREN_IO(u8 value)
-{			
-	if(value)
-	{
-		GPIO_SetBits(GPIOE,GPIO_Pin_5);
-	}
-	else
-	{
-		GPIO_ResetBits(GPIOE,GPIO_Pin_5);
-	}
-}
-
-*/
-
+//u32 rw[10] __attribute__ ((section ("codeinterge"))) ; 
 
 
 const lcm_parameter lcm_para={

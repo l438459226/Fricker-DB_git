@@ -145,35 +145,44 @@ typedef char * va_list;
 
 #define va_end(ap) ( ap = (va_list)0 ) 
 
-void simple_va_fun(int i,...);
+void simple_va_fun(int reg,...);
 
-void simple_va_fun(int i,...)   
+void simple_va_fun(int reg,...)   
 {   
     va_list   arg_ptr;     //定义可变参数指针 
+		int i,regdata,n;
 	
-    va_start(arg_ptr,i);   // i为最后一个固定参数，这里i为100
-    int a=va_arg(arg_ptr,int);
-    int b=va_arg(arg_ptr,int);
-    int c=va_arg(arg_ptr,int);
-    int d=va_arg(arg_ptr,int);
-	  int e=va_arg(arg_ptr,int);
-	  int f=va_arg(arg_ptr,int);
-	  int h=va_arg(arg_ptr,int);
-	  int x=va_arg(arg_ptr,int);
-	  int j=va_arg(arg_ptr,int);
-	  int q=va_arg(arg_ptr,int);
-	  int w=va_arg(arg_ptr,int);
-	  int r=va_arg(arg_ptr,int);
+	
+    va_start(arg_ptr,reg);   // i为最后一个固定参数，这里i为100
+		n = va_arg(arg_ptr,int);
+		printf( " 0x%x 0x%x",reg,n); 
+		for(i=0;i<n;i++)
+		{
+			regdata = va_arg(arg_ptr,int);
+			printf( " 0x%x",regdata); 
+		}
+		printf("\r\n");
 	
     va_end(arg_ptr);        //  清空参数指针
-    printf( "0x%x 0x%x 0x%x\r\n",i,d,q);   //输出为100 200 a
+
     return;   
 }
 
+
+extern Interface IAP_W25QXX_Init ;
+
+
+const u32 *p;
+
+Interface IAP_W25QXX_Init = (u32(*)())(IIC_Start);
+
+
+
+
 int main(void)
 { 
-	u8 len;
-//	u32 *p=(u32 *)0x2000C000;
+	u32 len=0x5674574,t;
+	u32 *p=(u32 *)simple_va_fun;
   NVIC_Configuration();
 	delay_init();	    	 //延时函数初始化
 
@@ -184,7 +193,9 @@ int main(void)
 	usmart_dev.init(72); 	//初始化USMART				 	
 	mem_init(SRAMIN);
 	
+	p = &len;
 	
+	t = *p;
 	
 	IIC_Init();
 	Flicker_init();//使用内存管理
@@ -270,7 +281,8 @@ int main(void)
   while(1) 
 	{
 		//Current_Volt();
-		simple_va_fun(0x29,0xD0,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x19,0x29,0xD0,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x77);
+		IAP_W25QXX_Init(0xD0,14,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x19,0x29,0xD0,0x33,0x5C,0xCB);
+//		printf(0xD0,14,0x33,0x5C,0xCB,0x31,0x01,0x10,0x10,0x10,0x19,0x29,0xD0,0x33,0x5C,0xCB);
 		Delay_ms(1000);
 		len = ReadUart(USART_PORT_COM2,bufer,1);
 		if(len)

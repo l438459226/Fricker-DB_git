@@ -748,6 +748,16 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>AppInterface</GroupName>
+          <Files>
+            <File>
+              <FileName>appInterface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Appinterface\appInterface.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>

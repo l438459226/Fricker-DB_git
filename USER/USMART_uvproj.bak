@@ -350,7 +350,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER,ARM_MATH_CM3</Define>
               <Undefine></Undefine>
-              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE;..\HARDWARE\PMU;..\HARDWARE\lcmparm;..\HARDWARE\UART_DMA</IncludePath>
+              <IncludePath>..\HARDWARE\LED;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\STM32F10x_FWLib\inc;..\CORE;..\HARDWARE\LCD;..\USMART;..\HARDWARE\ADC;..\HARDWARE\EXTI;..\HARDWARE\IIC;..\HARDWARE\KEY;..\HARDWARE\SSD;..\HARDWARE\TIMER;..\MALLOC;..\HARDWARE;..\CMSIS\Include;..\STM32F10x_DSP_Lib\inc;..\HARDWARE\FRICKER;..\HARDWARE\IIC;..\HARDWARE\LT35825;..\HARDWARE;..\HARDWARE\PMU;..\HARDWARE\lcmparm;..\HARDWARE\UART_DMA;..\HARDWARE\Ymodem</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -510,6 +510,11 @@
               <FileName>stm32f10x_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32F10x_FWLib\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F10x_FWLib\src\stm32f10x_flash.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -715,6 +720,31 @@
               <FileName>UartQue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\UART_DMA\UartQue.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Ymode</GroupName>
+          <Files>
+            <File>
+              <FileName>common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Ymodem\common.c</FilePath>
+            </File>
+            <File>
+              <FileName>download.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Ymodem\download.c</FilePath>
+            </File>
+            <File>
+              <FileName>upload.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Ymodem\upload.c</FilePath>
+            </File>
+            <File>
+              <FileName>ymodem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Ymodem\ymodem.c</FilePath>
             </File>
           </Files>
         </Group>

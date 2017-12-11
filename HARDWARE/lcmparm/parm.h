@@ -1,5 +1,6 @@
 #ifndef __PARM_H
-#define __PARM_H	 
+#define __PARM_H	
+
 #include "sys.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
@@ -21,7 +22,7 @@
 #define RIIC_DAT    		PBin(7)		//GT9147????	
 #define RIIC_DATT 			PBout(7)
 
-
+typedef  u32 (*Interface)();
 
 
 typedef struct
@@ -222,6 +223,7 @@ typedef enum
 	PWR12_LED_PWR_5V_INDEX,
 }POWER_CHANNEL_INDEX_TypeDef;
 
+extern const lcm_parameter lcm_para;
 
 u16 Get_Volt_Val(POWER_CHANNEL_INDEX_TypeDef index);
 

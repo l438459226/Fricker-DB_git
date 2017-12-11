@@ -19,7 +19,6 @@ pFunction Jump_To_Application=NULL;
 
 typedef  void (*pFunction0)(void);
 
-pFunction0 IAP_W25QXX_Init = NULL;
 
 
 
