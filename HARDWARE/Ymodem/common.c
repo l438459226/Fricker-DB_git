@@ -9,6 +9,7 @@
 /* 包含头文件 *****************************************************************/
 #include "common.h"
 #include "ymodem.h"
+<<<<<<< HEAD
 #include "uart.h"
 
 
@@ -22,11 +23,20 @@ typedef  void (*pFunction0)(void);
 
 
 
+=======
+#include "sys.h"
+#include "stm32f10x_flash.h"
+#include "Uart.h"
+
+/* 变量 ----------------------------------------------------------------------*/
+pFunction Jump_To_Application;
+>>>>>>> origin/master
 uint32_t JumpAddress;
 uint32_t BlockNbr = 0, UserMemoryMask = 0;
 __IO uint32_t FlashProtection = 0;
 extern uint32_t FlashDestination;
 
+<<<<<<< HEAD
 #define Code_Size   12*256	//256*4=1024
 
 #define IRAM_SIZE   128	//256*4=1024
@@ -37,6 +47,17 @@ u32 IAP_Code_Addr[Code_Size] __attribute__((at(ApplicationAddress)));//code sect
 u32 IRAM[IRAM_SIZE] __attribute__((at(0x2000FE00)));	//0x2000F000 - 0x20010000
 
 u32 IIRAM[896] __attribute__((at(0x2000F000)));	//0x2000F000 - 0x20010000
+=======
+#define Code_Size   16*256	//256*4=1024
+
+
+
+u32 IAP_Code_Addr[Code_Size] __attribute__((at(0x2000C000)));//code section0x2000C000
+
+
+
+
+>>>>>>> origin/master
 /*******************************************************************************
   * @函数名称	Int2Str
   * @函数说明   整形数据转到字符串
@@ -197,7 +218,10 @@ uint32_t GetIntegerInput(int32_t * num)
     }
 }
 
+<<<<<<< HEAD
 extern void fifo_datanum(USART_PORT_COMX Usart_Comx, u8 dlen);
+=======
+>>>>>>> origin/master
 /*******************************************************************************
   * @函数名称	SerialKeyPressed
   * @函数说明   测试超级终端是否有按键按下
@@ -208,16 +232,23 @@ extern void fifo_datanum(USART_PORT_COMX Usart_Comx, u8 dlen);
 *******************************************************************************/
 uint32_t SerialKeyPressed(uint8_t *key)
 {
+<<<<<<< HEAD
 /*
     if ( USART_GetFlagStatus(USART1, USART_FLAG_RXNE) != RESET)
     {
         *key = (uint8_t)USART1->DR;
+=======
+    if ( USART_GetFlagStatus(USART2, USART_FLAG_RXNE) != RESET)
+    {
+        *key = (uint8_t)USART2->DR;
+>>>>>>> origin/master
         return 1;
     }
     else
     {
         return 0;
     }
+<<<<<<< HEAD
 */
 	
 	u8 rec_len = 0,dd;
@@ -233,6 +264,9 @@ uint32_t SerialKeyPressed(uint8_t *key)
 		//printf("\r\n##########$$$$$$$$$$$$$$$ReadUart:%d  0x%x  dd:%d \r\n",rec_len,*key,dd);
 		return 1;
 	}
+=======
+	
+>>>>>>> origin/master
 }
 
 /*******************************************************************************
@@ -430,10 +464,16 @@ void FLASH_DisableWriteProtectionPages(void)
 void Main_Menu(void)
 {
     uint8_t key = 0;
+<<<<<<< HEAD
 		u32 * p = (u32*)0x2000C000;
     BlockNbr = (FlashDestination - 0x08000000) >> 12;
 
 	
+=======
+    BlockNbr = (FlashDestination - 0x08000000) >> 12;
+
+ 
+>>>>>>> origin/master
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
     UserMemoryMask = ((uint32_t)~((1 << BlockNbr) - 1));
 #else /* USE_STM3210E_EVAL */
@@ -455,8 +495,11 @@ void Main_Menu(void)
     {
         FlashProtection = 0;
     }
+<<<<<<< HEAD
 		
 		while(ReadUart(USART_PORT_COM2,&key,1));	//清除残余数据
+=======
+>>>>>>> origin/master
 
     while (1)
     {
@@ -477,11 +520,17 @@ void Main_Menu(void)
         if (key == 0x31)
         {
             //下载程序
+<<<<<<< HEAD
 						while(ReadUart(USART_PORT_COM2,&key,1));	//清除残余数据
             SerialDownload();
 					
 						printf("app addr:0x%x\r\n",*p);
 						//return;
+=======
+            SerialDownload();
+						return ;
+						
+>>>>>>> origin/master
         }
         else if (key == 0x32)
         {
@@ -490,6 +539,7 @@ void Main_Menu(void)
         }
         else if (key == 0x33)
         {
+<<<<<<< HEAD
 					//IAP_W25QXX_Init = (pFunction0)(IRAM[0]);
 					
             JumpAddress = *(__IO uint32_t*) ((uint32_t)(ApplicationAddress ));
@@ -502,6 +552,16 @@ void Main_Menu(void)
 					
 						SerialPutString("Execute user Program\r\n\n");
 					
+=======
+            SerialPutString("Execute user Program\r\n\n");
+            JumpAddress = *(__IO uint32_t*) (ApplicationAddress);//(ApplicationAddress + 4);
+
+            //跳转到用户程序
+            Jump_To_Application = (pFunction) JumpAddress;
+            //初始化用户程序的堆栈指针
+            __set_MSP(*(__IO uint32_t*) ApplicationAddress);
+            Jump_To_Application();
+>>>>>>> origin/master
         }
         else if ((key == 0x34) && (FlashProtection == 1))
         {

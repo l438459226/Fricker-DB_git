@@ -53,4 +53,9 @@
 ..\OBJ\main.o: ..\HARDWARE\PMU\VoltCurrentProc.h
 ..\OBJ\main.o: ..\HARDWARE\Ymodem\common.h
 ..\OBJ\main.o: ..\HARDWARE\Ymodem\ymodem.h
+<<<<<<< HEAD
 ..\OBJ\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+=======
+..\OBJ\main.o: ..\STM32F10x_FWLib\inc\stm32f10x_dma.h
+..\OBJ\main.o: ..\HARDWARE\UART_DMA\fifo.h
+>>>>>>> origin/master

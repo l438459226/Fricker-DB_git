@@ -73,11 +73,19 @@
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </BeforeMake>
           <AfterMake>
+<<<<<<< HEAD
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
             <UserProg1Name>D:\ARM\Keil\ARM\ARMCC\bin\fromelf.exe --bin -o ../output/iap.bin ../OBJ/LED.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>1</UserProg1Dos16Mode>
+=======
+            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg2>0</RunUserProg2>
+            <UserProg1Name></UserProg1Name>
+            <UserProg2Name></UserProg2Name>
+            <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
+>>>>>>> origin/master
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
@@ -163,7 +171,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
+<<<<<<< HEAD
             <DriverSelection>4099</DriverSelection>
+=======
+            <DriverSelection>4101</DriverSelection>
+>>>>>>> origin/master
           </Flash1>
           <Flash2>Segger\JL2CM3.dll</Flash2>
           <Flash3>"" ()</Flash3>
@@ -297,7 +309,11 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
+<<<<<<< HEAD
                 <Size>0x3000</Size>
+=======
+                <Size>0x80000</Size>
+>>>>>>> origin/master
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -321,8 +337,13 @@
               </OCR_RVCT8>
               <OCR_RVCT9>
                 <Type>0</Type>
+<<<<<<< HEAD
                 <StartAddress>0x2000f000</StartAddress>
                 <Size>0x1000</Size>
+=======
+                <StartAddress>0x20000000</StartAddress>
+                <Size>0x10000</Size>
+>>>>>>> origin/master
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>

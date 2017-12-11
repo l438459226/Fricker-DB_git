@@ -16,4 +16,8 @@
 ..\OBJ\download.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\download.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\download.o: ..\HARDWARE\Ymodem\ymodem.h
+<<<<<<< HEAD
 ..\OBJ\download.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+=======
+..\OBJ\download.o: ..\SYSTEM\sys\sys.h
+>>>>>>> origin/master

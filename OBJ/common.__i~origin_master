@@ -2,4 +2,4 @@
 -I D:\ARM\Keil\ARM\RV31\INC 
 -I D:\ARM\Keil\ARM\CMSIS\Include 
 -I D:\ARM\Keil\ARM\Inc\ST\STM32F10x 
--DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DARM_MATH_CM3 -o "..\OBJ\usmart_config.o" --omf_browse "..\OBJ\usmart_config.crf" --depend "..\OBJ\usmart_config.d" "..\USMART\usmart_config.c"
+-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DARM_MATH_CM3 -o "..\OBJ\common.o" --omf_browse "..\OBJ\common.crf" --depend "..\OBJ\common.d" "..\HARDWARE\Ymodem\common.c"

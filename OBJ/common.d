@@ -16,6 +16,12 @@
 ..\OBJ\common.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\common.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\common.o: ..\HARDWARE\Ymodem\ymodem.h
+<<<<<<< HEAD
 ..\OBJ\common.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
 ..\OBJ\common.o: ..\HARDWARE\UART_DMA\uart.h
 ..\OBJ\common.o: ..\SYSTEM\sys\sys.h
+=======
+..\OBJ\common.o: ..\SYSTEM\sys\sys.h
+..\OBJ\common.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+..\OBJ\common.o: ..\HARDWARE\UART_DMA\Uart.h
+>>>>>>> origin/master

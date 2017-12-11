@@ -7,6 +7,7 @@
 #include "sys.h"
 #include "lcd.h"
 #include "ssd2828.h"
+#include "common.h"
 												 
 extern void test(u8 ii);
 extern void test_fun(void(*ledset)(u8),u8 sta); 
@@ -21,6 +22,7 @@ extern void PC_DCS_Long_Write_FIFO(u16 NUM,char *P);
 extern void PC_Generic_Long_Write_FIFO(u16 NUM,char *P);
 
 extern void burn_otp(u8 best);
+extern void Ymode(void);
 
 extern void Ymode(void);
 
@@ -34,6 +36,10 @@ struct _m_usmart_nametab usmart_nametab[]=
 #endif		
 
 	(void*)test,"u16 test(u8 ii)",
+<<<<<<< HEAD
+=======
+	(void*)Main_Menu,"void Main_Menu(void)",
+>>>>>>> origin/master
 	(void*)Ymode,"void Ymode(void)",
 /*
 

@@ -13,7 +13,10 @@
 #include "string.h"
 #include "stm32f10x.h"
 #include "ymodem.h"
+<<<<<<< HEAD
 #include "stm32f10x_flash.h"
+=======
+>>>>>>> origin/master
 
 
 /* ¿‡–Õ…˘√˜ -----------------------------------------------------------------*/
@@ -22,7 +25,13 @@ typedef  void (*pFunction)(void);
 //* ∫Í ------------------------------------------------------------------------*/
 #define CMD_STRING_SIZE       128
 
+<<<<<<< HEAD
 #define ApplicationAddress    0x2000C000	//0x8010000
+=======
+#define ApplicationAddress    0x2000C000	//
+
+
+>>>>>>> origin/master
 
 #if defined (STM32F10X_MD) || defined (STM32F10X_MD_VL)
  #define PAGE_SIZE                         (0x400)    /* 1 Kbyte */

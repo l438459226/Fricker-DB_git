@@ -16,4 +16,8 @@
 ..\OBJ\upload.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\OBJ\upload.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\OBJ\upload.o: ..\HARDWARE\Ymodem\ymodem.h
+<<<<<<< HEAD
 ..\OBJ\upload.o: ..\STM32F10x_FWLib\inc\stm32f10x_flash.h
+=======
+..\OBJ\upload.o: ..\SYSTEM\sys\sys.h
+>>>>>>> origin/master

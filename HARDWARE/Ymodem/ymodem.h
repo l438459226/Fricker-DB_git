@@ -13,6 +13,11 @@
 #ifndef _YMODEM_H_
 #define _YMODEM_H_
 
+<<<<<<< HEAD
+=======
+#include "sys.h"
+
+>>>>>>> origin/master
 /* ºê ------------------------------------------------------------------------*/
 #define PACKET_SEQNO_INDEX      (1)
 #define PACKET_SEQNO_COMP_INDEX (2)

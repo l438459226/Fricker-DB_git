@@ -108,8 +108,12 @@ static int32_t Receive_Packet (uint8_t *data, int32_t *length, uint32_t timeout)
     *data = c;
     for (i = 1; i < (packet_size + PACKET_OVERHEAD); i ++)
     {
+<<<<<<< HEAD
 
 			if (Receive_Byte(data + i, timeout) != 0)
+=======
+        if (Receive_Byte(data + i, timeout) != 0)
+>>>>>>> origin/master
         {
             return -1;
         }
@@ -246,7 +250,11 @@ int32_t Ymodem_Receive (uint8_t *buf)
             Send_Byte(CA);
             return 0;
           }
+<<<<<<< HEAD
           Send_Byte(CRC16);
+=======
+          Send_Byte(CRC16);//
+>>>>>>> origin/master
           break;
       }
       if (file_done != 0)

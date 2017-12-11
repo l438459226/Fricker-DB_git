@@ -748,6 +748,7 @@
             </File>
           </Files>
         </Group>
+<<<<<<< HEAD
         <Group>
           <GroupName>AppInterface</GroupName>
           <Files>
@@ -758,6 +759,8 @@
             </File>
           </Files>
         </Group>
+=======
+>>>>>>> origin/master
       </Groups>
     </Target>
   </Targets>

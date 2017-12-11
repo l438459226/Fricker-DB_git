@@ -58,9 +58,14 @@ __heap_limit
                 EXPORT  __Vectors
                 EXPORT  __Vectors_End
                 EXPORT  __Vectors_Size
+<<<<<<< HEAD
 				IMPORT  led_flash
 
 __Vectors       DCD    	led_flash              		; Top of Stack
+=======
+
+__Vectors       DCD     __initial_sp               ; Top of Stack
+>>>>>>> origin/master
                 DCD     Reset_Handler              ; Reset Handler
                 DCD     NMI_Handler                ; NMI Handler
                 DCD     HardFault_Handler          ; Hard Fault Handler
@@ -71,7 +76,10 @@ __Vectors       DCD    	led_flash              		; Top of Stack
                 DCD     0                          ; Reserved
                 DCD     0                          ; Reserved
                 DCD     0                          ; Reserved
+<<<<<<< HEAD
 				
+=======
+>>>>>>> origin/master
                 DCD     SVC_Handler                ; SVCall Handler
                 DCD     DebugMon_Handler           ; Debug Monitor Handler
                 DCD     0                          ; Reserved
@@ -148,12 +156,20 @@ __Vectors_Size  EQU  __Vectors_End - __Vectors
 ; Reset handler
 Reset_Handler   PROC
                 EXPORT  Reset_Handler             [WEAK]
+<<<<<<< HEAD
                 IMPORT  main		
                 IMPORT  SystemInit
                 
 				LDR     R0, =SystemInit
                 BLX     R0               
                 LDR     R0, =main
+=======
+                IMPORT  __main
+                IMPORT  SystemInit
+                LDR     R0, =SystemInit
+                BLX     R0               
+                LDR     R0, =__main
+>>>>>>> origin/master
                 BX      R0
                 ENDP
                 
